@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */; };
 		644445E91C788A7900D6E2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445E81C788A7900D6E2AA /* AppDelegate.swift */; };
 		644445EB1C788A7900D6E2AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445EA1C788A7900D6E2AA /* ViewController.swift */; };
 		644445EE1C788A7900D6E2AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644445EC1C788A7900D6E2AA /* Main.storyboard */; };
@@ -15,12 +16,18 @@
 		644445F61C788A7900D6E2AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644445F41C788A7900D6E2AA /* LaunchScreen.storyboard */; };
 		644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446021C7898F200D6E2AA /* RepositoriesRepository.swift */; };
 		644446051C78993500D6E2AA /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446041C78993500D6E2AA /* NetworkHelper.swift */; };
+		64A183341C78C7AA00AA274A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183331C78C7AA00AA274A /* ErrorResponse.swift */; };
+		64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */; };
+		64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */; };
+		64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1833A1C78D3FB00AA274A /* NSDate.swift */; };
+		64A1833E1C78D4FD00AA274A /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1833D1C78D4FD00AA274A /* UserResponse.swift */; };
 		E7FC16E8A0AE0C8EEF07A0B5 /* Pods_My_Octocat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28C655522B6226615A3806F /* Pods_My_Octocat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C58E79AB83D0E62A3AD877D /* Pods-My Octocat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Octocat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My Octocat/Pods-My Octocat.debug.xcconfig"; sourceTree = "<group>"; };
 		1EE043A040310E19919417C5 /* Pods-My Octocat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Octocat.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Octocat/Pods-My Octocat.release.xcconfig"; sourceTree = "<group>"; };
+		642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		644445E51C788A7900D6E2AA /* My Octocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Octocat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644445E81C788A7900D6E2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644445EA1C788A7900D6E2AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +38,11 @@
 		644445F71C788A7900D6E2AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		644446021C7898F200D6E2AA /* RepositoriesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
 		644446041C78993500D6E2AA /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		64A183331C78C7AA00AA274A /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
+		64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorInfoResponse.swift; sourceTree = "<group>"; };
+		64A1833A1C78D3FB00AA274A /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		64A1833D1C78D4FD00AA274A /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		E28C655522B6226615A3806F /* Pods_My_Octocat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Octocat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +64,18 @@
 				E28C655522B6226615A3806F /* Pods_My_Octocat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		642B48FF1C78C76300CEA4A8 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */,
+				64A183331C78C7AA00AA274A /* ErrorResponse.swift */,
+				64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */,
+				64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */,
+				64A1833D1C78D4FD00AA274A /* UserResponse.swift */,
+			);
+			name = Responses;
 			sourceTree = "<group>";
 		};
 		644445DC1C788A7800D6E2AA = {
@@ -78,6 +102,7 @@
 				644446111C78B63300D6E2AA /* Storyboards */,
 				644445FD1C7898BB00D6E2AA /* Model */,
 				644445FE1C7898C200D6E2AA /* UI */,
+				64A183391C78D3A100AA274A /* Utils */,
 				644445E81C788A7900D6E2AA /* AppDelegate.swift */,
 				644445F21C788A7900D6E2AA /* Assets.xcassets */,
 				644445F71C788A7900D6E2AA /* Info.plist */,
@@ -115,6 +140,7 @@
 		644446001C7898D500D6E2AA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				642B48FF1C78C76300CEA4A8 /* Responses */,
 				644446041C78993500D6E2AA /* NetworkHelper.swift */,
 			);
 			name = Network;
@@ -135,6 +161,22 @@
 				644445F41C788A7900D6E2AA /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		64A183391C78D3A100AA274A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				64A1833C1C78D40200AA274A /* Extensions */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		64A1833C1C78D40200AA274A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64A1833A1C78D3FB00AA274A /* NSDate.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D440D08046B3774106BBDEC7 /* Pods */ = {
@@ -273,7 +315,13 @@
 				644445F11C788A7900D6E2AA /* My_Octocat.xcdatamodeld in Sources */,
 				644446051C78993500D6E2AA /* NetworkHelper.swift in Sources */,
 				644445E91C788A7900D6E2AA /* AppDelegate.swift in Sources */,
+				64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */,
+				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
+				642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */,
 				644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */,
+				64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */,
+				64A183341C78C7AA00AA274A /* ErrorResponse.swift in Sources */,
+				64A1833E1C78D4FD00AA274A /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,15 +13,66 @@ class NetworkHelper {
     
     private static let BASE_URL = "https://api.github.com"
     
-    private static let SEARCH_REPOSITORIES = "/search/repositories"
+    private static let SEARCH_REPOSITORIES_PATH = "/search/repositories"
     
-    private static let DATE_PATTERN = "YYYY-MM-DDTHH:MM:SSZ"
-    private static let HEADER = "Accept: application/vnd.github.v3+json"
+    private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
+    private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
     
     private let instance = NetworkHelper()
     
-    func searchRespository(query: String) {
-        
+    func searchRespository(query: String, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) {
+        var queryParams = ["q" : query]
+        let url = buildUrl(NetworkHelper.SEARCH_REPOSITORIES_PATH, params: queryParams)
+        sendGetRequest(url, callbackHandler: { (data, response, error) in
+            if let response = response, let data = data {
+                let json = self.extractJson(data)
+                if self.isSuccessResponse(response.statusCode) {
+                    let response = RepositoriesRepository(response: json)
+                    callback(response: response, error: nil)
+                } else {
+                    let errorResponse = ErrorResponse(response: json)
+                    callback(response: nil, error: errorResponse)
+                }
+            } else {
+                let errorResponse = ErrorResponse(error: error!)
+                callback(response: nil, error: errorResponse)
+            }
+        })
+    }
+    
+    private func sendGetRequest(url: NSURL, callbackHandler callback: (data:NSData?, response: NSHTTPURLResponse?, error:NSError?) -> Void) {
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            (data, response, error) in
+            callback(data: data, response: response as? NSHTTPURLResponse, error: error)
+        }).resume()
+    }
+    
+    private func addHeadersToRequest(request: NSMutableURLRequest) {
+        request.addValue(NetworkHelper.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
+        request.addValue(NetworkHelper.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
+    }
+    
+    private func buildUrl(path: String, params: [String:String]) -> NSURL {
+        return NSURL(string: (NetworkHelper.BASE_URL + path + escapedParameters(params)))!
+    }
+    
+    private func escapedParameters(parameters: [String:String]) -> String {
+        var urlVars = [String]()
+        for (key, value) in parameters {
+            let escapedValue = "\(value)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            urlVars += [key + "=" + "\(escapedValue!)"]
+        }
+        return (urlVars.isEmpty ? "" : "?") + urlVars.joinWithSeparator("&")
+    }
+    
+    private func extractJson(data: NSData) -> NSDictionary {
+        return try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+    }
+    
+    private func isSuccessResponse(statusCode: Int) -> Bool {
+        return statusCode/100 == 2
     }
     
 }
