@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftEventBus
 
 class NetworkHelper {
     
@@ -21,16 +20,16 @@ class NetworkHelper {
     private let instance = NetworkHelper()
     
     func searchRespository(query: String, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) {
-        var queryParams = ["q" : query]
+        let queryParams = ["q" : query]
         let url = buildUrl(NetworkHelper.SEARCH_REPOSITORIES_PATH, params: queryParams)
         sendGetRequest(url, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    let response = RepositoriesRepository(response: json)
+                    let response = RepositoriesResponse(json: json)
                     callback(response: response, error: nil)
                 } else {
-                    let errorResponse = ErrorResponse(response: json)
+                    let errorResponse = ErrorResponse(json: json)
                     callback(response: nil, error: errorResponse)
                 }
             } else {
