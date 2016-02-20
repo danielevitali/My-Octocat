@@ -17,7 +17,11 @@ class NetworkHelper {
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
     
-    private let instance = NetworkHelper()
+    private static let instance = NetworkHelper()
+    
+    static func getInstance() -> NetworkHelper {
+        return instance
+    }
     
     func searchRespository(query: String, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) {
         let queryParams = ["q" : query]
