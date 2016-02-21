@@ -17,12 +17,15 @@ class RepositoriesRepository {
         return instance
     }
     
-    func search(query: String) -> Observable<AnyObject> {
+    func search(query: String) -> Observable<Repository> {
         return Observable.create { observer in
             NetworkHelper.getInstance().searchRespository(query, callbackHandler: { (response, error) -> Void in
                 if let response = response {
-                    observer.on(.Next(element))
-                    observer.on(.Completed)
+                    for repoResponse in response.items {
+                        let repository = Repository(response: repoResponse)
+                        observer.on(.Next(repository))
+                        observer.on(.Completed)
+                    }
                 } else {
                     
                 }
