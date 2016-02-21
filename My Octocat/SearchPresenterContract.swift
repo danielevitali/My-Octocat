@@ -10,4 +10,6 @@ import Foundation
 
 protocol SearchPresenterContract {
     
+    var view: SearchViewContract {get}
+    
 }

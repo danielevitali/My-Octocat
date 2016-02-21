@@ -10,4 +10,10 @@ import Foundation
 
 class SearchPresenter: SearchPresenterContract {
     
+    let view: SearchViewContract
+    
+    init(view: SearchViewContract) {
+        self.view = view
+    }
+    
 }

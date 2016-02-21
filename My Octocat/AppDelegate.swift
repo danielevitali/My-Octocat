@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        Router.showHome(window)
+        Router.showHome(window, userLoggedIn: false)
         return true
     }
 

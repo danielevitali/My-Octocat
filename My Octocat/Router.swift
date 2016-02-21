@@ -11,9 +11,13 @@ import UIKit
 
 class Router {
     
-    static func showHome(window: UIWindow) {
+    static func showHome(window: UIWindow, userLoggedIn: Bool) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        window.rootViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController")
+        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UINavigationController
+        let homeTabBarController = homeViewController.visibleViewController as! UITabBarController
+        let searchViewController = homeTabBarController.viewControllers!.first! as! SearchViewController
+        searchViewController.presenter = SearchPresenter(view: searchViewController)
+        window.rootViewController = homeViewController
         window.makeKeyAndVisible()
     }
     
