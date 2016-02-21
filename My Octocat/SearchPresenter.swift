@@ -16,4 +16,12 @@ class SearchPresenter: SearchPresenterContract {
         self.view = view
     }
     
+    func onQueryTextChanged(query: String) {
+        
+    }
+    
+    func onRepositoryClick(repository: Repository) {
+        
+    }
+    
 }

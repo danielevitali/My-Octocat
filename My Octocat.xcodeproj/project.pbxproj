@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64087EF51C7A6A3B0070D249 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF41C7A6A3B0070D249 /* Error.swift */; };
+		64087EF71C7A6C6E0070D249 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF61C7A6C6E0070D249 /* ErrorAlert.swift */; };
+		64087EF91C7A6E740070D249 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF81C7A6E740070D249 /* RepositoryCell.swift */; };
 		642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */; };
 		644445E91C788A7900D6E2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445E81C788A7900D6E2AA /* AppDelegate.swift */; };
 		644445EB1C788A7900D6E2AA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445EA1C788A7900D6E2AA /* SearchViewController.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		0C58E79AB83D0E62A3AD877D /* Pods-My Octocat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Octocat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My Octocat/Pods-My Octocat.debug.xcconfig"; sourceTree = "<group>"; };
 		1EE043A040310E19919417C5 /* Pods-My Octocat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Octocat.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Octocat/Pods-My Octocat.release.xcconfig"; sourceTree = "<group>"; };
+		64087EF41C7A6A3B0070D249 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		64087EF61C7A6C6E0070D249 /* ErrorAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
+		64087EF81C7A6E740070D249 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		644445E51C788A7900D6E2AA /* My Octocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Octocat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644445E81C788A7900D6E2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				644445FF1C7898CD00D6E2AA /* Home */,
+				64087EF61C7A6C6E0070D249 /* ErrorAlert.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				64A183401C79DD6700AA274A /* Repository.swift */,
+				64087EF41C7A6A3B0070D249 /* Error.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -205,6 +213,7 @@
 				64A183431C79DF5A00AA274A /* Contract */,
 				644445EA1C788A7900D6E2AA /* SearchViewController.swift */,
 				64A183481C79DFB600AA274A /* SearchPresenter.swift */,
+				64087EF81C7A6E740070D249 /* RepositoryCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -359,9 +368,12 @@
 				64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */,
 				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
+				64087EF51C7A6A3B0070D249 /* Error.swift in Sources */,
 				642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */,
+				64087EF91C7A6E740070D249 /* RepositoryCell.swift in Sources */,
 				64A183471C79DF8500AA274A /* SearchPresenterContract.swift in Sources */,
 				644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */,
+				64087EF71C7A6C6E0070D249 /* ErrorAlert.swift in Sources */,
 				64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */,
 				64A183341C78C7AA00AA274A /* ErrorResponse.swift in Sources */,
 				64A1833E1C78D4FD00AA274A /* UserResponse.swift in Sources */,

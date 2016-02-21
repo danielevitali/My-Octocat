@@ -12,4 +12,16 @@ protocol SearchViewContract {
     
     var presenter: SearchPresenterContract! {get set}
     
+    func toggleLoading(visible: Bool)
+    
+    func toggleIntroMessage(visible: Bool)
+    
+    func toggleNoRepositoryFound(visible: Bool)
+    
+    func showRepositories(repositories: [Repository])
+    
+    func showError(message: String)
+    
+    
+    
 }

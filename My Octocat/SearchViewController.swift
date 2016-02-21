@@ -10,11 +10,35 @@ import UIKit
 
 class SearchViewController: UIViewController, SearchViewContract {
 
+    @IBOutlet weak var cvRepositories: UICollectionView!
+    
     var presenter: SearchPresenterContract!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
+        
     }
+    
+    func toggleLoading(visible: Bool) {
+        
+    }
+    
+    func toggleIntoMessage(visible: Bool) {
+        
+    }
+    
+    func toggleNoRepositoryFound(visible: Bool) {
+        
+    }
+    
+    func showRepositories(repositories: [Repository]) {
+        
+    }
+    
+    func showError(message: String) {
+        ErrorAlert(message: message).show(self)
+    }
+
 
 }
 
