@@ -18,10 +18,10 @@ protocol SearchViewContract {
     
     func toggleNoRepositoryFound(visible: Bool)
     
-    func showRepositories(repositories: [Repository])
+    func refreshRepositoryList()
     
     func showError(message: String)
     
-    
+    func showRepositorydetails(repository: Repository)
     
 }

@@ -21,4 +21,9 @@ class Router {
         window.makeKeyAndVisible()
     }
     
+    static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+    }
+    
 }

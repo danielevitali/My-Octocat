@@ -11,9 +11,9 @@ import RxSwift
 
 class RepositoriesRepository {
     
-    private let instance = RepositoriesRepository()
+    private static let instance = RepositoriesRepository()
     
-    func getInstance() -> RepositoriesRepository {
+    static func getInstance() -> RepositoriesRepository {
         return instance
     }
     

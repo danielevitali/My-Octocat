@@ -10,7 +10,13 @@ import Foundation
 
 protocol SearchPresenterContract {
     
+    var repositories: [Repository]? {get set}
+    
     var view: SearchViewContract {get}
+    
+    func viewWillAppear()
+    
+    func viewDidDisappear()
     
     func onQueryTextChanged(query: String)
     

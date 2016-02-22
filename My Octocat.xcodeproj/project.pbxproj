@@ -29,6 +29,7 @@
 		64A183471C79DF8500AA274A /* SearchPresenterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183461C79DF8500AA274A /* SearchPresenterContract.swift */; };
 		64A183491C79DFB600AA274A /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183481C79DFB600AA274A /* SearchPresenter.swift */; };
 		64A1834B1C79E00200AA274A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1834A1C79E00200AA274A /* Router.swift */; };
+		64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64D0814F1C7BC8CD00F969DC /* artworks.sketch */; };
 		E7FC16E8A0AE0C8EEF07A0B5 /* Pods_My_Octocat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28C655522B6226615A3806F /* Pods_My_Octocat.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		64A183461C79DF8500AA274A /* SearchPresenterContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenterContract.swift; sourceTree = "<group>"; };
 		64A183481C79DFB600AA274A /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		64A1834A1C79E00200AA274A /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		64D0814F1C7BC8CD00F969DC /* artworks.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = artworks.sketch; path = Arts/artworks.sketch; sourceTree = "<group>"; };
 		E28C655522B6226615A3806F /* Pods_My_Octocat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Octocat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 		644445DC1C788A7800D6E2AA = {
 			isa = PBXGroup;
 			children = (
+				64D081511C7BC8D200F969DC /* Arts */,
 				644445E61C788A7900D6E2AA /* Products */,
 				644445E71C788A7900D6E2AA /* Source */,
 				D440D08046B3774106BBDEC7 /* Pods */,
@@ -227,6 +230,14 @@
 			name = Contract;
 			sourceTree = "<group>";
 		};
+		64D081511C7BC8D200F969DC /* Arts */ = {
+			isa = PBXGroup;
+			children = (
+				64D0814F1C7BC8CD00F969DC /* artworks.sketch */,
+			);
+			name = Arts;
+			sourceTree = "<group>";
+		};
 		D440D08046B3774106BBDEC7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */,
 				644445F61C788A7900D6E2AA /* LaunchScreen.storyboard in Resources */,
 				644445F31C788A7900D6E2AA /* Assets.xcassets in Resources */,
 				644445EE1C788A7900D6E2AA /* Main.storyboard in Resources */,

@@ -7,21 +7,41 @@
 //
 
 import Foundation
+import RxSwift
 
 class SearchPresenter: SearchPresenterContract {
     
     let view: SearchViewContract
+    var repositories: [Repository]?
     
     init(view: SearchViewContract) {
         self.view = view
     }
     
-    func onQueryTextChanged(query: String) {
+    func viewWillAppear() {
         
     }
     
-    func onRepositoryClick(repository: Repository) {
+    func viewDidDisappear() {
         
+    }
+    
+    func onQueryTextChanged(query: String) {
+        return RepositoriesRepository.getInstance().search(query)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { (repository) -> Void in
+                    print(repository)
+                    }, onError: { (errorType) -> Void in
+                        print(errorType)
+                    }, onCompleted: { () -> Void in
+                        
+                    }, onDisposed: { () -> Void in
+                        
+                })
+    }
+    
+    func onRepositoryClick(repository: Repository) {
+        view.showRepositorydetails(repository)
     }
     
 }

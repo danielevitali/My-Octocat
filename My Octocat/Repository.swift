@@ -17,6 +17,8 @@ struct Repository {
     var language: String
     var forkCount: Int
     var openIssuesCount: Int
+    var starsCount: Int
+    var forksCount: Int
     
     init(response: RepositoryResponse) {
         id = response.id
@@ -25,7 +27,9 @@ struct Repository {
         description = response.description
         language = response.language
         forkCount = response.forkCount
-        openIssuesCount = response.openIssuesCount        
+        openIssuesCount = response.openIssuesCount
+        starsCount = response.stargazersCount
+        forksCount = response.forkCount
     }
     
 }
