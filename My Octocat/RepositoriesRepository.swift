@@ -19,7 +19,7 @@ class RepositoriesRepository {
     
     func search(query: String) -> Observable<Repository> {
         return Observable.create { observer in
-            NetworkHelper.getInstance().searchRespository(query, callbackHandler: { (response, error) -> Void in
+            GitHubHelper.getInstance().searchRespository(query, callbackHandler: { (response, error) -> Void in
                 if let response = response {
                     for repoResponse in response.items {
                         let repository = Repository(response: repoResponse)

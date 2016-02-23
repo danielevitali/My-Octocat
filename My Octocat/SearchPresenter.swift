@@ -29,19 +29,13 @@ class SearchPresenter: SearchPresenterContract {
     func onQueryTextChanged(query: String) {
         return RepositoriesRepository.getInstance().search(query)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { (repository) -> Void in
-                    print(repository)
-                    }, onError: { (errorType) -> Void in
-                        print(errorType)
-                    }, onCompleted: { () -> Void in
-                        
-                    }, onDisposed: { () -> Void in
-                        
+                .subscribeNext({ (abc) -> Void in
+                    
                 })
     }
     
     func onRepositoryClick(repository: Repository) {
-        view.showRepositorydetails(repository)
+        view.showRepositoryDetails(repository)
     }
     
 }

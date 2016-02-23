@@ -87,11 +87,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-My Octocat/RxBlocking.framework"
   install_framework "Pods-My Octocat/RxCocoa.framework"
   install_framework "Pods-My Octocat/RxSwift.framework"
-  install_framework "Pods-My Octocat/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-My Octocat/RxBlocking.framework"
   install_framework "Pods-My Octocat/RxCocoa.framework"
   install_framework "Pods-My Octocat/RxSwift.framework"
-  install_framework "Pods-My Octocat/SwiftEventBus.framework"
 fi

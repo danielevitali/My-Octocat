@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkHelper {
+class GitHubHelper {
     
     private static let BASE_URL = "https://api.github.com"
     
@@ -17,15 +17,18 @@ class NetworkHelper {
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
     
-    private static let instance = NetworkHelper()
+    private static let instance = GitHubHelper()
     
-    static func getInstance() -> NetworkHelper {
+    static func getInstance() -> GitHubHelper {
         return instance
+    }
+    
+    private init() {
     }
     
     func searchRespository(query: String, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) {
         let queryParams = ["q" : query]
-        let url = buildUrl(NetworkHelper.SEARCH_REPOSITORIES_PATH, params: queryParams)
+        let url = buildUrl(GitHubHelper.SEARCH_REPOSITORIES_PATH, params: queryParams)
         sendGetRequest(url, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
@@ -53,12 +56,12 @@ class NetworkHelper {
     }
     
     private func addHeadersToRequest(request: NSMutableURLRequest) {
-        request.addValue(NetworkHelper.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
-        request.addValue(NetworkHelper.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
+        request.addValue(GitHubHelper.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
+        request.addValue(GitHubHelper.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
     }
     
     private func buildUrl(path: String, params: [String:String]) -> NSURL {
-        return NSURL(string: (NetworkHelper.BASE_URL + path + escapedParameters(params)))!
+        return NSURL(string: (GitHubHelper.BASE_URL + path + escapedParameters(params)))!
     }
     
     private func escapedParameters(parameters: [String:String]) -> String {

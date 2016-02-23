@@ -14,10 +14,6 @@ protocol SearchPresenterContract {
     
     var view: SearchViewContract {get}
     
-    func viewWillAppear()
-    
-    func viewDidDisappear()
-    
     func onQueryTextChanged(query: String)
     
     func onRepositoryClick(repository: Repository)

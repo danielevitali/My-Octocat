@@ -22,6 +22,6 @@ protocol SearchViewContract {
     
     func showError(message: String)
     
-    func showRepositorydetails(repository: Repository)
+    func showRepositoryDetails(repository: Repository)
     
 }

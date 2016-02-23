@@ -7,7 +7,7 @@ target 'My Octocat' do
     pod 'RxSwift',    '~> 2.0'
     pod 'RxCocoa',    '~> 2.0'
     pod 'RxBlocking', '~> 2.0'
-    #pod 'RxTests',    '~> 2.0'
-	pod 'SwiftEventBus', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
+#    pod 'RxTests',    '~> 2.0'
+#	 pod 'SwiftEventBus', :git => 'https://github.com/cesarferreira/SwiftEventBus.git'
 end
 

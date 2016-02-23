@@ -23,16 +23,6 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
         cvRepositories.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.viewWillAppear()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter.viewDidDisappear()
-    }
-    
     func toggleLoading(visible: Bool) {
         if visible {
             activityIndicator.startAnimating()
@@ -55,6 +45,10 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
     
     func showError(message: String) {
         ErrorAlert(message: message).show(self)
+    }
+    
+    func showRepositoryDetails(respository: Repository) {
+        
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
