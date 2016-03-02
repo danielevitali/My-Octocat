@@ -18,7 +18,7 @@ class UserResponse {
     let receivedEventsUrl: NSURL
     let type: String
     
-    init(json: NSDictionary) {
+    init(json: [String:AnyObject]) {
         id = json["id"] as! Int
         login = json["login"] as! String
         avatarUrl = NSURL(string: json["avatar_url"] as! String)!

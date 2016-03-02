@@ -10,18 +10,20 @@ import Foundation
 
 protocol SearchViewContract {
     
-    var presenter: SearchPresenterContract! {get set}
-    
     func toggleLoading(visible: Bool)
     
     func toggleIntroMessage(visible: Bool)
     
     func toggleNoRepositoryFound(visible: Bool)
     
-    func refreshRepositoryList()
+    func addRepositoryToList(repository: Repository)
     
     func showError(message: String)
     
     func showRepositoryDetails(repository: Repository)
+    
+    func startLoadingRepositories()
+    
+    func didFinishLoadingRepositories()
     
 }

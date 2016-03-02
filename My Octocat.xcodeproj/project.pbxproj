@@ -18,7 +18,8 @@
 		644445F31C788A7900D6E2AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644445F21C788A7900D6E2AA /* Assets.xcassets */; };
 		644445F61C788A7900D6E2AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644445F41C788A7900D6E2AA /* LaunchScreen.storyboard */; };
 		644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446021C7898F200D6E2AA /* RepositoriesRepository.swift */; };
-		644446051C78993500D6E2AA /* GitHubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446041C78993500D6E2AA /* GitHubHelper.swift */; };
+		644446051C78993500D6E2AA /* GitHubGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446041C78993500D6E2AA /* GitHubGateway.swift */; };
+		6495DDEC1C8792BE00DE9C0E /* WorkerScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */; };
 		64A183341C78C7AA00AA274A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183331C78C7AA00AA274A /* ErrorResponse.swift */; };
 		64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */; };
 		64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */; };
@@ -30,6 +31,7 @@
 		64A183491C79DFB600AA274A /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183481C79DFB600AA274A /* SearchPresenter.swift */; };
 		64A1834B1C79E00200AA274A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1834A1C79E00200AA274A /* Router.swift */; };
 		64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64D0814F1C7BC8CD00F969DC /* artworks.sketch */; };
+		64D639721C879B3A000AA0CF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D639711C879B3A000AA0CF /* Page.swift */; };
 		9C34BDC9417659B1DB6D4B68 /* Pods_My_Octocat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56737C8F6E646BC35E356E0A /* Pods_My_Octocat.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,11 +47,12 @@
 		644445EA1C788A7900D6E2AA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		644445ED1C788A7900D6E2AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		644445F01C788A7900D6E2AA /* My_Octocat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Octocat.xcdatamodel; sourceTree = "<group>"; };
-		644445F21C788A7900D6E2AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		644445F21C788A7900D6E2AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "My Octocat/Assets.xcassets"; sourceTree = "<group>"; };
 		644445F51C788A7900D6E2AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		644445F71C788A7900D6E2AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		644445F71C788A7900D6E2AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "My Octocat/Info.plist"; sourceTree = "<group>"; };
 		644446021C7898F200D6E2AA /* RepositoriesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
-		644446041C78993500D6E2AA /* GitHubHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubHelper.swift; sourceTree = "<group>"; };
+		644446041C78993500D6E2AA /* GitHubGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubGateway.swift; sourceTree = "<group>"; };
+		6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerScheduler.swift; sourceTree = "<group>"; };
 		64A183331C78C7AA00AA274A /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
 		64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorInfoResponse.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		64A183481C79DFB600AA274A /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		64A1834A1C79E00200AA274A /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		64D0814F1C7BC8CD00F969DC /* artworks.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = artworks.sketch; path = Arts/artworks.sketch; sourceTree = "<group>"; };
+		64D639711C879B3A000AA0CF /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		E7CFB5A1660D1EB6154C81C9 /* Pods-My Octocat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Octocat.release.xcconfig"; path = "Pods/Target Support Files/Pods-My Octocat/Pods-My Octocat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,8 @@
 				64D081511C7BC8D200F969DC /* Arts */,
 				644445E61C788A7900D6E2AA /* Products */,
 				644445E71C788A7900D6E2AA /* Source */,
+				644446111C78B63300D6E2AA /* Storyboards */,
+				6495DDEA1C8783AC00DE9C0E /* Supporting files */,
 				C9C4F105CA76D0A677DAD7D5 /* Pods */,
 				91B30306A3B6809020C3D6A3 /* Frameworks */,
 			);
@@ -111,15 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				64A1833F1C79DD5700AA274A /* Entities */,
-				644446111C78B63300D6E2AA /* Storyboards */,
 				644445FD1C7898BB00D6E2AA /* Model */,
 				644445FE1C7898C200D6E2AA /* UI */,
 				64A183391C78D3A100AA274A /* Utils */,
 				644445E81C788A7900D6E2AA /* AppDelegate.swift */,
 				64A1834A1C79E00200AA274A /* Router.swift */,
-				644445F21C788A7900D6E2AA /* Assets.xcassets */,
-				644445F71C788A7900D6E2AA /* Info.plist */,
-				644445EF1C788A7900D6E2AA /* My_Octocat.xcdatamodeld */,
 			);
 			name = Source;
 			path = "My Octocat";
@@ -128,7 +130,7 @@
 		644445FD1C7898BB00D6E2AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				644842C31C7CFAC0003B30CC /* Helpers */,
+				644842C31C7CFAC0003B30CC /* Gateways */,
 				644446011C7898DD00D6E2AA /* Repositories */,
 			);
 			name = Model;
@@ -155,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				642B48FF1C78C76300CEA4A8 /* Responses */,
-				644446041C78993500D6E2AA /* GitHubHelper.swift */,
+				644446041C78993500D6E2AA /* GitHubGateway.swift */,
 			);
 			name = GitHub;
 			sourceTree = "<group>";
@@ -175,20 +177,32 @@
 				644445F41C788A7900D6E2AA /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			path = "My Octocat";
 			sourceTree = "<group>";
 		};
-		644842C31C7CFAC0003B30CC /* Helpers */ = {
+		644842C31C7CFAC0003B30CC /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
 				644446001C7898D500D6E2AA /* GitHub */,
 			);
-			name = Helpers;
+			name = Gateways;
+			sourceTree = "<group>";
+		};
+		6495DDEA1C8783AC00DE9C0E /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				644445F21C788A7900D6E2AA /* Assets.xcassets */,
+				644445F71C788A7900D6E2AA /* Info.plist */,
+				644445EF1C788A7900D6E2AA /* My_Octocat.xcdatamodeld */,
+			);
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 		64A183391C78D3A100AA274A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				64A1833C1C78D40200AA274A /* Extensions */,
+				6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -206,6 +220,7 @@
 			children = (
 				64A183401C79DD6700AA274A /* Repository.swift */,
 				64087EF41C7A6A3B0070D249 /* Error.swift */,
+				64D639711C879B3A000AA0CF /* Page.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -383,15 +398,17 @@
 				644445EB1C788A7900D6E2AA /* SearchViewController.swift in Sources */,
 				64A183491C79DFB600AA274A /* SearchPresenter.swift in Sources */,
 				644445F11C788A7900D6E2AA /* My_Octocat.xcdatamodeld in Sources */,
-				644446051C78993500D6E2AA /* GitHubHelper.swift in Sources */,
+				644446051C78993500D6E2AA /* GitHubGateway.swift in Sources */,
 				644445E91C788A7900D6E2AA /* AppDelegate.swift in Sources */,
 				64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */,
 				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
 				64087EF51C7A6A3B0070D249 /* Error.swift in Sources */,
 				642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */,
+				64D639721C879B3A000AA0CF /* Page.swift in Sources */,
 				64087EF91C7A6E740070D249 /* RepositoryCell.swift in Sources */,
 				64A183471C79DF8500AA274A /* SearchPresenterContract.swift in Sources */,
+				6495DDEC1C8792BE00DE9C0E /* WorkerScheduler.swift in Sources */,
 				644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */,
 				64087EF71C7A6C6E0070D249 /* ErrorAlert.swift in Sources */,
 				64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */,
@@ -566,7 +583,8 @@
 				644445F01C788A7900D6E2AA /* My_Octocat.xcdatamodel */,
 			);
 			currentVersion = 644445F01C788A7900D6E2AA /* My_Octocat.xcdatamodel */;
-			path = My_Octocat.xcdatamodeld;
+			name = My_Octocat.xcdatamodeld;
+			path = "My Octocat/My_Octocat.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

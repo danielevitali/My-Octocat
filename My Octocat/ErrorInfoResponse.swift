@@ -14,7 +14,7 @@ class ErrorInfoResponse {
     let field: String
     let code: String
     
-    init(json: NSDictionary) {
+    init(json: [String:AnyObject]) {
         resource = json["resource"] as! String
         field = json["field"] as! String
         code = json["code"] as! String

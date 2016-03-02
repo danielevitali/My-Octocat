@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Error: ErrorType {
-    case PresenterNotInitialized
+struct Error: ErrorType {
+    let message: String
 }

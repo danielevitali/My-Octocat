@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GitHubHelper {
+class GitHubGateway {
     
     private static let BASE_URL = "https://api.github.com"
     
@@ -16,20 +16,22 @@ class GitHubHelper {
     
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
+    private static let REPOSITORIES_PER_PAGE_COUNT = 50
     
-    private static let instance = GitHubHelper()
+    private static let instance = GitHubGateway()
     
-    static func getInstance() -> GitHubHelper {
+    static func sharedInstance() -> GitHubGateway {
         return instance
     }
     
     private init() {
     }
     
-    func searchRespository(query: String, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) {
-        let queryParams = ["q" : query]
-        let url = buildUrl(GitHubHelper.SEARCH_REPOSITORIES_PATH, params: queryParams)
-        sendGetRequest(url, callbackHandler: { (data, response, error) in
+    func searchRespository(query: String, withOffset offset: Int, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
+        let page = offset / GitHubGateway.REPOSITORIES_PER_PAGE_COUNT
+        let queryParams = ["q" : query, "page" : "\(page)", "per_page" : "\(GitHubGateway.REPOSITORIES_PER_PAGE_COUNT)"]
+        let url = buildUrl(GitHubGateway.SEARCH_REPOSITORIES_PATH, params: queryParams)
+        return sendGetRequest(url, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
@@ -46,22 +48,24 @@ class GitHubHelper {
         })
     }
     
-    private func sendGetRequest(url: NSURL, callbackHandler callback: (data:NSData?, response: NSHTTPURLResponse?, error:NSError?) -> Void) {
+    private func sendGetRequest(url: NSURL, callbackHandler callback: (data:NSData?, response: NSHTTPURLResponse?, error:NSError?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
-        NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             (data, response, error) in
             callback(data: data, response: response as? NSHTTPURLResponse, error: error)
-        }).resume()
+        })
+        task.resume()
+        return task
     }
     
     private func addHeadersToRequest(request: NSMutableURLRequest) {
-        request.addValue(GitHubHelper.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
-        request.addValue(GitHubHelper.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
+        request.addValue(GitHubGateway.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
+        request.addValue(GitHubGateway.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
     }
     
     private func buildUrl(path: String, params: [String:String]) -> NSURL {
-        return NSURL(string: (GitHubHelper.BASE_URL + path + escapedParameters(params)))!
+        return NSURL(string: (GitHubGateway.BASE_URL + path + escapedParameters(params)))!
     }
     
     private func escapedParameters(parameters: [String:String]) -> String {
@@ -73,8 +77,8 @@ class GitHubHelper {
         return (urlVars.isEmpty ? "" : "?") + urlVars.joinWithSeparator("&")
     }
     
-    private func extractJson(data: NSData) -> NSDictionary {
-        return try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+    private func extractJson(data: NSData) -> [String:AnyObject] {
+        return try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String:AnyObject]
     }
     
     private func isSuccessResponse(statusCode: Int) -> Bool {

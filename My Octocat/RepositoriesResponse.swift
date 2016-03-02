@@ -14,7 +14,7 @@ class RepositoriesResponse {
     let incompleteResults: Bool
     let items: [RepositoryResponse]
     
-    init(json: NSDictionary) {
+    init(json: [String:AnyObject]) {
         totalCount = json["total_count"] as! Int
         incompleteResults = json["incomplete_results"] as! Bool
         var items = [RepositoryResponse]()

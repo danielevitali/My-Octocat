@@ -33,7 +33,7 @@ class RepositoryResponse {
     let defaultBranch: String
     let score: Float
     
-    init(json: NSDictionary) {
+    init(json: [String:AnyObject]) {
         id = json["id"] as! Int
         name = json["name"] as! String
         fullName = json["full_name"] as! String
