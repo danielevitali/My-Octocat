@@ -13,16 +13,15 @@ class Router {
     
     static func showHome(window: UIWindow, userLoggedIn: Bool) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UINavigationController
-        let homeTabBarController = homeViewController.visibleViewController as! UITabBarController
-        let searchViewController = homeTabBarController.viewControllers!.first! as! SearchViewController
+        let homeTabBarController = storyboard.instantiateViewControllerWithIdentifier("HomeTabBarController") as! UITabBarController
+        let searchNagivationController = homeTabBarController.viewControllers!.first! as! UINavigationController
+        let searchViewController = searchNagivationController.visibleViewController as! SearchViewController
         searchViewController.presenter = SearchPresenter(view: searchViewController)
-        window.rootViewController = homeViewController
+        window.rootViewController = homeTabBarController
         window.makeKeyAndVisible()
     }
     
     static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
     }
     

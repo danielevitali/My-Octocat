@@ -9,11 +9,11 @@
 import Foundation
 import RxSwift
 
-class WorkerScheduler: ConcurrentDispatchQueueScheduler {
+class ComputationalScheduler: ConcurrentDispatchQueueScheduler {
     
-    private static let instance = WorkerScheduler()
+    private static let instance = ComputationalScheduler()
     
-    class func sharedInstance() -> WorkerScheduler {
+    class func sharedInstance() -> ComputationalScheduler {
         return instance
     }
     

@@ -12,15 +12,15 @@ class RepositoriesResponse {
     
     let totalCount: Int
     let incompleteResults: Bool
-    let items: [RepositoryResponse]
+    let items: [Repository]
     
     init(json: [String:AnyObject]) {
         totalCount = json["total_count"] as! Int
         incompleteResults = json["incomplete_results"] as! Bool
-        var items = [RepositoryResponse]()
-        if let array = json["items"] as? NSArray {
+        var items = [Repository]()
+        if let array = json["items"] as? [AnyObject] {
             for element in array {
-                items.append(RepositoryResponse(json: element as! NSDictionary))
+                items.append(Repository(json: element as! [String:AnyObject]))
             }
         }
         self.items = items

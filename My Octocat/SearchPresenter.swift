@@ -20,25 +20,39 @@ class SearchPresenter: SearchPresenterContract {
         self.disposeBag = DisposeBag()
     }
     
-    func viewWillAppear() {
-        
-    }
-    
-    func viewDidDisappear() {
-        
+    func viewDidLoad() {
+        self.view.toggleRepositoryList(false)
+        self.view.toggleNoRepositoryFound(false)
+        self.view.toggleIntroMessage(true)
+        self.view.toggleLoading(false)
     }
     
     func onQueryTextChanged(query: String) {
-        self.view.startLoadingRepositories()
+        self.view.toggleRepositoryList(false)
+        self.view.toggleNoRepositoryFound(false)
+        self.view.toggleIntroMessage(false)
+        self.view.toggleLoading(true)
+        
         RepositoriesRepository.sharedInstance().search(query, offset: 0)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { page in
-                    self.view.addRepositoryToList(page.item)
+                self.repositories = page.items
+                self.view.toggleLoading(false)
+                
+                if self.repositories!.isEmpty {
+                    self.view.toggleNoRepositoryFound(true)
+                } else {
+                    self.view.reloadRepositories()
+                    self.view.toggleRepositoryList(true)
+                }
                 }, onError: { errorType in
+                    self.view.toggleLoading(false)
+                    self.view.toggleIntroMessage(true)
+                    
                     let error = errorType as! Error
                     self.view.showError(error.message)
                 }, onCompleted: {() in
-                    self.view.didFinishLoadingRepositories()
+                    
                 }, onDisposed: {() in
                     
                 }).addDisposableTo(disposeBag)

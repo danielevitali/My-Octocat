@@ -21,10 +21,8 @@ class RepositoriesRepository {
         return Observable.create({ observer in
             let networkTask = GitHubGateway.sharedInstance().searchRespository(query, withOffset: offset, callbackHandler: { response, error in
                 if let response = response {
-                    for repoResponse in response.items {
-                        let repository = Repository(response: repoResponse)
-                        observer.onNext(Page(item: repository, totalCount: response.totalCount))
-                    }
+                    let page = Page<Repository>(items: response.items, totalCount: response.totalCount)
+                    observer.onNext(page)
                     observer.onCompleted()
                 } else {
                     observer.onError(Error(message: error!.message))
@@ -34,7 +32,7 @@ class RepositoriesRepository {
                 print("Disposed")
                 networkTask.cancel()
             }
-        }).subscribeOn(WorkerScheduler.sharedInstance())
+        }).subscribeOn(ComputationalScheduler.sharedInstance())
     }
     
 }

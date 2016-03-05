@@ -13,23 +13,21 @@ struct Repository {
     var id: Int
     var name: String
     var ownerName: String
-    var description: String
-    var language: String
-    var forkCount: Int
+    var description: String?
+    var language: String?
     var openIssuesCount: Int
     var starsCount: Int
     var forksCount: Int
     
-    init(response: RepositoryResponse) {
-        id = response.id
-        name = response.name
-        ownerName = response.owner.login
-        description = response.description
-        language = response.language
-        forkCount = response.forkCount
-        openIssuesCount = response.openIssuesCount
-        starsCount = response.stargazersCount
-        forksCount = response.forkCount
+    init(json: [String:AnyObject]) {
+        id = json["id"] as! Int
+        name = json["name"] as! String
+        ownerName = (json["owner"] as! [String:AnyObject])["login"] as! String
+        description = json["description"] as? String
+        starsCount = json["stargazers_count"] as! Int
+        language = json["language"] as? String
+        forksCount = json["forks_count"] as! Int
+        openIssuesCount = json["open_issues_count"] as! Int
     }
     
 }

@@ -12,6 +12,8 @@ protocol SearchPresenterContract {
     
     var repositories: [Repository]? {get set}
     
+    func viewDidLoad()
+    
     func onQueryTextChanged(query: String)
     
     func onRepositoryClick(repository: Repository)

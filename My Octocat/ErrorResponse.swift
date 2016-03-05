@@ -18,7 +18,7 @@ class ErrorResponse {
         var errors = [ErrorInfoResponse]()
         if let array = json["errors"] as? NSArray {
             for element in array {
-                errors.append(ErrorInfoResponse(json: element as! NSDictionary))
+                errors.append(ErrorInfoResponse(json: element as! [String:AnyObject]))
             }
         }
         self.errors = errors

@@ -27,6 +27,5 @@ class RepositoryCell: UICollectionViewCell {
         lblForksCount.text = String(repository.forksCount)
         lblIssuesCount.text = String(repository.openIssuesCount)
         lblLanguage.text = repository.language
-        
     }
 }

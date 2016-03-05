@@ -15,15 +15,15 @@ protocol SearchViewContract {
     func toggleIntroMessage(visible: Bool)
     
     func toggleNoRepositoryFound(visible: Bool)
+
+    func toggleRepositoryList(visible: Bool)
     
-    func addRepositoryToList(repository: Repository)
+    func addRepositoriesToList(repositories: [Repository])
     
     func showError(message: String)
     
     func showRepositoryDetails(repository: Repository)
     
-    func startLoadingRepositories()
-    
-    func didFinishLoadingRepositories()
+    func reloadRepositories()
     
 }

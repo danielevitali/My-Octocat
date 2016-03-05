@@ -10,7 +10,6 @@
 		64087EF51C7A6A3B0070D249 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF41C7A6A3B0070D249 /* Error.swift */; };
 		64087EF71C7A6C6E0070D249 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF61C7A6C6E0070D249 /* ErrorAlert.swift */; };
 		64087EF91C7A6E740070D249 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64087EF81C7A6E740070D249 /* RepositoryCell.swift */; };
-		642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */; };
 		644445E91C788A7900D6E2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445E81C788A7900D6E2AA /* AppDelegate.swift */; };
 		644445EB1C788A7900D6E2AA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644445EA1C788A7900D6E2AA /* SearchViewController.swift */; };
 		644445EE1C788A7900D6E2AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644445EC1C788A7900D6E2AA /* Main.storyboard */; };
@@ -19,7 +18,7 @@
 		644445F61C788A7900D6E2AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644445F41C788A7900D6E2AA /* LaunchScreen.storyboard */; };
 		644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446021C7898F200D6E2AA /* RepositoriesRepository.swift */; };
 		644446051C78993500D6E2AA /* GitHubGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446041C78993500D6E2AA /* GitHubGateway.swift */; };
-		6495DDEC1C8792BE00DE9C0E /* WorkerScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */; };
+		6495DDEC1C8792BE00DE9C0E /* ComputationalScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495DDEB1C8792BE00DE9C0E /* ComputationalScheduler.swift */; };
 		64A183341C78C7AA00AA274A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183331C78C7AA00AA274A /* ErrorResponse.swift */; };
 		64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */; };
 		64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */; };
@@ -41,7 +40,6 @@
 		64087EF41C7A6A3B0070D249 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		64087EF61C7A6C6E0070D249 /* ErrorAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		64087EF81C7A6E740070D249 /* RepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
-		642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		644445E51C788A7900D6E2AA /* My Octocat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Octocat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644445E81C788A7900D6E2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644445EA1C788A7900D6E2AA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +50,7 @@
 		644445F71C788A7900D6E2AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "My Octocat/Info.plist"; sourceTree = "<group>"; };
 		644446021C7898F200D6E2AA /* RepositoriesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesRepository.swift; sourceTree = "<group>"; };
 		644446041C78993500D6E2AA /* GitHubGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubGateway.swift; sourceTree = "<group>"; };
-		6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkerScheduler.swift; sourceTree = "<group>"; };
+		6495DDEB1C8792BE00DE9C0E /* ComputationalScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputationalScheduler.swift; sourceTree = "<group>"; };
 		64A183331C78C7AA00AA274A /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
 		64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorInfoResponse.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 		642B48FF1C78C76300CEA4A8 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				642B48FD1C78C75500CEA4A8 /* RepositoryResponse.swift */,
 				64A183331C78C7AA00AA274A /* ErrorResponse.swift */,
 				64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */,
 				64A183371C78C8B000AA274A /* ErrorInfoResponse.swift */,
@@ -202,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				64A1833C1C78D40200AA274A /* Extensions */,
-				6495DDEB1C8792BE00DE9C0E /* WorkerScheduler.swift */,
+				6495DDEB1C8792BE00DE9C0E /* ComputationalScheduler.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -404,11 +401,10 @@
 				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
 				64087EF51C7A6A3B0070D249 /* Error.swift in Sources */,
-				642B48FE1C78C75500CEA4A8 /* RepositoryResponse.swift in Sources */,
 				64D639721C879B3A000AA0CF /* Page.swift in Sources */,
 				64087EF91C7A6E740070D249 /* RepositoryCell.swift in Sources */,
 				64A183471C79DF8500AA274A /* SearchPresenterContract.swift in Sources */,
-				6495DDEC1C8792BE00DE9C0E /* WorkerScheduler.swift in Sources */,
+				6495DDEC1C8792BE00DE9C0E /* ComputationalScheduler.swift in Sources */,
 				644446031C7898F200D6E2AA /* RepositoriesRepository.swift in Sources */,
 				64087EF71C7A6C6E0070D249 /* ErrorAlert.swift in Sources */,
 				64A183381C78C8B000AA274A /* ErrorInfoResponse.swift in Sources */,
