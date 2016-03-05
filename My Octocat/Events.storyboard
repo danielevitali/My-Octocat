@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Events View Controller-->
+        <!--Events-->
         <scene sceneID="S6c-DU-kJW">
             <objects>
-                <viewController storyboardIdentifier="EventsViewController" id="b8L-UU-zgJ" customClass="EventsViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventsViewController" title="Events" id="b8L-UU-zgJ" customClass="EventsViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IjL-Sr-nef"/>
                         <viewControllerLayoutGuide type="bottom" id="2g0-Eq-veV"/>

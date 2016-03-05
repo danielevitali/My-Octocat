@@ -10,7 +10,7 @@
         <!--Search-->
         <scene sceneID="gXQ-DN-6jA">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="dJY-3b-4uB" customClass="SearchViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" title="Search" id="dJY-3b-4uB" customClass="SearchViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yRZ-Zh-Q2l"/>
                         <viewControllerLayoutGuide type="bottom" id="5IT-y7-VN5"/>

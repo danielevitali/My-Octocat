@@ -9,7 +9,7 @@
         <scene sceneID="NIG-Qe-Ejk">
             <objects>
                 <navigationController storyboardIdentifier="SearchNavigatorController" id="oEp-Lc-zQe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="2kx-ea-rze"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="icon magnify" id="2kx-ea-rze"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gmM-DI-pt5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -56,7 +56,7 @@
         <scene sceneID="3x6-Hk-K4d">
             <objects>
                 <navigationController storyboardIdentifier="EventsNavigatorController" id="I97-2S-sor" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" id="LUG-jJ-SBJ"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="icon calendar" id="LUG-jJ-SBJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jYs-e1-Cvr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -79,11 +79,11 @@
             </objects>
             <point key="canvasLocation" x="316.5" y="706"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="jJf-Ny-QEG">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavigatorController" id="YwL-OH-wh3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="6f7-QB-CHQ"/>
+                    <tabBarItem key="tabBarItem" title="" image="icon person" id="6f7-QB-CHQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ex-WZ-F4t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,4 +94,9 @@
             <point key="canvasLocation" x="-205" y="40"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon calendar" width="25" height="25"/>
+        <image name="icon magnify" width="25" height="25"/>
+        <image name="icon person" width="25" height="25"/>
+    </resources>
 </document>
