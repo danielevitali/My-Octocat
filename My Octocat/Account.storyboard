@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="XZY-2B-AD9">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="eae-Kd-7uO" customClass="ProfileViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pWE-k0-qMy"/>
+                        <viewControllerLayoutGuide type="bottom" id="rOz-4c-qAg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="05v-vr-CYI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16J-IC-xjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="225" y="110"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="kAs-GZ-Fv2">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="vPq-qB-rKm" customClass="LoginViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KKN-db-t4e"/>
+                        <viewControllerLayoutGuide type="bottom" id="UyE-32-ecj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hse-f1-v7a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HeK-XR-nIv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216" y="825"/>
+        </scene>
+    </scenes>
+</document>
