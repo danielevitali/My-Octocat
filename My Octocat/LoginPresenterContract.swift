@@ -10,4 +10,10 @@ import Foundation
 
 protocol LoginPresenterContract {
     
+    func viewDidLoad()
+    
+    func onLoginClick(username: String, password: String)
+    
+    func viewDeinit()
+    
 }

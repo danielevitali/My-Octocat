@@ -20,6 +20,7 @@ class Router {
     private static let ACCOUNT_STORYBOARD = "Account"
     private static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     private static let PROFILE_VIEW_CONTROLLER = "ProfileViewController"
+    private static let TWO_FACTORS_AUTHENTICATION_VIEW_CONTROLLER = "TwoFactorsAuthenticationViewController"
     
     private static let EVENTS_STORYBOARD = "Events"
     private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
@@ -40,7 +41,7 @@ class Router {
             profileNagivationController.showViewController(profileViewController, sender: self)
         } else {
             let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
-            loginViewController.presenter = LoginPresenter(view: loginViewController)
+            loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
             profileNagivationController.showViewController(loginViewController, sender: self)
         }
         
@@ -52,8 +53,23 @@ class Router {
         window.makeKeyAndVisible()
     }
     
+    static func showTwoFactorAuthentication(viewController: UIViewController, username: String, password: String) {
+        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
+        let twoFactorsAuthenticationViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.TWO_FACTORS_AUTHENTICATION_VIEW_CONTROLLER) as! TwoFactorsAuthenticationViewController
+        twoFactorsAuthenticationViewController.presenter = TwoFactorsAuthenticationPresenter(view: twoFactorsAuthenticationViewController, repository: UserRepository.sharedInstance(), username: username, password: password)
+        showViewController(viewController, showing: twoFactorsAuthenticationViewController)
+    }
+    
     static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
         
+    }
+    
+    private static func showViewController(sender: UIViewController, showing: UIViewController) {
+        if let navigationController = sender as? UINavigationController {
+            navigationController.showDetailViewController(showing, sender: sender)
+        } else {
+            sender.showViewController(showing, sender: sender)
+        }
     }
     
 }

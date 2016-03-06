@@ -10,4 +10,12 @@ import Foundation
 
 protocol LoginViewContract {
     
+    func showLoading(message: String?)
+    
+    func hideLoading()
+    
+    func showError(message: String)
+    
+    func showTwoFactorAuthentication(username: String, password: String)
+    
 }

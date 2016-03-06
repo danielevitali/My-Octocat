@@ -25,7 +25,7 @@ class RepositoriesRepository {
                     observer.onNext(page)
                     observer.onCompleted()
                 } else {
-                    observer.onError(Error(message: error!.message))
+                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: nil))
                 }
             })
             return AnonymousDisposable {

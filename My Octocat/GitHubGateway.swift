@@ -13,6 +13,7 @@ class GitHubGateway {
     private static let BASE_URL = "https://api.github.com"
     
     private static let SEARCH_REPOSITORIES_PATH = "/search/repositories"
+    private static let USER_PATH = "/user"
     
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
@@ -30,8 +31,8 @@ class GitHubGateway {
     func searchRespository(query: String, withOffset offset: Int, callbackHandler callback: (response: RepositoriesResponse?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
         let page = offset / GitHubGateway.REPOSITORIES_PER_PAGE_COUNT
         let queryParams = ["q" : query, "page" : "\(page)", "per_page" : "\(GitHubGateway.REPOSITORIES_PER_PAGE_COUNT)"]
-        let url = buildUrl(GitHubGateway.SEARCH_REPOSITORIES_PATH, params: queryParams)
-        return sendGetRequest(url, callbackHandler: { (data, response, error) in
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.SEARCH_REPOSITORIES_PATH, params: queryParams))
+        return sendGetRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
@@ -48,8 +49,43 @@ class GitHubGateway {
         })
     }
     
-    private func sendGetRequest(url: NSURL, callbackHandler callback: (data:NSData?, response: NSHTTPURLResponse?, error:NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: url)
+    func loginUser(username: String, password: String, callbackHandler callback: (response: User?, twoFacAuthNeeded: Bool?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
+        return loginUser(username, password: password, code: nil, callbackHandler: callback)
+    }
+
+    func loginUser(username: String, password: String, code: String?, callbackHandler callback: (response: User?, twoFacAuthNeeded: Bool?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PATH, params: nil))
+        
+        let loginString = "\(username):\(password)"
+        let loginData: NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64LoginString = loginData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        
+        request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        if let code = code {
+            request.addValue(code, forHTTPHeaderField: "X-GitHub-OTP")
+        }
+        return sendGetRequest(request, callbackHandler: { (data, response, error) in
+            if let response = response, let data = data {
+                let json = self.extractJson(data)
+                print(json)
+                if self.isSuccessResponse(response.statusCode) {
+                    let response = User(json: json)
+                    callback(response: response, twoFacAuthNeeded: false, error: nil)
+                } else if let otpHeader = response.allHeaderFields["X-GitHub-OTP"] as? String where otpHeader.containsString("required") {
+                    let errorResponse = ErrorResponse(json: json)
+                    callback(response: nil, twoFacAuthNeeded: true, error: errorResponse)
+                } else {
+                    let errorResponse = ErrorResponse(json: json)
+                    callback(response: nil, twoFacAuthNeeded: nil, error: errorResponse)
+                }
+            } else {
+                let errorResponse = ErrorResponse(error: error!)
+                callback(response: nil, twoFacAuthNeeded: nil, error: errorResponse)
+            }
+        })
+    }
+
+    private func sendGetRequest(request: NSMutableURLRequest, callbackHandler callback: (data:NSData?, response: NSHTTPURLResponse?, error:NSError?) -> Void) -> NSURLSessionDataTask {
         request.HTTPMethod = "GET"
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             (data, response, error) in
@@ -64,11 +100,16 @@ class GitHubGateway {
         request.addValue(GitHubGateway.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
     }
     
-    private func buildUrl(path: String, params: [String:String]) -> NSURL {
+    private func buildUrl(path: String, params: [String:String]?) -> NSURL {
         return NSURL(string: (GitHubGateway.BASE_URL + path + escapedParameters(params)))!
     }
     
-    private func escapedParameters(parameters: [String:String]) -> String {
+    private func escapedParameters(parameters: [String:String]?) -> String {
+        
+        guard let parameters = parameters else {
+            return ""
+        }
+        
         var urlVars = [String]()
         for (key, value) in parameters {
             let escapedValue = "\(value)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
