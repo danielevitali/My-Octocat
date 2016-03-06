@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class UserRepository: LoginRepositoryContract, TwoFactorsAuthenticationRepositoryContract {
+class UserRepository: UserRepositoryContract {
     
     private static let instance = UserRepository()
     

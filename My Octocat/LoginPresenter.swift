@@ -12,11 +12,11 @@ import RxSwift
 class LoginPresenter: LoginPresenterContract {
     
     var view: LoginViewContract!
-    var repository: LoginRepositoryContract!
+    var repository: UserRepositoryContract!
     
     let disposeBag: DisposeBag
     
-    init(view: LoginViewContract, repository: LoginRepositoryContract) {
+    init(view: LoginViewContract, repository: UserRepositoryContract) {
         self.view = view
         self.repository = repository
         self.disposeBag = DisposeBag()

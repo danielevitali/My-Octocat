@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '85ABEB2795AFBF6A69D7E7E01AF19FF5'
-               BlueprintName = 'RxBlocking'
+               BlueprintIdentifier = '83E9C1F84C0FE08041C0C6DAA64ECBC8'
+               BlueprintName = 'SwiftEventBus'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RxBlocking.framework'>
+               BuildableName = 'SwiftEventBus.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

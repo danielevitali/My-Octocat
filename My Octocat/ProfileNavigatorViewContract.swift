@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  ProfileNavigatorViewContract.swift
 //  My Octocat
 //
 //  Created by Daniele Vitali on 3/6/16.
@@ -8,12 +8,8 @@
 
 import Foundation
 
-struct User {
+protocol ProfileNavigatorViewContract {
     
-    let id: Int
-    
-    init(json: [String:AnyObject]) {
-        id = json["id"] as! Int
-    }
+    func showProfile()
     
 }

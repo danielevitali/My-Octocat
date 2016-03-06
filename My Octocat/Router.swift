@@ -33,7 +33,9 @@ class Router {
         let searchViewController = searchNagivationController.visibleViewController as! SearchViewController
         searchViewController.presenter = SearchPresenter(view: searchViewController)
         
-        let profileNagivationController = homeTabBarController.viewControllers![Router.PROFILE_TAB_POSITION] as! UINavigationController
+        let profileNagivationController = homeTabBarController.viewControllers![Router.PROFILE_TAB_POSITION] as! ProfileNavigatorController
+        profileNagivationController.presenter = ProfileNavigatorPresenter(view: profileNagivationController, repository: UserRepository.sharedInstance())
+        
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         if userLoggedIn {
             let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
@@ -62,6 +64,12 @@ class Router {
     
     static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
         
+    }
+    
+    static func replaceAuthenticationWithProfile(navigatorController: UINavigationController) {
+        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
+        let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
+        navigatorController.setViewControllers([profileViewController], animated: false)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {

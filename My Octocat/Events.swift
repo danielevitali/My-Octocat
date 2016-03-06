@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Events.swift
 //  My Octocat
 //
 //  Created by Daniele Vitali on 3/6/16.
@@ -8,12 +8,8 @@
 
 import Foundation
 
-struct User {
+class Events {
     
-    let id: Int
-    
-    init(json: [String:AnyObject]) {
-        id = json["id"] as! Int
-    }
+    static let USER_LOGGED_IN = "USER_LOGGED_IN"
     
 }

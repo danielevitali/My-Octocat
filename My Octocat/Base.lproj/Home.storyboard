@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="316.5" y="706"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile Navigator Controller-->
         <scene sceneID="jJf-Ny-QEG">
             <objects>
-                <navigationController storyboardIdentifier="ProfileNavigatorController" id="YwL-OH-wh3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavigatorController" id="YwL-OH-wh3" customClass="ProfileNavigatorController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon person" id="6f7-QB-CHQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Ex-WZ-F4t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
