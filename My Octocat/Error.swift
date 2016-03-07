@@ -9,6 +9,8 @@
 import Foundation
 
 struct Error: ErrorType {
+
     let message: String
     let twoFactAuthNeeded: Bool?
+    
 }

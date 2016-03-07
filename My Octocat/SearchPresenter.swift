@@ -11,7 +11,7 @@ import RxSwift
 
 class SearchPresenter: SearchPresenterContract {
     
-    var view: SearchViewContract!
+    weak var view: SearchViewContract!
     var repositories: [Repository]?
     let disposeBag: DisposeBag
     
@@ -61,10 +61,6 @@ class SearchPresenter: SearchPresenterContract {
     
     func onRepositoryClick(repository: Repository) {
         view.showRepositoryDetails(repository)
-    }
-    
-    func viewDeinit() {
-        view = nil
     }
     
 }

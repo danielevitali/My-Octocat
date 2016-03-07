@@ -14,6 +14,4 @@ protocol TwoFactorsAuthenticationPresenterContract {
     
     func onLoginClick(twoFactorAuthenticationCode: String)
     
-    func viewDeinit()
-    
 }

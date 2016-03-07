@@ -79,11 +79,6 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    deinit {
-        presenter.viewDeinit()
-        presenter = nil
-    }
 
 }
 

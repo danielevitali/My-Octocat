@@ -47,9 +47,4 @@ class LoginViewController: UIViewController, LoginViewContract {
         Router.showTwoFactorAuthentication(self, username: username, password: password)
     }
     
-    deinit {
-        presenter.viewDeinit()
-        presenter = nil
-    }
-    
 }

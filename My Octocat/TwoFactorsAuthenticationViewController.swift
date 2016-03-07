@@ -42,9 +42,4 @@ class TwoFactorsAuthenticationViewController: UIViewController, TwoFactorsAuthen
         aiLoading.stopAnimating()
     }
     
-    deinit {
-        presenter.viewDeinit()
-        presenter = nil
-    }
-    
 }

@@ -11,7 +11,7 @@ import RxSwift
 
 class LoginPresenter: LoginPresenterContract {
     
-    var view: LoginViewContract!
+    weak var view: LoginViewContract!
     var repository: UserRepositoryContract!
     
     let disposeBag: DisposeBag
@@ -61,11 +61,5 @@ class LoginPresenter: LoginPresenterContract {
         }
         
         return true
-    }
-    
-    func viewDeinit() {
-        view = nil
-        repository = nil
-    }
-    
+    }    
 }

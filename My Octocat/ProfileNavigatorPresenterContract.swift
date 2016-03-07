@@ -14,6 +14,4 @@ protocol ProfileNavigatorPresenterContract {
     
     func viewWillDisappear()
     
-    func viewDeinit()
-    
 }

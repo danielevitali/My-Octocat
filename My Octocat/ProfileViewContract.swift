@@ -8,6 +8,14 @@
 
 import Foundation
 
-protocol ProfileViewContract {
+protocol ProfileViewContract: class {
+    
+    func showUser(user: User)
+    
+    func showLoading()
+    
+    func hideLoading()
+    
+    func showError(message: String)
     
 }

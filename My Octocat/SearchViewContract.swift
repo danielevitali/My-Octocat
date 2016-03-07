@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SearchViewContract {
+protocol SearchViewContract: class {
     
     func toggleLoading(visible: Bool)
     

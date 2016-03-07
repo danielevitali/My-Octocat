@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LoginViewContract {
+protocol LoginViewContract: class {
     
     func showLoading(message: String?)
     

@@ -14,6 +14,4 @@ protocol LoginPresenterContract {
     
     func onLoginClick(username: String, password: String)
     
-    func viewDeinit()
-    
 }

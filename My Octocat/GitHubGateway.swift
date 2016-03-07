@@ -14,6 +14,7 @@ class GitHubGateway {
     
     private static let SEARCH_REPOSITORIES_PATH = "/search/repositories"
     private static let USER_PATH = "/user"
+    private static let USER_REPOSITORIES_PATH = "/user/repos"
     
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
@@ -82,6 +83,14 @@ class GitHubGateway {
                 let errorResponse = ErrorResponse(error: error!)
                 callback(response: nil, twoFacAuthNeeded: nil, error: errorResponse)
             }
+        })
+    }
+    
+    func getRepositories(username: String, callbackHandler callback: (response: [Repository]?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_REPOSITORIES_PATH, params: nil))
+        
+        return sendGetRequest(request, callbackHandler: { (data, response, error) in
+            
         })
     }
 

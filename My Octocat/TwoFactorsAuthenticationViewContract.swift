@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TwoFactorsAuthenticationViewContract {
+protocol TwoFactorsAuthenticationViewContract: class {
     
     func showError(message: String)
     

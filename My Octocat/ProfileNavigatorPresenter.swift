@@ -11,7 +11,7 @@ import SwiftEventBus
 
 class ProfileNavigatorPresenter: ProfileNavigatorPresenterContract {
     
-    var view: ProfileNavigatorViewContract!
+    weak var view: ProfileNavigatorViewContract!
     var repository: UserRepositoryContract!
     
     init(view: ProfileNavigatorViewContract, repository: UserRepositoryContract) {
@@ -21,17 +21,12 @@ class ProfileNavigatorPresenter: ProfileNavigatorPresenterContract {
     
     func viewDidAppear() {
         SwiftEventBus.onMainThread(self, name: Events.USER_LOGGED_IN) { result in
-            self.view.showProfile()
+            self.view.showProfile(self.repository.getLoggedInUser()!)
         }
     }
     
     func viewWillDisappear() {
         SwiftEventBus.unregister(self)
-    }
-    
-    func viewDeinit() {
-        view = nil
-        repository = nil
     }
     
 }

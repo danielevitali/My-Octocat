@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol ProfileNavigatorViewContract {
+protocol ProfileNavigatorViewContract: class {
     
-    func showProfile()
+    func showProfile(user: User)
     
 }

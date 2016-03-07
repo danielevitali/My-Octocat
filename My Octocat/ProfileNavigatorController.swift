@@ -24,13 +24,8 @@ class ProfileNavigatorController: UINavigationController, ProfileNavigatorViewCo
         presenter.viewWillDisappear()
     }
     
-    func showProfile() {
-        Router.replaceAuthenticationWithProfile(self)
-    }
-    
-    deinit {
-        presenter.viewDeinit()
-        presenter = nil
+    func showProfile(user: User) {
+        Router.replaceAuthenticationWithProfile(self, user: user)
     }
     
 }

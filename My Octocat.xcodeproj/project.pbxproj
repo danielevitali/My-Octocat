@@ -297,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				649C3C141C8C936100B253C2 /* Contract */,
-				649C3C151C8C937200B253C2 /* TwoFactorsAuthenticationPresenter.swift */,
 				649C3C1B1C8C940600B253C2 /* TwoFactorsAuthenticationViewController.swift */,
+				649C3C151C8C937200B253C2 /* TwoFactorsAuthenticationPresenter.swift */,
 			);
 			name = "2 Factor Authentication";
 			sourceTree = "<group>";

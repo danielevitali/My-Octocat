@@ -25,7 +25,7 @@ class Router {
     private static let EVENTS_STORYBOARD = "Events"
     private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
     
-    static func showHome(window: UIWindow, userLoggedIn: Bool) {
+    static func showHome(window: UIWindow) {
         let homeStoryboard = UIStoryboard(name: Router.HOME_STORYBOARD, bundle: nil)
         let homeTabBarController = homeStoryboard.instantiateViewControllerWithIdentifier(Router.HOME_TAB_BAR_CONTROLLER) as! UITabBarController
         
@@ -37,9 +37,9 @@ class Router {
         profileNagivationController.presenter = ProfileNavigatorPresenter(view: profileNagivationController, repository: UserRepository.sharedInstance())
         
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        if userLoggedIn {
+        if UserRepository.sharedInstance().isUserLoggedIn() {
             let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
-            profileViewController.presenter = ProfilePresenter(view: profileViewController)
+            profileViewController.presenter = ProfilePresenter(view: profileViewController, repository: UserRepository.sharedInstance(), user: UserRepository.sharedInstance().getLoggedInUser()!)
             profileNagivationController.showViewController(profileViewController, sender: self)
         } else {
             let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
@@ -66,9 +66,10 @@ class Router {
         
     }
     
-    static func replaceAuthenticationWithProfile(navigatorController: UINavigationController) {
+    static func replaceAuthenticationWithProfile(navigatorController: UINavigationController, user: User) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
+        profileViewController.presenter = ProfilePresenter(view: profileViewController, repository: UserRepository.sharedInstance(), user: user)
         navigatorController.setViewControllers([profileViewController], animated: false)
     }
     

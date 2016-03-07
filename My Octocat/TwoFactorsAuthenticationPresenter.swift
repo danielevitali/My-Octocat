@@ -12,7 +12,7 @@ import SwiftEventBus
 
 class TwoFactorsAuthenticationPresenter: TwoFactorsAuthenticationPresenterContract {
     
-    var view: TwoFactorsAuthenticationViewContract!
+    weak var view: TwoFactorsAuthenticationViewContract!
     var repository: UserRepositoryContract!
     
     let username: String
@@ -53,11 +53,6 @@ class TwoFactorsAuthenticationPresenter: TwoFactorsAuthenticationPresenterContra
                 }, onDisposed: {() in
                         
                 }).addDisposableTo(disposeBag)
-    }
-    
-    func viewDeinit() {
-        view = nil
-        repository = nil
     }
     
 }

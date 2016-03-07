@@ -10,4 +10,6 @@ import Foundation
 
 protocol ProfilePresenterContract {
     
+    func viewDidLoad()
+    
 }

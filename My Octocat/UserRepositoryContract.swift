@@ -9,12 +9,16 @@
 import Foundation
 import RxSwift
 
-protocol UserRepositoryContract {
+protocol UserRepositoryContract: class {
     
     func login(username: String, password: String) -> Observable<User>
     
     func twoFactorsLogin(username: String, password: String, code: String) -> Observable<User>
     
     func isUserLoggedIn() -> Bool
+    
+    func getLoggedInUser() -> User?
+    
+    func getUserRepositories() -> Observable<[Repository]>
     
 }
