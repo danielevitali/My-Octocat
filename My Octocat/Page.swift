@@ -9,6 +9,8 @@
 import Foundation
 
 struct Page<T> {
-    let items: [T]
-    let totalCount: Int
+    
+    var items: [T]
+    var totalCount: Int
+    
 }

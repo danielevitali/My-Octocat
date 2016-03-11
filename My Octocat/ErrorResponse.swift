@@ -13,7 +13,7 @@ class ErrorResponse {
     let message: String
     let errors: [ErrorInfoResponse]
  
-    init(json: [String:AnyObject]) {
+    init(json: [String : AnyObject]) {
         message = json["message"] as! String
         var errors = [ErrorInfoResponse]()
         if let array = json["errors"] as? NSArray {

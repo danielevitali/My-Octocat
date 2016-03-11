@@ -91,5 +91,7 @@ class UserRepository: UserRepositoryContract {
             }
         }).subscribeOn(ComputationalScheduler.sharedInstance())
     }
+    
+    private func getUserProfile() -> Observable<User>
 
 }

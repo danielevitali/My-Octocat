@@ -10,25 +10,12 @@ import Foundation
 
 struct User {
     
-    let id: Int
-    let name: String
-    let username: String
-    let location: String?
-    let company: String?
-    let bio: String?
-    //let creationDate: NSDate
-    let avatarUrl: String?
+    var profile: Profile?
+    var authorization: Authorization
     var repositories: [Repository]?
     
-    init(json: [String:AnyObject]) {
-        id = json["id"] as! Int
-        name = json["name"] as! String
-        username = json["login"] as! String
-        location = json["location"] as? String
-        company = json["company"] as? String
-        bio = json["bio"] as? String
-        //creationDate = NSDate.dateFromISOString(json["created_at"] as! String)
-        avatarUrl = json["avatar_url"] as? String
+    init(authorization: Authorization) {
+        self.authorization = authorization
     }
     
 }
