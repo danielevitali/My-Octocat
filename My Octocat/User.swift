@@ -10,8 +10,8 @@ import Foundation
 
 struct User {
     
-    var profile: Profile?
     var authorization: Authorization
+    var profile: Profile?
     var repositories: [Repository]?
     
     init(authorization: Authorization) {

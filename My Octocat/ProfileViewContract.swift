@@ -10,7 +10,7 @@ import Foundation
 
 protocol ProfileViewContract: class {
     
-    func showUser(user: User)
+    func showUserProfile(profile: Profile)
     
     func showLoading()
     

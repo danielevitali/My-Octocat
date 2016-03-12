@@ -1,5 +1,5 @@
 //
-//  LoginRepositoryContract.swift
+//  BasePresenter.swift
 //  My Octocat
 //
 //  Created by Daniele Vitali on 3/12/16.
@@ -9,10 +9,12 @@
 import Foundation
 import RxSwift
 
-protocol LoginRepositoryContract {
+class BasePresenter {
     
-    func getAuthURL() -> NSURL
+    let disposeBag: DisposeBag
     
-    func loginUserWithWebCode(code: String) -> Observable<User>
+    init() {
+        self.disposeBag = DisposeBag()
+    }
     
 }

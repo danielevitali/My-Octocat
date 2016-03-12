@@ -12,4 +12,5 @@ protocol LoginPresenterContract {
     
     func viewDidLoad()
     
+    func onLoadNewRequest(request: NSURLRequest) -> Bool
 }

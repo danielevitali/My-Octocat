@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class UserRepository: UserRepositoryContract {
+class UserRepository: LoginRepositoryContract {
     
     private static let instance = UserRepository()
     
@@ -17,81 +17,59 @@ class UserRepository: UserRepositoryContract {
         return instance
     }
     
-    private var user: User?
+    var user: User?
     
     private init(){
-    }
-    
-    func getLoggedInUser() -> User? {
-        return user
     }
     
     func isUserLoggedIn() -> Bool {
         return user != nil
     }
     
-    func getUserRepositories() -> Observable<[Repository]> {
-        guard let user = user else {
-            return Observable.empty()
+    func getAuthURL() -> NSURL {
+        return GitHubGateway.sharedInstance().getWebAuthURL()
+    }
+    
+    func loginUserWithWebCode(code: String) -> Observable<User> {
+        return Observable.create({ (observer) -> Disposable in
+            let task = GitHubGateway.sharedInstance().loginUserWithWebCode(code, callbackHandler: { (authorization, error) -> Void in
+                if let authorization = authorization {
+                    self.user = User(authorization: authorization)
+                    observer.onNext(self.user!)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(error!)
+                }
+            })
+            return AnonymousDisposable{
+                task.cancel()
+            }
+        }).subscribeOn(ComputationalScheduler.sharedInstance())
+    }
+    
+    func getUserProfile() -> Observable<Profile> {
+        let observable: Observable<Profile>
+        if user == nil {
+            observable = Observable.error(Error(message: "User is not logged in"))
+        } else if let profile = user!.profile {
+            observable = Observable.just(profile)
+        } else {
+            observable = Observable.create({ (observer) -> Disposable in
+                let task = GitHubGateway.sharedInstance().getUserProfile(self.user!.authorization.accessToken, callbackHandler: { (profile, error) -> Void in
+                    if let profile = profile {
+                        self.user!.profile = profile
+                        observer.onNext(profile)
+                        observer.onCompleted()
+                    } else {
+                        observer.onError(error!)
+                    }
+                })
+                return AnonymousDisposable{
+                    task.cancel()
+                }
+            })
         }
-        
-        return Observable.create({ (observer) -> Disposable in
-            
-            let networkTask = GitHubGateway.sharedInstance().getRepositories(user.username, callbackHandler: { response, error in
-                if let response = response {
-                    self.user?.repositories = response
-                    observer.onNext(response)
-                    observer.onCompleted()
-                } else {
-                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: nil))
-                }
-            })
-            
-            return AnonymousDisposable {
-                networkTask.cancel()
-            }
-        }).subscribeOn(ComputationalScheduler.sharedInstance())
+        return observable.subscribeOn(ComputationalScheduler.sharedInstance())
     }
-    
-    func login(username: String, password: String) -> Observable<User> {
-        return Observable.create({ (observer) -> Disposable in
-            
-            let networkTask = GitHubGateway.sharedInstance().loginUser(username, password: password, callbackHandler: { response, twoFacAuthNeeded, error in
-                if let response = response {
-                    self.user = response
-                    observer.onNext(response)
-                    observer.onCompleted()
-                } else if let twoFacAuthNeeded = twoFacAuthNeeded where twoFacAuthNeeded {
-                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: true))
-                } else {
-                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: nil))
-                }
-            })
-            
-            return AnonymousDisposable {
-                networkTask.cancel()
-            }
-        }).subscribeOn(ComputationalScheduler.sharedInstance())
-    }
-    
-    func twoFactorsLogin(username: String, password: String, code: String) -> Observable<User> {
-        return Observable.create({ (observer) -> Disposable in
-            let networkTask = GitHubGateway.sharedInstance().loginUser(username, password: password, code: code, callbackHandler: { response, twoFacAuthNeeded, error in
-                if let response = response {
-                    self.user = response
-                    observer.onNext(response)
-                    observer.onCompleted()
-                } else {
-                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: nil))
-                }
-            })
-        
-            return AnonymousDisposable {
-                networkTask.cancel()
-            }
-        }).subscribeOn(ComputationalScheduler.sharedInstance())
-    }
-    
-    private func getUserProfile() -> Observable<User>
 
 }

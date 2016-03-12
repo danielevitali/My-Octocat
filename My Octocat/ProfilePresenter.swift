@@ -9,39 +9,24 @@
 import Foundation
 import RxSwift
 
-class ProfilePresenter: ProfilePresenterContract {
+class ProfilePresenter: BasePresenter, ProfilePresenterContract {
     
     weak var view: ProfileViewContract!
-    var repository: UserRepositoryContract!
     
     var user: User
-    let disposeBag: DisposeBag
     
-    init(view: ProfileViewContract, repository: UserRepositoryContract, user: User) {
+    init(view: ProfileViewContract, user: User) {
         self.view = view
-        self.repository = repository
         self.user = user
-        self.disposeBag = DisposeBag()
     }
     
+    //TODO check for profile and repository list
     func viewDidLoad() {
-        if user.repositories == nil {
-            view.showLoading()
-            repository.getUserRepositories()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { (repositories) -> Void in
-                    self.user.repositories = repositories
-                    self.view.hideLoading()
-                    self.view.showUser(self.user)
-                    }, onError: { (errorType) -> Void in
-                        self.view.hideLoading()
-                        self.view.showError("Cannnot load your repositories")
-                    }, onCompleted: { () -> Void in
-                        
-                    }, onDisposed: { () in
-                }).addDisposableTo(disposeBag)
+        if let profile = user.profile {
+            view.showUserProfile(profile)
         } else {
-            view.showUser(user)
+            view.showLoading()
+            
         }
     }
 }

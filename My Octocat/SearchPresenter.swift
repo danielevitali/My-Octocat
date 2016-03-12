@@ -9,15 +9,13 @@
 import Foundation
 import RxSwift
 
-class SearchPresenter: SearchPresenterContract {
+class SearchPresenter: BasePresenter, SearchPresenterContract {
     
     weak var view: SearchViewContract!
     var repositories: [Repository]?
-    let disposeBag: DisposeBag
     
     init(view: SearchViewContract) {
         self.view = view
-        self.disposeBag = DisposeBag()
     }
     
     func viewDidLoad() {

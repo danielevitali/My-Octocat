@@ -10,5 +10,10 @@ import Foundation
 
 protocol LoginViewContract: class {
     
+    func loadUrl(url: NSURL)
+    
+    func showError(message: String)
+    
+    func showProfile()
     
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventsPresenter: EventsPresenterContract {
+class EventsPresenter: BasePresenter, EventsPresenterContract {
     
     let view: EventsViewContract
     

@@ -9,19 +9,17 @@
 import Foundation
 import SwiftEventBus
 
-class ProfileNavigatorPresenter: ProfileNavigatorPresenterContract {
+class ProfileNavigatorPresenter: BasePresenter, ProfileNavigatorPresenterContract {
     
     weak var view: ProfileNavigatorViewContract!
-    var repository: UserRepositoryContract!
     
-    init(view: ProfileNavigatorViewContract, repository: UserRepositoryContract) {
+    init(view: ProfileNavigatorViewContract) {
         self.view = view
-        self.repository = repository
     }
     
     func viewDidAppear() {
         SwiftEventBus.onMainThread(self, name: Events.USER_LOGGED_IN) { result in
-            self.view.showProfile(self.repository.getLoggedInUser()!)
+            self.view.showProfile(result.object as! User)
         }
     }
     

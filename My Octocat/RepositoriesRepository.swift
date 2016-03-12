@@ -19,18 +19,31 @@ class RepositoriesRepository {
     
     func search(query: String, offset: Int) -> Observable<Page<Repository>> {
         return Observable.create({ observer in
-            let networkTask = GitHubGateway.sharedInstance().searchRespository(query, withOffset: offset, callbackHandler: { response, error in
+            let accessToken = UserRepository.sharedInstance().user?.authorization.accessToken
+            let networkTask = GitHubGateway.sharedInstance().searchRespository(query, withOffset: offset, accessToken: accessToken, callbackHandler: { response, error in
                 if let response = response {
                     let page = Page<Repository>(items: response.items, totalCount: response.totalCount)
                     observer.onNext(page)
                     observer.onCompleted()
                 } else {
-                    observer.onError(Error(message: error!.message, twoFactAuthNeeded: nil))
+                    observer.onError(error!)
                 }
             })
             return AnonymousDisposable {
                 print("Disposed")
                 networkTask.cancel()
+            }
+        }).subscribeOn(ComputationalScheduler.sharedInstance())
+    }
+    
+    //TODO: retreive repositories of the user given the username
+    func getRepositories(username: String) -> Observable<[Repository]> {
+        return Observable.create({ (observer) -> Disposable in
+            
+            
+            
+            return AnonymousDisposable {
+                
             }
         }).subscribeOn(ComputationalScheduler.sharedInstance())
     }

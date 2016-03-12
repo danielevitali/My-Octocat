@@ -23,10 +23,10 @@ class ProfileViewController: UIViewController, ProfileViewContract {
         presenter.viewDidLoad()
     }
     
-    func showUser(user: User) {
-        lblName.text = user.name
-        lblUsername.text = user.username
-        if let avatarUrl = user.avatarUrl {
+    func showUserProfile(profile: Profile) {
+        lblName.text = profile.name
+        lblUsername.text = profile.username
+        if let avatarUrl = profile.avatarUrl {
             imgAvatar.image = UIImage(named: avatarUrl)
         }
     }

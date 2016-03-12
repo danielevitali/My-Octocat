@@ -20,7 +20,6 @@ class Router {
     private static let ACCOUNT_STORYBOARD = "Account"
     private static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     private static let PROFILE_VIEW_CONTROLLER = "ProfileViewController"
-    private static let TWO_FACTORS_AUTHENTICATION_VIEW_CONTROLLER = "TwoFactorsAuthenticationViewController"
     
     private static let EVENTS_STORYBOARD = "Events"
     private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
@@ -34,12 +33,12 @@ class Router {
         searchViewController.presenter = SearchPresenter(view: searchViewController)
         
         let profileNagivationController = homeTabBarController.viewControllers![Router.PROFILE_TAB_POSITION] as! ProfileNavigatorController
-        profileNagivationController.presenter = ProfileNavigatorPresenter(view: profileNagivationController, repository: UserRepository.sharedInstance())
+        profileNagivationController.presenter = ProfileNavigatorPresenter(view: profileNagivationController)
         
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        if UserRepository.sharedInstance().isUserLoggedIn() {
+        if let user = UserRepository.sharedInstance().user {
             let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
-            profileViewController.presenter = ProfilePresenter(view: profileViewController, repository: UserRepository.sharedInstance(), user: UserRepository.sharedInstance().getLoggedInUser()!)
+            profileViewController.presenter = ProfilePresenter(view: profileViewController, user: user)
             profileNagivationController.showViewController(profileViewController, sender: self)
         } else {
             let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
@@ -55,13 +54,6 @@ class Router {
         window.makeKeyAndVisible()
     }
     
-    static func showTwoFactorAuthentication(viewController: UIViewController, username: String, password: String) {
-        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        let twoFactorsAuthenticationViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.TWO_FACTORS_AUTHENTICATION_VIEW_CONTROLLER) as! TwoFactorsAuthenticationViewController
-        twoFactorsAuthenticationViewController.presenter = TwoFactorsAuthenticationPresenter(view: twoFactorsAuthenticationViewController, repository: UserRepository.sharedInstance(), username: username, password: password)
-        showViewController(viewController, showing: twoFactorsAuthenticationViewController)
-    }
-    
     static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
         
     }
@@ -69,7 +61,7 @@ class Router {
     static func replaceAuthenticationWithProfile(navigatorController: UINavigationController, user: User) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
-        profileViewController.presenter = ProfilePresenter(view: profileViewController, repository: UserRepository.sharedInstance(), user: user)
+        profileViewController.presenter = ProfilePresenter(view: profileViewController, user: user)
         navigatorController.setViewControllers([profileViewController], animated: false)
     }
     

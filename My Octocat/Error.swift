@@ -10,13 +10,11 @@ import Foundation
 
 struct Error: ErrorType {
     
-    let type: Type
-    let message: String?
-    let errors: [ErrorInfoResponse]?
+    let message: String
+    let errors: [ErrorInfoResponse]
     
-    init(type: Type, json: [String : AnyObject]) {
-        self.type = type
-        self.message = json["message"] as? String
+    init(json: [String : AnyObject]) {
+        self.message = json["message"] as! String
         var errors = [ErrorInfoResponse]()
         if let array = json["errors"] as? NSArray {
             for element in array {
@@ -26,20 +24,14 @@ struct Error: ErrorType {
         self.errors = errors
     }
     
-    init(type: Type, error: NSError) {
-        self.type = type
-        message = error.localizedDescription
-        errors = [ErrorInfoResponse]()
+    init(message: String) {
+        self.message = message
+        self.errors = [ErrorInfoResponse]()
     }
     
-    init(type: Type) {
-        self.type = type
-        self.message = nil
-    }
-    
-    enum Type {
-        case TWO_FACT_REQUIRED
-        case UNKNOWN
+    init(error: NSError) {
+        self.message = error.localizedDescription
+        self.errors = [ErrorInfoResponse]()
     }
     
 }
