@@ -31,6 +31,7 @@
 		649CF35A1C948812005E009F /* ErrorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3591C948812005E009F /* ErrorDetail.swift */; };
 		649CF35C1C95BCFE005E009F /* UserProfileRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF35B1C95BCFE005E009F /* UserProfileRepositoryContract.swift */; };
 		649CF35F1C95DD5A005E009F /* FilesystemGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF35E1C95DD5A005E009F /* FilesystemGateway.swift */; };
+		649CF3621C95E01B005E009F /* CoreDataGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3611C95E01B005E009F /* CoreDataGateway.swift */; };
 		64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */; };
 		64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1833A1C78D3FB00AA274A /* NSDate.swift */; };
 		64A1833E1C78D4FD00AA274A /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1833D1C78D4FD00AA274A /* UserResponse.swift */; };
@@ -92,6 +93,7 @@
 		649CF3591C948812005E009F /* ErrorDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDetail.swift; sourceTree = "<group>"; };
 		649CF35B1C95BCFE005E009F /* UserProfileRepositoryContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileRepositoryContract.swift; sourceTree = "<group>"; };
 		649CF35E1C95DD5A005E009F /* FilesystemGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesystemGateway.swift; sourceTree = "<group>"; };
+		649CF3611C95E01B005E009F /* CoreDataGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGateway.swift; sourceTree = "<group>"; };
 		64A183351C78C7DE00AA274A /* RepositoriesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
 		64A1833A1C78D3FB00AA274A /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
 		64A1833D1C78D4FD00AA274A /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		644842C31C7CFAC0003B30CC /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
+				649CF3601C95E00A005E009F /* Core data */,
 				649CF35D1C95DD35005E009F /* Filesystem */,
 				644446001C7898D500D6E2AA /* GitHub */,
 			);
@@ -312,6 +315,14 @@
 				649CF35E1C95DD5A005E009F /* FilesystemGateway.swift */,
 			);
 			name = Filesystem;
+			sourceTree = "<group>";
+		};
+		649CF3601C95E00A005E009F /* Core data */ = {
+			isa = PBXGroup;
+			children = (
+				649CF3611C95E01B005E009F /* CoreDataGateway.swift */,
+			);
+			name = "Core data";
 			sourceTree = "<group>";
 		};
 		64A183391C78D3A100AA274A /* Utils */ = {
@@ -607,6 +618,7 @@
 				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
 				6419B12F1C8CE6E60060C3D9 /* ProfileNavigatorPresenterContract.swift in Sources */,
+				649CF3621C95E01B005E009F /* CoreDataGateway.swift in Sources */,
 				649CF3571C947076005E009F /* BasePresenter.swift in Sources */,
 				649CF35F1C95DD5A005E009F /* FilesystemGateway.swift in Sources */,
 				64D639811C8B7105000AA0CF /* EventsViewController.swift in Sources */,
