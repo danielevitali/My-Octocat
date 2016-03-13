@@ -9,7 +9,7 @@
         <!--Profile-->
         <scene sceneID="XZY-2B-AD9">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" title="Profile" id="eae-Kd-7uO" customClass="ProfileViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileViewController" title="Profile" id="eae-Kd-7uO" customClass="UserProfileViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pWE-k0-qMy"/>
                         <viewControllerLayoutGuide type="bottom" id="rOz-4c-qAg"/>

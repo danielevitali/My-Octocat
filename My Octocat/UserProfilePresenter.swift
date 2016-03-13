@@ -12,21 +12,22 @@ import RxSwift
 class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
     weak var view: UserProfileViewContract!
+    let repository: UserProfileRepositoryContract
     
     var user: User
     
-    init(view: UserProfileViewContract, user: User) {
+    init(view: UserProfileViewContract, repository: UserProfileRepositoryContract, user: User) {
         self.view = view
         self.user = user
+        self.repository = repository
     }
     
-    //TODO check for profile and repository list
     func viewDidLoad() {
         if let profile = user.profile {
             view.showUserProfile(profile)
         } else {
             view.showLoading()
-            User
+            
         }
     }
 }

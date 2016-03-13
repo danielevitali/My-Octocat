@@ -19,7 +19,7 @@ class Router {
     
     private static let ACCOUNT_STORYBOARD = "Account"
     private static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
-    private static let PROFILE_VIEW_CONTROLLER = "ProfileViewController"
+    private static let USER_PROFILE_VIEW_CONTROLLER = "UserProfileViewController"
     
     private static let EVENTS_STORYBOARD = "Events"
     private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
@@ -37,9 +37,9 @@ class Router {
         
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         if let user = UserRepository.sharedInstance().user {
-            let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
-            profileViewController.presenter = ProfilePresenter(view: profileViewController, user: user)
-            profileNagivationController.showViewController(profileViewController, sender: self)
+            let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
+            userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, user: user)
+            profileNagivationController.showViewController(userProfileViewController, sender: self)
         } else {
             let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
             loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
@@ -60,9 +60,9 @@ class Router {
     
     static func replaceAuthenticationWithProfile(navigatorController: UINavigationController, user: User) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        let profileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.PROFILE_VIEW_CONTROLLER) as! ProfileViewController
-        profileViewController.presenter = ProfilePresenter(view: profileViewController, user: user)
-        navigatorController.setViewControllers([profileViewController], animated: false)
+        let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
+        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, user: user)
+        navigatorController.setViewControllers([userProfileViewController], animated: false)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {
