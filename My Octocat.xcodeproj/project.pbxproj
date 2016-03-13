@@ -40,6 +40,8 @@
 		64A183471C79DF8500AA274A /* SearchPresenterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183461C79DF8500AA274A /* SearchPresenterContract.swift */; };
 		64A183491C79DFB600AA274A /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183481C79DFB600AA274A /* SearchPresenter.swift */; };
 		64A1834B1C79E00200AA274A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1834A1C79E00200AA274A /* Router.swift */; };
+		64BDD5A51C9603BC00290913 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDD5A41C9603BC00290913 /* ProfileCell.swift */; };
+		64BDD5A71C96045400290913 /* UserRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDD5A61C96045400290913 /* UserRepositoryCell.swift */; };
 		64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64D0814F1C7BC8CD00F969DC /* artworks.sketch */; };
 		64D639721C879B3A000AA0CF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D639711C879B3A000AA0CF /* Page.swift */; };
 		64D639741C8B6C1C000AA0CF /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D639731C8B6C1C000AA0CF /* Account.storyboard */; };
@@ -102,6 +104,8 @@
 		64A183461C79DF8500AA274A /* SearchPresenterContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenterContract.swift; sourceTree = "<group>"; };
 		64A183481C79DFB600AA274A /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		64A1834A1C79E00200AA274A /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		64BDD5A41C9603BC00290913 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		64BDD5A61C96045400290913 /* UserRepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryCell.swift; sourceTree = "<group>"; };
 		64D0814F1C7BC8CD00F969DC /* artworks.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = artworks.sketch; path = Arts/artworks.sketch; sourceTree = "<group>"; };
 		64D639711C879B3A000AA0CF /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		64D639731C8B6C1C000AA0CF /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 				64D639921C8B735F000AA0CF /* Contracts */,
 				64D6397A1C8B709D000AA0CF /* UserProfileViewController.swift */,
 				64D639971C8B73BD000AA0CF /* UserProfilePresenter.swift */,
+				64BDD5A41C9603BC00290913 /* ProfileCell.swift */,
+				64BDD5A61C96045400290913 /* UserRepositoryCell.swift */,
 			);
 			name = "User profile";
 			sourceTree = "<group>";
@@ -615,6 +621,8 @@
 				64D6397E1C8B70D9000AA0CF /* LoginViewController.swift in Sources */,
 				649C3C121C8C7C2200B253C2 /* User.swift in Sources */,
 				64A1833B1C78D3FB00AA274A /* NSDate.swift in Sources */,
+				64BDD5A71C96045400290913 /* UserRepositoryCell.swift in Sources */,
+				64BDD5A51C9603BC00290913 /* ProfileCell.swift in Sources */,
 				64A183361C78C7DE00AA274A /* RepositoriesResponse.swift in Sources */,
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
 				6419B12F1C8CE6E60060C3D9 /* ProfileNavigatorPresenterContract.swift in Sources */,
