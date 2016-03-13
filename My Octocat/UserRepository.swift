@@ -58,6 +58,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                 let task = GitHubGateway.sharedInstance().getUserProfile(self.user!.authorization.accessToken, callbackHandler: { (profile, error) -> Void in
                     if let profile = profile {
                         self.user!.profile = profile
+                        FilesystemGateway.sharedInstance().deleteUserAvatar()
                         observer.onNext(self.user!)
                         observer.onCompleted()
                     } else {
@@ -91,6 +92,39 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                 })
                 return AnonymousDisposable{
                     task.cancel()
+                }
+            })
+        }
+        return observable.subscribeOn(ComputationalScheduler.sharedInstance())
+    }
+    
+    func getUserAvatar() -> Observable<NSData> {
+        let observable: Observable<NSData>
+        if user == nil {
+            observable = Observable.error(Error(message: "User is not logged in"))
+        } else if user!.profile == nil {
+            observable = Observable.error(Error(message: "User doesn't have a profile"))
+        } else if user!.profile!.avatarUrl == nil {
+            observable = Observable.empty()
+        } else {
+            observable = Observable.create({ (observer) -> Disposable in
+                if let image = FilesystemGateway.sharedInstance().getUserAvatar() {
+                    observer.onNext(image)
+                    return AnonymousDisposable{
+                    }
+                } else {
+                    let task = GitHubGateway.sharedInstance().downloadUserAvatar(self.user!.profile!.avatarUrl!, callbackHandler: { (image, error) in
+                        if let image = image {
+                            FilesystemGateway.sharedInstance().saveUserAvatar(image)
+                            observer.onNext(image)
+                            observer.onCompleted()
+                        } else {
+                            observer.onError(error!)
+                        }
+                    })
+                    return AnonymousDisposable{
+                        task.cancel()
+                    }
                 }
             })
         }

@@ -10,12 +10,11 @@ import Foundation
 
 public extension NSDate {
     
-    private static let ISO8601_PATTERN = "yyyy-MM-ddTHH:mm:ssZ"
+    private static let ISO8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
     
     public static func ISOStringFromDate(date: NSDate) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
         dateFormatter.dateFormat = ISO8601_PATTERN
         return dateFormatter.stringFromDate(date)
     }
@@ -23,7 +22,6 @@ public extension NSDate {
     public static func dateFromISOString(string: String) -> NSDate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.timeZone = NSTimeZone.localTimeZone()
         dateFormatter.dateFormat = ISO8601_PATTERN
         return dateFormatter.dateFromString(string)!
     }

@@ -38,38 +38,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "My Octocat/LoginPresenter.swift"
-            timestampString = "479573052.18292"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "onLoadNewRequest(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "My Octocat/ProfileNavigatorPresenter.swift"
-            timestampString = "479569817.681408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "viewDidAppear()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -97,54 +65,6 @@
             endingLineNumber = "51"
             landmarkName = "onLoadNewRequest(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "My Octocat/GitHubGateway.swift"
-            timestampString = "479574029.038387"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "loginUserWithWebCode(_:callbackHandler:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_Octocat.GitHubGateway.loginUserWithWebCode (My_Octocat.GitHubGateway)(Swift.String, callbackHandler : (authorization : Swift.Optional&lt;My_Octocat.Authorization&gt;, error : Swift.Optional&lt;My_Octocat.Error&gt;) -&gt; ()) -&gt; __ObjC.NSURLSessionDataTask"
-                  moduleName = "My Octocat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/daniele/Development/xcode/My%20Octocat/My%20Octocat/GitHubGateway.swift"
-                  timestampString = "479573467.01264"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "1319">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "My_Octocat.GitHubGateway.(loginUserWithWebCode (My_Octocat.GitHubGateway) -&gt; (Swift.String, callbackHandler : (authorization : Swift.Optional&lt;My_Octocat.Authorization&gt;, error : Swift.Optional&lt;My_Octocat.Error&gt;) -&gt; ()) -&gt; __ObjC.NSURLSessionDataTask).(closure #1)"
-                  moduleName = "My Octocat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/daniele/Development/xcode/My%20Octocat/My%20Octocat/GitHubGateway.swift"
-                  timestampString = "479573467.013"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "57">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

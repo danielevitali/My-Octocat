@@ -37,7 +37,7 @@ class GitHubGateway {
     }
     
     func getWebAuthURL() -> NSURL {
-        let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "scopes" : "user,repo"]
+        let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "scope" : "user,repo"]
         let urlString = "\(GitHubGateway.WEB_AUTH_URL)\(escapedParameters(queryParams))"
         return NSURL(string: urlString)!
     }
@@ -66,7 +66,6 @@ class GitHubGateway {
         return sendGetRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
-                print(json)
                 if self.isSuccessResponse(response.statusCode) {
                     callback(profile: Profile(json: json), error: nil)
                 } else {
@@ -79,14 +78,17 @@ class GitHubGateway {
     }
     
     func getUserRepositories(accessToken: String, callbackHandler callback: (repositories: [Repository]?, error: Error?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PROFILE_PATH, params: nil))
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_REPOSITORIES_PATH, params: nil))
         addHeadersToRequest(request, accessToken: accessToken)
         return sendGetRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
-                print(json)
                 if self.isSuccessResponse(response.statusCode) {
-                    callback(repositories: Profile(json: json), error: nil)
+                    var repositories = [Repository]()
+                    for repo in json["items"] as! [[String : AnyObject]] {
+                        repositories.append(Repository(json: repo))
+                    }
+                    callback(repositories: repositories, error: nil)
                 } else {
                     callback(repositories: nil, error: Error(json: json))
                 }
@@ -143,6 +145,18 @@ class GitHubGateway {
         return task
     }
     
+    func downloadUserAvatar(url: NSURL, callbackHandler callback: (image: NSData?, error: Error?) -> Void) -> NSURLSessionDataTask {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, response, error) in
+            if let error = error {
+                callback(image: nil, error: Error(error: error))
+            } else {
+                callback(image: data, error: nil)
+            }
+        })
+        task.resume()
+        return task
+    }
+    
     private func addHeadersToRequest(request: NSMutableURLRequest, accessToken: String?) {
         request.addValue(GitHubGateway.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -171,7 +185,11 @@ class GitHubGateway {
     }
     
     private func extractJson(data: NSData) -> [String:AnyObject] {
-        return try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as! [String:AnyObject]
+        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+        if let array = json as? [AnyObject] {
+            return ["items": array]
+        }
+        return json as! [String : AnyObject]
     }
     
     private func isSuccessResponse(statusCode: Int) -> Bool {

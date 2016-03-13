@@ -17,4 +17,6 @@ protocol UserProfileRepositoryContract {
     
     func getUserRepositories() -> Observable<User>
     
+    func getUserAvatar() -> Observable<NSData>
+    
 }

@@ -25,7 +25,12 @@ class UserProfileViewController: UIViewController, UserProfileViewContract {
     
     //TODO: show profile
     func showUserProfile(profile: Profile) {
-        
+        lblName.text = profile.name
+        lblUsername.text = profile.username
+    }
+    
+    func showUserAvatar(image: NSData) {
+        imgAvatar.image = UIImage(data: image)
     }
     
     //TODO: show repositories

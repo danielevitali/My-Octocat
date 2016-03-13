@@ -28,15 +28,16 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
             view.showUserProfile(profile)
         } else {
             view.toggleLoading(true)
-            let observable = repository.getUserProfile()
+            var observable = repository.getUserProfile()
             if user.repositories == nil {
-                observable.concat(repository.getUserRepositories())
+                observable = observable.concat(repository.getUserRepositories())
             }
             observable.observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [unowned self] user in
                     self.view.toggleLoading(false)
                     if let profile = user.profile {
                         self.view.showUserProfile(profile)
+                        self.requestUserAvatar()
                     } else if let repositories = user.repositories {
                         self.view.showUserRepositories(repositories)
                     }
@@ -50,5 +51,19 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
                 
                 }).addDisposableTo(disposeBag)
         }
+    }
+    
+    private func requestUserAvatar() {
+        repository.getUserAvatar()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] image in
+                self.view.showUserAvatar(image)
+                }, onError: { errorType in
+                    
+                }, onCompleted: { () in
+                    
+                }, onDisposed: { () in
+                    
+            }).addDisposableTo(disposeBag)
     }
 }
