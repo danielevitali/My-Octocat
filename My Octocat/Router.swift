@@ -38,7 +38,7 @@ class Router {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         if let user = UserRepository.sharedInstance().user {
             let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
-            userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, user: user)
+            userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance(), user: user)
             profileNagivationController.showViewController(userProfileViewController, sender: self)
         } else {
             let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
@@ -61,7 +61,7 @@ class Router {
     static func replaceAuthenticationWithProfile(navigatorController: UINavigationController, user: User) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
-        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, user: user)
+        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance(), user: user)
         navigatorController.setViewControllers([userProfileViewController], animated: false)
     }
     

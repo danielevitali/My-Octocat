@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol UserProfileRepositoryContract {
+    
+    var user: User? {get set}
+    
+    func getUserProfile() -> Observable<User>
+    
+    func getUserRepositories() -> Observable<User>
     
 }

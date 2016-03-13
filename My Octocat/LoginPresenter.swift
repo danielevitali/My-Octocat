@@ -15,7 +15,7 @@ class LoginPresenter: BasePresenter, LoginPresenterContract {
     private static let CALLBACK_URL = "my-octocat://callback"
     
     weak var view: LoginViewContract!
-    var repository: LoginRepositoryContract
+    let repository: LoginRepositoryContract
     var loggingUser: Bool!
     
     init(view: LoginViewContract, repository: LoginRepositoryContract) {
@@ -55,7 +55,7 @@ class LoginPresenter: BasePresenter, LoginPresenterContract {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { user in
                     SwiftEventBus.post(Events.USER_LOGGED_IN, sender: user)
-                    }, onError: { errorType in
+                    }, onError: { [unowned self] errorType in
                         let error = errorType as! Error
                         self.view.showError(error.message)
                     }, onCompleted: { () in

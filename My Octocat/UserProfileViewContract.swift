@@ -12,9 +12,9 @@ protocol UserProfileViewContract: class {
     
     func showUserProfile(profile: Profile)
     
-    func showLoading()
+    func showUserRepositories(repositories: [Repository])
     
-    func hideLoading()
+    func toggleLoading(visible: Bool)
     
     func showError(message: String)
     

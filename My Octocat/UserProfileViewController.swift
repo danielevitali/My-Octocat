@@ -23,20 +23,22 @@ class UserProfileViewController: UIViewController, UserProfileViewContract {
         presenter.viewDidLoad()
     }
     
+    //TODO: show profile
     func showUserProfile(profile: Profile) {
-        lblName.text = profile.name
-        lblUsername.text = profile.username
-        if let avatarUrl = profile.avatarUrl {
-            imgAvatar.image = UIImage(named: avatarUrl)
+        
+    }
+    
+    //TODO: show repositories
+    func showUserRepositories(repositories: [Repository]) {
+        
+    }
+    
+    func toggleLoading(visible: Bool) {
+        if visible {
+            aiLoading.startAnimating()
+        } else {
+            aiLoading.stopAnimating()
         }
-    }
-    
-    func showLoading() {
-        aiLoading.startAnimating()
-    }
-    
-    func hideLoading() {
-        aiLoading.stopAnimating()
     }
     
     func showError(message: String) {

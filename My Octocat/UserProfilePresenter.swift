@@ -24,10 +24,31 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
     func viewDidLoad() {
         if let profile = user.profile {
+            view.toggleLoading(false)
             view.showUserProfile(profile)
         } else {
-            view.showLoading()
-            
+            view.toggleLoading(true)
+            let observable = repository.getUserProfile()
+            if user.repositories == nil {
+                observable.concat(repository.getUserRepositories())
+            }
+            observable.observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [unowned self] user in
+                    self.view.toggleLoading(false)
+                    if let profile = user.profile {
+                        self.view.showUserProfile(profile)
+                    } else if let repositories = user.repositories {
+                        self.view.showUserRepositories(repositories)
+                    }
+                    }, onError: { [unowned self] errorType in
+                        let error = errorType as! Error
+                        self.view.toggleLoading(false)
+                        self.view.showError(error.message)
+                    }, onCompleted: { () -> Void in
+                
+                    }, onDisposed: { () -> Void in
+                
+                }).addDisposableTo(disposeBag)
         }
     }
 }

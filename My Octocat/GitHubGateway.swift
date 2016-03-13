@@ -78,6 +78,24 @@ class GitHubGateway {
         })
     }
     
+    func getUserRepositories(accessToken: String, callbackHandler callback: (repositories: [Repository]?, error: Error?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PROFILE_PATH, params: nil))
+        addHeadersToRequest(request, accessToken: accessToken)
+        return sendGetRequest(request, callbackHandler: { (data, response, error) in
+            if let response = response, let data = data {
+                let json = self.extractJson(data)
+                print(json)
+                if self.isSuccessResponse(response.statusCode) {
+                    callback(repositories: Profile(json: json), error: nil)
+                } else {
+                    callback(repositories: nil, error: Error(json: json))
+                }
+            } else {
+                callback(repositories: nil, error: Error(error: error!))
+            }
+        })
+    }
+    
     func searchRespository(query: String, withOffset offset: Int, accessToken: String?, callbackHandler callback: (response: RepositoriesResponse?, error: Error?) -> Void) -> NSURLSessionDataTask {
         let page = offset / GitHubGateway.REPOSITORIES_PER_PAGE_COUNT
         let queryParams = ["q" : query, "page" : "\(page)", "per_page" : "\(GitHubGateway.REPOSITORIES_PER_PAGE_COUNT)"]
