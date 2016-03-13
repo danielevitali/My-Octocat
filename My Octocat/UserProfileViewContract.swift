@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ProfileViewContract: class {
+protocol UserProfileViewContract: class {
     
     func showUserProfile(profile: Profile)
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ProfilePresenterContract {
+protocol UserProfilePresenterContract {
     
     func viewDidLoad()
     

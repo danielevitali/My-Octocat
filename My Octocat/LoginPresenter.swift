@@ -12,13 +12,11 @@ import SwiftEventBus
 
 class LoginPresenter: BasePresenter, LoginPresenterContract {
     
-    private static let AUTH_URL = "https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID + "&redirect_uri=" + CALLBACK_URL + "&scopes=user,repo" 
-    private static let CLIENT_ID = "2bcfc4da0df7619b2364"
-    private static let CLIENT_SECRET = "7ffe329bafeb9d19d12d909887b68d5165612f32"
     private static let CALLBACK_URL = "my-octocat://callback"
     
     weak var view: LoginViewContract!
     var repository: LoginRepositoryContract
+    var loggingUser: Bool!
     
     init(view: LoginViewContract, repository: LoginRepositoryContract) {
         self.view = view
@@ -26,17 +24,37 @@ class LoginPresenter: BasePresenter, LoginPresenterContract {
     }
     
     func viewDidLoad() {
+    }
+    
+    func viewWillAppear() {
         view.loadUrl(repository.getAuthURL())
+        view.toggleLoading(true)
+        view.toggleWebView(false)
+        loggingUser = false
+    }
+    
+    func onFinishLoadingWebPage() {
+        view.toggleLoading(false)
+        view.toggleWebView(true)
+    }
+    
+    func onErrorLoadingWebPage(error: NSError) {
+        if !loggingUser {
+            view.toggleLoading(false)
+            view.showError(error.localizedDescription)
+        }
     }
     
     func onLoadNewRequest(request: NSURLRequest) -> Bool {
         let url = request.URL!
         if url.absoluteString.containsString(LoginPresenter.CALLBACK_URL) {
-            let code = url.valueForKey("code") as! String
+            view.toggleLoading(true)
+            view.toggleWebView(false)
+            let code = url.query!.substringFromIndex((url.query!.rangeOfString("=")?.endIndex)!)
             repository.loginUserWithWebCode(code)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { user in
-                    SwiftEventBus.post(Events.USER_LOGGED_IN)//, sender: user)
+                    SwiftEventBus.post(Events.USER_LOGGED_IN, sender: user)
                     }, onError: { errorType in
                         let error = errorType as! Error
                         self.view.showError(error.message)
@@ -45,6 +63,7 @@ class LoginPresenter: BasePresenter, LoginPresenterContract {
                     }, onDisposed: { () in
                         
                 }).addDisposableTo(disposeBag)
+            loggingUser = true
             return false
         }
         return true

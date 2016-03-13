@@ -12,5 +12,11 @@ protocol LoginPresenterContract {
     
     func viewDidLoad()
     
+    func viewWillAppear()
+    
     func onLoadNewRequest(request: NSURLRequest) -> Bool
+    
+    func onFinishLoadingWebPage()
+    
+    func onErrorLoadingWebPage(error: NSError)
 }

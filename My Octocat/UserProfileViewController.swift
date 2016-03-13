@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-class ProfileViewController: UIViewController, ProfileViewContract {
+class UserProfileViewController: UIViewController, UserProfileViewContract {
     
     @IBOutlet weak var aiLoading: UIActivityIndicatorView!
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblUsername: UILabel!
     
-    var presenter: ProfilePresenterContract!
+    var presenter: UserProfilePresenterContract!
     
     override func viewDidLoad() {
         super.viewDidLoad()

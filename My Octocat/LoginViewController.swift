@@ -12,6 +12,7 @@ import UIKit
 class LoginViewController: UIViewController, LoginViewContract, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var aiLoading: UIActivityIndicatorView!
     
     var presenter: LoginPresenterContract!
     
@@ -21,20 +22,40 @@ class LoginViewController: UIViewController, LoginViewContract, UIWebViewDelegat
         webView.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
+    }
+    
     func loadUrl(url: NSURL) {
-        print(url)
         webView.loadRequest(NSURLRequest(URL: url))
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        presenter.onFinishLoadingWebPage()
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return presenter.onLoadNewRequest(request)
     }
     
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        presenter.onErrorLoadingWebPage(error!)
+    }
+    
     func showError(message: String) {
         ErrorAlert(message: message).show(self)
     }
     
-    func showProfile() {
-        
+    func toggleLoading(visible: Bool) {
+        if visible {
+            aiLoading.startAnimating()
+        } else {
+            aiLoading.stopAnimating()
+        }
+    }
+    
+    func toggleWebView(visible: Bool) {
+        webView.hidden = !visible
     }
 }

@@ -9,13 +9,13 @@
 import Foundation
 import RxSwift
 
-class ProfilePresenter: BasePresenter, ProfilePresenterContract {
+class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
-    weak var view: ProfileViewContract!
+    weak var view: UserProfileViewContract!
     
     var user: User
     
-    init(view: ProfileViewContract, user: User) {
+    init(view: UserProfileViewContract, user: User) {
         self.view = view
         self.user = user
     }
@@ -26,7 +26,7 @@ class ProfilePresenter: BasePresenter, ProfilePresenterContract {
             view.showUserProfile(profile)
         } else {
             view.showLoading()
-            
+            User
         }
     }
 }

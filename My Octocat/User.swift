@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+class User {
     
     var authorization: Authorization
     var profile: Profile?

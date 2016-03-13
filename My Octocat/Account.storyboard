@@ -65,37 +65,42 @@
             <point key="canvasLocation" x="225" y="110"/>
         </scene>
         <!--Login-->
-        <scene sceneID="kAs-GZ-Fv2">
+        <scene sceneID="QD7-H8-RFt">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Login" id="vPq-qB-rKm" customClass="LoginViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" id="h2I-GP-uKX" customClass="LoginViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KKN-db-t4e"/>
-                        <viewControllerLayoutGuide type="bottom" id="UyE-32-ecj"/>
+                        <viewControllerLayoutGuide type="top" id="JCd-nR-J8I"/>
+                        <viewControllerLayoutGuide type="bottom" id="gkk-MV-Rzb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hse-f1-v7a">
+                    <view key="view" contentMode="scaleToFill" id="UZQ-An-De9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DK-L7-KFp">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7j-n9-9TY">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DFl-XM-hvZ">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UyE-32-ecj" firstAttribute="top" secondItem="0DK-L7-KFp" secondAttribute="bottom" id="Kmz-RB-uJg"/>
-                            <constraint firstItem="0DK-L7-KFp" firstAttribute="top" secondItem="KKN-db-t4e" secondAttribute="bottom" id="nYh-AD-H30"/>
-                            <constraint firstItem="0DK-L7-KFp" firstAttribute="leading" secondItem="hse-f1-v7a" secondAttribute="leading" id="pmk-oi-o8J"/>
-                            <constraint firstAttribute="trailing" secondItem="0DK-L7-KFp" secondAttribute="trailing" id="yIv-16-qJ0"/>
+                            <constraint firstAttribute="trailing" secondItem="M7j-n9-9TY" secondAttribute="trailing" id="0vp-Cs-2fV"/>
+                            <constraint firstItem="M7j-n9-9TY" firstAttribute="leading" secondItem="UZQ-An-De9" secondAttribute="leading" id="58f-45-IZ8"/>
+                            <constraint firstItem="gkk-MV-Rzb" firstAttribute="top" secondItem="M7j-n9-9TY" secondAttribute="bottom" id="ItT-Bf-QTJ"/>
+                            <constraint firstItem="M7j-n9-9TY" firstAttribute="top" secondItem="JCd-nR-J8I" secondAttribute="bottom" id="Xk7-NA-ajq"/>
+                            <constraint firstItem="DFl-XM-hvZ" firstAttribute="centerY" secondItem="UZQ-An-De9" secondAttribute="centerY" id="YKf-uW-wRv"/>
+                            <constraint firstItem="DFl-XM-hvZ" firstAttribute="centerX" secondItem="UZQ-An-De9" secondAttribute="centerX" id="goU-HZ-VIS"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="0DK-L7-KFp" id="TL2-uF-qKS"/>
+                        <outlet property="aiLoading" destination="DFl-XM-hvZ" id="7aI-Nf-nvZ"/>
+                        <outlet property="webView" destination="M7j-n9-9TY" id="Gv0-ta-aX5"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HeK-XR-nIv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bkq-Ak-SlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="905"/>
+            <point key="canvasLocation" x="225" y="836"/>
         </scene>
     </scenes>
 </document>

@@ -1,23 +1,23 @@
 //
-//  File.swift
+//  ErrorDetail.swift
 //  My Octocat
 //
-//  Created by Daniele Vitali on 2/20/16.
+//  Created by Daniele Vitali on 3/12/16.
 //  Copyright © 2016 Daniele Vitali. All rights reserved.
 //
 
 import Foundation
 
-class ErrorInfoResponse {
+struct ErrorDetail {
     
     let resource: String
     let field: String
     let code: String
     
     init(json: [String:AnyObject]) {
-        resource = json["resource"] as! String
-        field = json["field"] as! String
-        code = json["code"] as! String
+        self.resource = json["resource"] as! String
+        self.field = json["field"] as! String
+        self.code = json["code"] as! String
     }
     
 }

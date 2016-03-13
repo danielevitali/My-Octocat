@@ -37,19 +37,18 @@ class GitHubGateway {
     }
     
     func getWebAuthURL() -> NSURL {
-        let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "redirect_uri" : GitHubGateway.CALLBACK_URL, "scopes" : "user,repo"]
+        let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "scopes" : "user,repo"]
         let urlString = "\(GitHubGateway.WEB_AUTH_URL)\(escapedParameters(queryParams))"
         return NSURL(string: urlString)!
     }
 
     func loginUserWithWebCode(code: String, callbackHandler callback: (authorization: Authorization?, error: Error?) -> Void) -> NSURLSessionDataTask {
         let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "client_secret" : GitHubGateway.CLIENT_SECRET, "code" : code]
-        var request = NSMutableURLRequest(URL: NSURL(string: "\(GitHubGateway.ACCESS_TOKEN_URL)\(escapedParameters(queryParams))")!)
-        request = addHeadersToRequest(request, accessToken: nil)
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(GitHubGateway.ACCESS_TOKEN_URL)\(escapedParameters(queryParams))")!)
+        addHeadersToRequest(request, accessToken: nil)
         return sendPostRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
-                print(json)
                 if self.isSuccessResponse(response.statusCode) {
                     callback(authorization: Authorization(json: json), error: nil)
                 } else {
@@ -62,8 +61,8 @@ class GitHubGateway {
     }
     
     func getUserProfile(accessToken: String, callbackHandler callback: (profile: Profile?, error: Error?) -> Void) -> NSURLSessionDataTask {
-        var request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PROFILE_PATH, params: nil))
-        request = addHeadersToRequest(request, accessToken: accessToken)
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PROFILE_PATH, params: nil))
+        addHeadersToRequest(request, accessToken: accessToken)
         return sendGetRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
@@ -82,8 +81,8 @@ class GitHubGateway {
     func searchRespository(query: String, withOffset offset: Int, accessToken: String?, callbackHandler callback: (response: RepositoriesResponse?, error: Error?) -> Void) -> NSURLSessionDataTask {
         let page = offset / GitHubGateway.REPOSITORIES_PER_PAGE_COUNT
         let queryParams = ["q" : query, "page" : "\(page)", "per_page" : "\(GitHubGateway.REPOSITORIES_PER_PAGE_COUNT)"]
-        var request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.SEARCH_REPOSITORIES_PATH, params: queryParams))
-        request = addHeadersToRequest(request, accessToken: accessToken)
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.SEARCH_REPOSITORIES_PATH, params: queryParams))
+        addHeadersToRequest(request, accessToken: accessToken)
         return sendGetRequest(request, callbackHandler: { (data, response, error) in
             if let response = response, let data = data {
                 let json = self.extractJson(data)
@@ -98,7 +97,7 @@ class GitHubGateway {
         })
     }
     
-    func getRepositories(username: String, callbackHandler callback: (response: [Repository]?, error: ErrorResponse?) -> Void) -> NSURLSessionDataTask {
+    func getRepositories(username: String, callbackHandler callback: (response: [Repository]?, error: Error?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_REPOSITORIES_PATH, params: nil))
         
         return sendGetRequest(request, callbackHandler: { (data, response, error) in
@@ -126,13 +125,13 @@ class GitHubGateway {
         return task
     }
     
-    private func addHeadersToRequest(request: NSMutableURLRequest, accessToken: String?) -> NSMutableURLRequest {
+    private func addHeadersToRequest(request: NSMutableURLRequest, accessToken: String?) {
         request.addValue(GitHubGateway.ACCEPT_HEADER, forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue(GitHubGateway.USER_AGENT_HEADER, forHTTPHeaderField: "User-Agent")
         if let accessToken = accessToken {
             request.addValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        return request
     }
     
     private func buildUrl(path: String, params: [String:String]?) -> NSURL {

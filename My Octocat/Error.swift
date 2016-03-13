@@ -11,27 +11,27 @@ import Foundation
 struct Error: ErrorType {
     
     let message: String
-    let errors: [ErrorInfoResponse]
+    let errorDetails: [ErrorDetail]
     
     init(json: [String : AnyObject]) {
         self.message = json["message"] as! String
-        var errors = [ErrorInfoResponse]()
+        var errorDetails = [ErrorDetail]()
         if let array = json["errors"] as? NSArray {
             for element in array {
-                errors.append(ErrorInfoResponse(json: element as! [String : AnyObject]))
+                errorDetails.append(ErrorDetail(json: element as! [String : AnyObject]))
             }
         }
-        self.errors = errors
+        self.errorDetails = errorDetails
     }
     
     init(message: String) {
         self.message = message
-        self.errors = [ErrorInfoResponse]()
+        self.errorDetails = [ErrorDetail]()
     }
     
     init(error: NSError) {
         self.message = error.localizedDescription
-        self.errors = [ErrorInfoResponse]()
+        self.errorDetails = [ErrorDetail]()
     }
     
 }

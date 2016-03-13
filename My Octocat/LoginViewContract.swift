@@ -14,6 +14,8 @@ protocol LoginViewContract: class {
     
     func showError(message: String)
     
-    func showProfile()
+    func toggleLoading(visible: Bool)
+    
+    func toggleWebView(visible: Bool)
     
 }
