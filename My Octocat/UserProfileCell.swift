@@ -50,4 +50,10 @@ class UserProfileCell: UITableViewCell {
         imgAvatar.image = UIImage(data: image)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
+    }
+    
 }
