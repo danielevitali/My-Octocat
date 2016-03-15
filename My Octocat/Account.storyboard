@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Profile-->
@@ -25,70 +24,21 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="123" id="acQ-Wg-qT3" customClass="ProfileCell" customModule="My_Octocat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="123"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7FU-O3-rOE">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="acQ-Wg-qT3" id="2RQ-js-Ift">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="122.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-hF-qQA">
-                                                    <rect key="frame" x="8" y="8" width="100" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="aRd-EN-S54"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd0-MW-dpg">
-                                                    <rect key="frame" x="116" y="8" width="49" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EW7-Hb-ev5">
-                                                    <rect key="frame" x="116" y="40" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="EW7-Hb-ev5" firstAttribute="leading" secondItem="J9z-hF-qQA" secondAttribute="trailing" constant="8" id="1I4-Dg-WDS"/>
-                                                <constraint firstItem="Fd0-MW-dpg" firstAttribute="top" secondItem="2RQ-js-Ift" secondAttribute="topMargin" id="3LK-av-0ef"/>
-                                                <constraint firstItem="J9z-hF-qQA" firstAttribute="leading" secondItem="2RQ-js-Ift" secondAttribute="leadingMargin" id="Bkf-0V-1XK"/>
-                                                <constraint firstItem="Fd0-MW-dpg" firstAttribute="leading" secondItem="J9z-hF-qQA" secondAttribute="trailing" constant="8" id="Edn-ce-yWP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="J9z-hF-qQA" secondAttribute="bottom" constant="6.5" id="O9z-1g-TZh"/>
-                                                <constraint firstItem="EW7-Hb-ev5" firstAttribute="top" secondItem="Fd0-MW-dpg" secondAttribute="bottom" constant="8" id="UqT-J2-a4g"/>
-                                                <constraint firstItem="J9z-hF-qQA" firstAttribute="top" secondItem="2RQ-js-Ift" secondAttribute="topMargin" id="pEn-hp-zcm"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="imgAvatar" destination="J9z-hF-qQA" id="AN6-3J-UxN"/>
-                                            <outlet property="lblName" destination="Fd0-MW-dpg" id="8OI-on-pn4"/>
-                                            <outlet property="lblUsername" destination="EW7-Hb-ev5" id="YtH-NA-ZIF"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserRepositoryCell" id="a0W-qy-PRg" customClass="UserRepositoryCell" customModule="My_Octocat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="151" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0W-qy-PRg" id="Yjy-Sn-Era">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7FU-O3-rOE" id="iNR-Nb-Q7R">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSq-Dg-JyC">
-                                                    <rect key="frame" x="8" y="8" width="42" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="fSq-Dg-JyC" firstAttribute="top" secondItem="Yjy-Sn-Era" secondAttribute="topMargin" id="D4L-2D-OKM"/>
-                                                <constraint firstItem="fSq-Dg-JyC" firstAttribute="leading" secondItem="Yjy-Sn-Era" secondAttribute="leadingMargin" id="Mra-Z1-f39"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="lblName" destination="fSq-Dg-JyC" id="o9e-WY-88Z"/>
-                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Uhe-Wj-5vb">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uhe-Wj-5vb" id="RW1-QT-8nC">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
