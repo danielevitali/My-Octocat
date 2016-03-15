@@ -13,9 +13,9 @@ protocol UserProfileRepositoryContract {
     
     var user: User? {get set}
     
-    func getUserProfile() -> Observable<User>
+    func getUserProfile() -> Observable<Profile>
     
-    func getUserRepositories() -> Observable<User>
+    func getUserRepositories() -> Observable<[Repository]>
     
     func getUserAvatar() -> Observable<NSData>
     

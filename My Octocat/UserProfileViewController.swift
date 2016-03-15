@@ -37,7 +37,7 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     }
     
     func showUserRepositories(repositories: [Repository]) {
-        tvUserData.reloadData()
+        //tvUserData.reloadData()
     }
     
     func toggleLoading(visible: Bool) {
@@ -87,19 +87,16 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if let profile = presenter.user.profile where indexPath.row == 0 {
             userProfileCell.showProfile(profile)
-            userProfileCell.bounds = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), CGRectGetHeight(userProfileCell.bounds))
             userProfileCell.setNeedsLayout()
             userProfileCell.layoutIfNeeded()
             let size = userProfileCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
             return size.height
         } else if let repositories = presenter.user.repositories where indexPath.row > 0 {
             userRepositoryCell.showRepository(repositories[indexPath.row - 1])
-            userRepositoryCell.bounds = CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), CGRectGetHeight(userRepositoryCell.bounds))
             userRepositoryCell.setNeedsLayout()
             userRepositoryCell.layoutIfNeeded()
             let size = userRepositoryCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
             return size.height
         }
         return 0
-    }
-}
+    }}

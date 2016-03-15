@@ -28,19 +28,13 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
             view.showUserProfile(profile)
         } else {
             view.toggleLoading(true)
-            var observable = repository.getUserProfile()
-            if user.repositories == nil {
-                observable = observable.concat(repository.getUserRepositories())
-            }
-            observable.observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [unowned self] user in
+            repository.getUserProfile()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [unowned self] profile in
                     self.view.toggleLoading(false)
-                    if let profile = user.profile {
-                        self.view.showUserProfile(profile)
-                        self.requestUserAvatar()
-                    } else if let repositories = user.repositories {
-                        self.view.showUserRepositories(repositories)
-                    }
+                    self.view.showUserProfile(profile)
+                    self.showRepositories()
+                    self.showAvatar()
                     }, onError: { [unowned self] errorType in
                         let error = errorType as! Error
                         self.view.toggleLoading(false)
@@ -53,7 +47,24 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
         }
     }
     
-    private func requestUserAvatar() {
+    private func showRepositories() {
+        repository.getUserRepositories()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] repositories in
+                self.view.toggleLoading(false)
+                self.view.showUserRepositories(repositories)
+                }, onError: { [unowned self] errorType in
+                    let error = errorType as! Error
+                    self.view.toggleLoading(false)
+                    self.view.showError(error.message)
+                }, onCompleted: { () -> Void in
+                    
+                }, onDisposed: { () -> Void in
+                    
+            }).addDisposableTo(disposeBag)
+    }
+    
+    private func showAvatar() {
         repository.getUserAvatar()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] image in
