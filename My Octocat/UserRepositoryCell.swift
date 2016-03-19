@@ -12,9 +12,17 @@ import UIKit
 class UserRepositoryCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblOpenIssuesCount: UILabel!
+    @IBOutlet weak var lblStarsCount: UILabel!
+    @IBOutlet weak var lblForksCount: UILabel!
     
     func showRepository(repository: Repository) {
         lblName.text = repository.name
+        lblDescription.text = repository.description
+        lblOpenIssuesCount.text = "\(repository.openIssuesCount)"
+        lblStarsCount.text = "\(repository.starsCount)"
+        lblForksCount.text = "\(repository.forksCount)"
     }
     
 }

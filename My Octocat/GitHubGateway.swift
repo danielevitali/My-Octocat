@@ -50,7 +50,9 @@ class GitHubGateway {
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    callback(authorization: Authorization(json: json), error: nil)
+                    let authorization = Authorization(json: json, context: CoreDataGateway.sharedInstance().managedObjectContext)
+                    CoreDataGateway.sharedInstance().saveContext()
+                    callback(authorization: authorization, error: nil)
                 } else {
                     callback(authorization: nil, error: Error(json: json))
                 }
@@ -67,7 +69,9 @@ class GitHubGateway {
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    callback(profile: Profile(json: json), error: nil)
+                    let profile = Profile(json: json, context: CoreDataGateway.sharedInstance().managedObjectContext)
+                    CoreDataGateway.sharedInstance().saveContext()
+                    callback(profile: profile, error: nil)
                 } else {
                     callback(profile: nil, error: Error(json: json))
                 }
@@ -86,7 +90,9 @@ class GitHubGateway {
                 if self.isSuccessResponse(response.statusCode) {
                     var repositories = [Repository]()
                     for repo in json["items"] as! [[String : AnyObject]] {
-                        repositories.append(Repository(json: repo))
+                        let repository = Repository(json: repo, context: CoreDataGateway.sharedInstance().managedObjectContext)
+                        CoreDataGateway.sharedInstance().saveContext()
+                        repositories.append(repository)
                     }
                     callback(repositories: repositories, error: nil)
                 } else {

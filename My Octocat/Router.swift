@@ -65,6 +65,13 @@ class Router {
         navigatorController.setViewControllers([userProfileViewController], animated: false)
     }
     
+    static func replaceProfileWithAuthentication(navigatorController: UINavigationController) {
+        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
+        let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
+        loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
+        navigatorController.setViewControllers([loginViewController], animated: false)
+    }
+    
     private static func showViewController(sender: UIViewController, showing: UIViewController) {
         if let navigationController = sender as? UINavigationController {
             navigationController.showDetailViewController(showing, sender: sender)

@@ -14,9 +14,13 @@ protocol UserProfileViewContract: class {
     
     func showUserAvatar(image: NSData)
     
-    func showUserRepositories(repositories: [Repository])
+    func refreshUserRepositories()
     
     func toggleLoading(visible: Bool)
+    
+    func toggleRepositoriesLoading(visible: Bool)
+    
+    func toggleRepositoriesTable(visible: Bool)
     
     func showError(message: String)
     

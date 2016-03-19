@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import CoreData
 
 class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
     
@@ -18,8 +19,30 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
     }
     
     var user: User?
+    lazy var fetchedUserController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: CoreDataGateway.sharedInstance().managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultsController
+    }()
     
     private init(){
+        do {
+            try fetchedUserController.performFetch()
+        } catch {}
+        
+        guard !(fetchedUserController.fetchedObjects?.isEmpty ?? true) else {
+            return
+        }
+        
+        if let user = fetchedUserController.fetchedObjects![0] as? User{
+            self.user = user
+        }
     }
     
     func isUserLoggedIn() -> Bool {
@@ -34,7 +57,8 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
         return Observable.create({ (observer) -> Disposable in
             let task = GitHubGateway.sharedInstance().loginUserWithWebCode(code, callbackHandler: { (authorization, error) -> Void in
                 if let authorization = authorization {
-                    self.user = User(authorization: authorization)
+                    self.user = User(authorization: authorization, context: CoreDataGateway.sharedInstance().managedObjectContext)
+                    CoreDataGateway.sharedInstance().saveContext()
                     observer.onNext(self.user!)
                     observer.onCompleted()
                 } else {
@@ -58,6 +82,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                 let task = GitHubGateway.sharedInstance().getUserProfile(self.user!.authorization.accessToken, callbackHandler: { (profile, error) -> Void in
                     if let profile = profile {
                         self.user!.profile = profile
+                        CoreDataGateway.sharedInstance().saveContext()
                         FilesystemGateway.sharedInstance().deleteUserAvatar()
                         observer.onNext(profile)
                         observer.onCompleted()
@@ -84,6 +109,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                 let task = GitHubGateway.sharedInstance().getUserRepositories(self.user!.authorization.accessToken, callbackHandler: { (repositories, error) -> Void in
                     if let repositories = repositories {
                         self.user!.repositories = repositories
+                        CoreDataGateway.sharedInstance().saveContext()
                         observer.onNext(repositories)
                         observer.onCompleted()
                     } else {
@@ -113,7 +139,8 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                     return AnonymousDisposable{
                     }
                 } else {
-                    let task = GitHubGateway.sharedInstance().downloadUserAvatar(self.user!.profile!.avatarUrl!, callbackHandler: { (image, error) in
+                    let avatarUrl = NSURL(string: self.user!.profile!.avatarUrl!)!
+                    let task = GitHubGateway.sharedInstance().downloadUserAvatar(avatarUrl, callbackHandler: { (image, error) in
                         if let image = image {
                             FilesystemGateway.sharedInstance().saveUserAvatar(image)
                             observer.onNext(image)

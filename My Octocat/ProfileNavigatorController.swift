@@ -14,6 +14,11 @@ class ProfileNavigatorController: UINavigationController, ProfileNavigatorViewCo
     
     var presenter: ProfileNavigatorPresenterContract!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter.viewDidLoad()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         presenter.viewDidAppear()
@@ -26,6 +31,10 @@ class ProfileNavigatorController: UINavigationController, ProfileNavigatorViewCo
     
     func showProfile(user: User) {
         Router.replaceAuthenticationWithProfile(self, user: user)
+    }
+    
+    func showLogin() {
+        
     }
     
 }

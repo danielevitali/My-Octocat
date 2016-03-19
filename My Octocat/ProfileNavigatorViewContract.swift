@@ -12,4 +12,6 @@ protocol ProfileNavigatorViewContract: class {
     
     func showProfile(user: User)
     
+    func showLogin()
+    
 }

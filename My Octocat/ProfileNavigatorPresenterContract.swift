@@ -10,6 +10,8 @@ import Foundation
 
 protocol ProfileNavigatorPresenterContract {
     
+    func viewDidLoad()
+    
     func viewDidAppear()
     
     func viewWillDisappear()
