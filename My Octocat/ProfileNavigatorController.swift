@@ -31,10 +31,19 @@ class ProfileNavigatorController: UINavigationController, ProfileNavigatorViewCo
     
     func showProfile(user: User) {
         Router.replaceAuthenticationWithProfile(self, user: user)
+        navigationController?.navigationItem.rightBarButtonItem = nil
     }
     
     func showLogin() {
+        Router.replaceProfileWithAuthentication(self)
         
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .Done, target: self, action: "onLogoutClick")
+        logoutButton.image = UIImage(named: "icon logout")
+        navigationController?.navigationItem.rightBarButtonItem = logoutButton
+    }
+    
+    func onLogoutClick() {
+        presenter.onLogoutClick()
     }
     
 }

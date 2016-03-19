@@ -16,4 +16,6 @@ protocol ProfileNavigatorPresenterContract {
     
     func viewWillDisappear()
     
+    func onLogoutClick()
+    
 }

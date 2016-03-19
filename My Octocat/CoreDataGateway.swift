@@ -65,6 +65,10 @@ class CoreDataGateway {
         return managedObjectContext
     }()
     
+    func deleteObject(object: NSManagedObject) {
+        managedObjectContext.deleteObject(object)
+    }
+    
     // MARK: - Core Data Saving support
     
     func saveContext () {

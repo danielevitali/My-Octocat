@@ -41,7 +41,7 @@
 		64A183491C79DFB600AA274A /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A183481C79DFB600AA274A /* SearchPresenter.swift */; };
 		64A1834B1C79E00200AA274A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1834A1C79E00200AA274A /* Router.swift */; };
 		64BDD5A71C96045400290913 /* UserRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDD5A61C96045400290913 /* UserRepositoryCell.swift */; };
-		64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64D0814F1C7BC8CD00F969DC /* artworks.sketch */; };
+		64D081501C7BC8CD00F969DC /* very ugly artworks.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 64D0814F1C7BC8CD00F969DC /* very ugly artworks.sketch */; };
 		64D639721C879B3A000AA0CF /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D639711C879B3A000AA0CF /* Page.swift */; };
 		64D639741C8B6C1C000AA0CF /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D639731C8B6C1C000AA0CF /* Account.storyboard */; };
 		64D639761C8B6C2B000AA0CF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D639751C8B6C2B000AA0CF /* Search.storyboard */; };
@@ -104,7 +104,7 @@
 		64A183481C79DFB600AA274A /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		64A1834A1C79E00200AA274A /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		64BDD5A61C96045400290913 /* UserRepositoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryCell.swift; sourceTree = "<group>"; };
-		64D0814F1C7BC8CD00F969DC /* artworks.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = artworks.sketch; path = Arts/artworks.sketch; sourceTree = "<group>"; };
+		64D0814F1C7BC8CD00F969DC /* very ugly artworks.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; name = "very ugly artworks.sketch"; path = "Arts/very ugly artworks.sketch"; sourceTree = "<group>"; };
 		64D639711C879B3A000AA0CF /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		64D639731C8B6C1C000AA0CF /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		64D639751C8B6C2B000AA0CF /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 		64D081511C7BC8D200F969DC /* Arts */ = {
 			isa = PBXGroup;
 			children = (
-				64D0814F1C7BC8CD00F969DC /* artworks.sketch */,
+				64D0814F1C7BC8CD00F969DC /* very ugly artworks.sketch */,
 			);
 			name = Arts;
 			sourceTree = "<group>";
@@ -534,7 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64D081501C7BC8CD00F969DC /* artworks.sketch in Resources */,
+				64D081501C7BC8CD00F969DC /* very ugly artworks.sketch in Resources */,
 				644445F61C788A7900D6E2AA /* LaunchScreen.storyboard in Resources */,
 				64D639781C8B6C42000AA0CF /* Repositories.storyboard in Resources */,
 				644445F31C788A7900D6E2AA /* Assets.xcassets in Resources */,

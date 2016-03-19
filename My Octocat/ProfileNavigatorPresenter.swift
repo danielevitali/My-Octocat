@@ -36,4 +36,9 @@ class ProfileNavigatorPresenter: BasePresenter, ProfileNavigatorPresenterContrac
         SwiftEventBus.unregister(self)
     }
     
+    func onLogoutClick() {
+        UserRepository.sharedInstance().logout()
+        view.showLogin()
+    }
+    
 }

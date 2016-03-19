@@ -13,7 +13,7 @@ class RepositoryCell: UICollectionViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAuthor: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblSummary: UILabel!
     @IBOutlet weak var lblStarsCount: UILabel!
     @IBOutlet weak var lblForksCount: UILabel!
     @IBOutlet weak var lblIssuesCount: UILabel!
@@ -22,7 +22,7 @@ class RepositoryCell: UICollectionViewCell {
     func showRepository(repository: Repository) {
         lblName.text = repository.name
         lblAuthor.text = repository.ownerName
-        lblDescription.text = repository.description
+        lblSummary.text = repository.summary
         lblStarsCount.text = String(repository.starsCount)
         lblForksCount.text = String(repository.forksCount)
         lblIssuesCount.text = String(repository.openIssuesCount)

@@ -157,5 +157,11 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
         }
         return observable.subscribeOn(ComputationalScheduler.sharedInstance())
     }
+    
+    func logout() {
+        if let user = user {
+            CoreDataGateway.sharedInstance().deleteObject(user)
+        }
+    }
 
 }
