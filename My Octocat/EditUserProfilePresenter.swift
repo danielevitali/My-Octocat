@@ -159,7 +159,7 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
     }
     
     func onNewAvatarSelectionCancel() {
-        
+        //Do nothing
     }
     
 }
