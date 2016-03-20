@@ -12,7 +12,7 @@ import CoreData
 
 class ProfileNavigatorPresenter: BasePresenter, ProfileNavigatorPresenterContract {
     
-    weak var view: ProfileNavigatorViewContract!
+    private weak var view: ProfileNavigatorViewContract!
     
     init(view: ProfileNavigatorViewContract) {
         self.view = view
@@ -39,6 +39,10 @@ class ProfileNavigatorPresenter: BasePresenter, ProfileNavigatorPresenterContrac
     func onLogoutClick() {
         UserRepository.sharedInstance().logout()
         view.showLogin()
+    }
+    
+    func onEditClick() {
+        view.showEditProfile()
     }
     
 }

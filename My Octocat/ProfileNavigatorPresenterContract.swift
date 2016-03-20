@@ -18,4 +18,6 @@ protocol ProfileNavigatorPresenterContract {
     
     func onLogoutClick()
     
+    func onEditClick()
+    
 }

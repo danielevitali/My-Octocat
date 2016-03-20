@@ -149,7 +149,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                             observer.onError(error!)
                         }
                     })
-                    return AnonymousDisposable{
+                    return AnonymousDisposable {
                         task.cancel()
                     }
                 }
@@ -162,6 +162,20 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
         if let user = user {
             CoreDataGateway.sharedInstance().deleteObject(user)
         }
+    }
+    
+    func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile> {
+        return Observable.create { (observer) -> Disposable in
+            return AnonymousDisposable {
+            }
+        }.subscribeOn(ComputationalScheduler.sharedInstance())
+    }
+    
+    func saveUserAvatar(avatar: NSData?)  -> Observable<Profile> {
+        return Observable.create { (observer) -> Disposable in
+            return AnonymousDisposable {
+            }
+        }.subscribeOn(ComputationalScheduler.sharedInstance())
     }
 
 }

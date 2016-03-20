@@ -11,8 +11,8 @@ import RxSwift
 
 class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
-    weak var view: UserProfileViewContract!
-    let repository: UserProfileRepositoryContract
+    private weak var view: UserProfileViewContract!
+    private let repository: UserProfileRepositoryContract
     
     var user: User
     

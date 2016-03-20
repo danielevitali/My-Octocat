@@ -39,11 +39,21 @@ class ProfileNavigatorController: UINavigationController, ProfileNavigatorViewCo
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .Done, target: self, action: "onLogoutClick")
         logoutButton.image = UIImage(named: "icon logout")
-        navigationController?.navigationItem.rightBarButtonItem = logoutButton
+        let editProfileButton = UIBarButtonItem(title: "Edit", style: .Done, target: self, action: "onEditClick")
+        logoutButton.image = UIImage(named: "icon pencil")
+        navigationController?.navigationItem.rightBarButtonItems = [logoutButton, editProfileButton]
     }
     
     func onLogoutClick() {
         presenter.onLogoutClick()
+    }
+    
+    func onEditClick() {
+        presenter.onEditClick()
+    }
+    
+    func showEditProfile() {
+        Router.showEditProfile(self)
     }
     
 }

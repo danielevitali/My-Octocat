@@ -27,9 +27,9 @@
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="authorization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Authorization" syncable="YES"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" syncable="YES"/>
-        <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Repository" syncable="YES"/>
+        <relationship name="authorization" maxCount="1" deletionRule="Cascade" destinationEntity="Authorization" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" syncable="YES"/>
+        <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repository" syncable="YES"/>
     </entity>
     <elements>
         <element name="Profile" positionX="-63" positionY="-18" width="128" height="165"/>

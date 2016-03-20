@@ -19,6 +19,7 @@ class Profile: NSManagedObject {
     @NSManaged var bio: String?
     @NSManaged var creationDate: NSDate
     @NSManaged var avatarUrl: String?
+    var avatar: NSData?
     
     init(json: [String:AnyObject], context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName("Profile", inManagedObjectContext: context)!

@@ -19,4 +19,8 @@ protocol UserProfileRepositoryContract {
     
     func getUserAvatar() -> Observable<NSData>
     
+    func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile>
+    
+    func saveUserAvatar(avatar: NSData?)  -> Observable<Profile>
+    
 }

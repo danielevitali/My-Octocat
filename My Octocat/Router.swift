@@ -20,6 +20,7 @@ class Router {
     private static let ACCOUNT_STORYBOARD = "Account"
     private static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     private static let USER_PROFILE_VIEW_CONTROLLER = "UserProfileViewController"
+    private static let EDIT_USER_PROFILE_VIEW_CONTROLLER = "EditUserProfileViewController"
     
     private static let EVENTS_STORYBOARD = "Events"
     private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
@@ -70,6 +71,13 @@ class Router {
         let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
         loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
         navigatorController.setViewControllers([loginViewController], animated: false)
+    }
+    
+    static func showEditProfile(navigatorController: UINavigationController, user: User) {
+        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
+        let editUserProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.EDIT_USER_PROFILE_VIEW_CONTROLLER) as! EditUserProfileViewController
+        editUserProfileViewController.presenter = EditUserProfilePresenter(view: editUserProfileViewController, repository: UserRepository.sharedInstance(), user: user)
+        navigatorController.presentViewController(editUserProfileViewController, animated: true, completion: nil)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {
