@@ -10,39 +10,24 @@ import Foundation
 import SwiftEventBus
 import CoreData
 
-class ProfileNavigatorPresenter: BasePresenter, ProfileNavigatorPresenterContract {
+class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresenterContract {
     
-    private weak var view: ProfileNavigatorViewContract!
+    private weak var view: UserProfileNavigatorViewContract!
     
-    init(view: ProfileNavigatorViewContract) {
+    init(view: UserProfileNavigatorViewContract) {
         self.view = view
     }
     
     func viewDidLoad() {
-        if let user = UserRepository.sharedInstance().user {
-            view.showProfile(user)
-        } else {
-            view.showLogin()
-        }
-    }
-    
-    func viewDidAppear() {
-        SwiftEventBus.onMainThread(self, name: Events.USER_LOGGED_IN) { result in
-            self.view.showProfile(UserRepository.sharedInstance().user!)
-        }
-    }
-    
-    func viewWillDisappear() {
-        SwiftEventBus.unregister(self)
+        self.view.showUserProfile()
     }
     
     func onLogoutClick() {
         UserRepository.sharedInstance().logout()
-        view.showLogin()
     }
     
     func onEditClick() {
-        view.showEditProfile()
+        view.showEditProfile(UserRepository.sharedInstance().user!)
     }
     
 }

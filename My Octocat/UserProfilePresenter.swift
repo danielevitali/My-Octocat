@@ -14,16 +14,20 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     private weak var view: UserProfileViewContract!
     private let repository: UserProfileRepositoryContract
     
-    var user: User
+    var userProfile: Profile? {
+        return repository.user!.profile
+    }
+    var userRepositories: [Repository]? {
+        return repository.user!.repositories
+    }
     
-    init(view: UserProfileViewContract, repository: UserProfileRepositoryContract, user: User) {
+    init(view: UserProfileViewContract, repository: UserProfileRepositoryContract) {
         self.view = view
-        self.user = user
         self.repository = repository
     }
     
     func viewDidLoad() {
-        if let profile = user.profile {
+        if let profile = userProfile {
             view.toggleLoading(false)
             view.showUserProfile(profile)
             showRepositories()
@@ -49,7 +53,7 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     }
     
     private func showRepositories() {
-        if user.repositories != nil {
+        if userRepositories != nil {
             view.toggleRepositoriesLoading(false)
             view.toggleRepositoriesTable(true)
             view.refreshUserRepositories()

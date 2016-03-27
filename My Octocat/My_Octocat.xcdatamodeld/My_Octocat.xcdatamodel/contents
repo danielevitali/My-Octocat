@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Authorization" syncable="YES">
         <attribute name="accessToken" attributeType="String" syncable="YES"/>
         <attribute name="scope" attributeType="String" syncable="YES"/>
         <attribute name="tokenType" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="authorization" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Profile" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +15,7 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Repository" syncable="YES">
         <attribute name="forksCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -24,17 +26,18 @@
         <attribute name="starsCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="repositories" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="authorization" maxCount="1" deletionRule="Cascade" destinationEntity="Authorization" syncable="YES"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" syncable="YES"/>
-        <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repository" syncable="YES"/>
+        <relationship name="authorization" maxCount="1" deletionRule="Cascade" destinationEntity="Authorization" inverseName="user" inverseEntity="Authorization" syncable="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" inverseName="user" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repository" inverseName="user" inverseEntity="Repository" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="Repository" positionX="-54" positionY="54" width="128" height="165"/>
-        <element name="Authorization" positionX="-36" positionY="63" width="128" height="90"/>
+        <element name="Authorization" positionX="-36" positionY="63" width="128" height="105"/>
+        <element name="Profile" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Repository" positionX="-54" positionY="54" width="128" height="180"/>
         <element name="User" positionX="-18" positionY="72" width="128" height="105"/>
     </elements>
 </model>

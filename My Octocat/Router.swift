@@ -14,63 +14,58 @@ class Router {
     private static let HOME_STORYBOARD = "Home"
     private static let HOME_TAB_BAR_CONTROLLER = "HomeTabBarController"
     private static let SEARCH_TAB_POSITION = 0
-    private static let PROFILE_TAB_POSITION = 1
-    private static let EVENTS_TAB_POSITION = 2
+    private static let LOGIN_TAB_POSITION = 1
+    private static let USER_PROFILE_TAB_POSITION = 2
     
     private static let ACCOUNT_STORYBOARD = "Account"
     private static let LOGIN_VIEW_CONTROLLER = "LoginViewController"
     private static let USER_PROFILE_VIEW_CONTROLLER = "UserProfileViewController"
     private static let EDIT_USER_PROFILE_VIEW_CONTROLLER = "EditUserProfileViewController"
     
-    private static let EVENTS_STORYBOARD = "Events"
-    private static let EVENTS_VIEW_CONTROLLER = "EventsViewController"
+    private static let SEARCH_STORYBOARD = "Search"
+    private static let SEARCH_VIEW_CONTROLLER = "SearchViewController"
     
     static func showHome(window: UIWindow) {
         let homeStoryboard = UIStoryboard(name: Router.HOME_STORYBOARD, bundle: nil)
-        let homeTabBarController = homeStoryboard.instantiateViewControllerWithIdentifier(Router.HOME_TAB_BAR_CONTROLLER) as! UITabBarController
+        let homeTabBarController = homeStoryboard.instantiateViewControllerWithIdentifier(Router.HOME_TAB_BAR_CONTROLLER) as! HomeTabBarController
+        homeTabBarController.presenter = HomePresenter(view: homeTabBarController)
         
-        let searchNagivationController = homeTabBarController.viewControllers![Router.SEARCH_TAB_POSITION] as! UINavigationController
-        let searchViewController = searchNagivationController.visibleViewController as! SearchViewController
-        searchViewController.presenter = SearchPresenter(view: searchViewController)
+        let searchNavigatorController = homeTabBarController.viewControllers![Router.SEARCH_TAB_POSITION] as! SearchNavigatorController
+        searchNavigatorController.presenter = SearchNavigatorPresenter(view: searchNavigatorController)
         
-        let profileNagivationController = homeTabBarController.viewControllers![Router.PROFILE_TAB_POSITION] as! ProfileNavigatorController
-        profileNagivationController.presenter = ProfileNavigatorPresenter(view: profileNagivationController)
+        let loginNavigatorController = homeTabBarController.viewControllers![Router.LOGIN_TAB_POSITION] as! LoginNavigatorController
+        loginNavigatorController.presenter = LoginNavigatorPresenter(view: loginNavigatorController)
         
-        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        if let user = UserRepository.sharedInstance().user {
-            let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
-            userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance(), user: user)
-            profileNagivationController.showViewController(userProfileViewController, sender: self)
-        } else {
-            let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
-            loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
-            profileNagivationController.showViewController(loginViewController, sender: self)
-        }
-        
-        let eventsNagivationController = homeTabBarController.viewControllers![Router.EVENTS_TAB_POSITION] as! UINavigationController
-        let eventsViewController = eventsNagivationController.visibleViewController as! EventsViewController
-        eventsViewController.presenter = EventsPresenter(view: eventsViewController)
+        let userProfileNavigatorController = homeTabBarController.viewControllers![Router.USER_PROFILE_TAB_POSITION] as! UserProfileNavigatorController
+        userProfileNavigatorController.presenter = UserProfileNavigatorPresenter(view: userProfileNavigatorController)
         
         window.rootViewController = homeTabBarController
         window.makeKeyAndVisible()
     }
     
-    static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
-        
+    static func showSearchInNavigatorController(navigatorController: UINavigationController) {
+        let searchStoryboard = UIStoryboard(name: Router.SEARCH_STORYBOARD, bundle: nil)
+        let searchViewController = searchStoryboard.instantiateViewControllerWithIdentifier(Router.SEARCH_VIEW_CONTROLLER) as! SearchViewController
+        searchViewController.presenter = SearchPresenter(view: searchViewController)
+        navigatorController.viewControllers = [searchViewController]
     }
     
-    static func replaceAuthenticationWithProfile(navigatorController: UINavigationController, user: User) {
-        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
-        let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
-        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance(), user: user)
-        navigatorController.setViewControllers([userProfileViewController], animated: false)
-    }
-    
-    static func replaceProfileWithAuthentication(navigatorController: UINavigationController) {
+    static func showLoginInNavigatorController(navigatorController: UINavigationController) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let loginViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.LOGIN_VIEW_CONTROLLER) as! LoginViewController
         loginViewController.presenter = LoginPresenter(view: loginViewController, repository: UserRepository.sharedInstance())
-        navigatorController.setViewControllers([loginViewController], animated: false)
+        navigatorController.viewControllers = [loginViewController]
+    }
+    
+    static func showUserProfileInNavigatorController(navigatorController: UINavigationController) {
+        let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
+        let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
+        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance())
+        navigatorController.viewControllers = [userProfileViewController]
+    }
+    
+    static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
+        
     }
     
     static func showEditProfile(navigatorController: UINavigationController, user: User) {

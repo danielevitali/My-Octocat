@@ -73,7 +73,7 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     }
     
     func refreshUserRepositories() {
-        if let repositories = presenter.user.repositories where repositories.count > 0 {
+        if let repositories = presenter.userRepositories where repositories.count > 0 {
             tvUserData.reloadData()
             lblRepositoryTableTitle.hidden = false
             lblNoRepositories.hidden = true
@@ -110,7 +110,7 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.user.repositories?.count ?? 0
+        return presenter.userRepositories?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -118,6 +118,6 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        (cell as! UserRepositoryCell).showRepository(presenter.user.repositories![indexPath.row])
+        (cell as! UserRepositoryCell).showRepository(presenter.userRepositories![indexPath.row])
     }
 }

@@ -10,7 +10,9 @@ import Foundation
 
 protocol UserProfilePresenterContract {
     
-    var user: User {get set}
+    var userProfile: Profile? {get}
+    
+    var userRepositories: [Repository]? {get}
     
     func viewDidLoad()
     

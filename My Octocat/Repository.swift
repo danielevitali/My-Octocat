@@ -19,6 +19,7 @@ class Repository: NSManagedObject {
     @NSManaged var openIssuesCount: Int
     @NSManaged var starsCount: Int
     @NSManaged var forksCount: Int
+    @NSManaged var user: User?
     
     init(json: [String:AnyObject], context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName("Repository", inManagedObjectContext: context)!

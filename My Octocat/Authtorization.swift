@@ -14,6 +14,7 @@ class Authorization: NSManagedObject {
     @NSManaged var accessToken: String
     @NSManaged var scope: String
     @NSManaged var tokenType: String
+    @NSManaged var user: User
     
     init(json: [String:AnyObject], context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName("Authorization", inManagedObjectContext: context)!

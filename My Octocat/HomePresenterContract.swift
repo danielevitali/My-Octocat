@@ -1,23 +1,19 @@
 //
-//  ProfileNavigatorPresenterContract.swift
+//  HomePresenterContract.swift
 //  My Octocat
 //
-//  Created by Daniele Vitali on 3/6/16.
+//  Created by Daniele Vitali on 3/27/16.
 //  Copyright © 2016 Daniele Vitali. All rights reserved.
 //
 
 import Foundation
 
-protocol ProfileNavigatorPresenterContract {
+protocol HomePresenterContract {
     
     func viewDidLoad()
     
     func viewDidAppear()
     
     func viewWillDisappear()
-    
-    func onLogoutClick()
-    
-    func onEditClick()
     
 }
