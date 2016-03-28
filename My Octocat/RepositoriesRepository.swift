@@ -19,7 +19,7 @@ class RepositoriesRepository {
     
     func search(query: String, offset: Int) -> Observable<Page<Repository>> {
         return Observable.create({ observer in
-            let accessToken = UserRepository.sharedInstance().user?.authorization.accessToken
+            let accessToken = UserRepository.sharedInstance().user?.accessToken
             let networkTask = GitHubGateway.sharedInstance().searchRespository(query, withOffset: offset, accessToken: accessToken, callbackHandler: { response, error in
                 if let response = response {
                     let page = Page<Repository>(items: response.items, totalCount: response.totalCount)

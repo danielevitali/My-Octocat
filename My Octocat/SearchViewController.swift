@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, SearchViewContract, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class SearchViewController: UIViewController, SearchViewContract, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    @IBOutlet weak var cvRepositories: UICollectionView!
-    @IBOutlet weak var cvRepositoriesFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var tblRepositories: UITableView!
     @IBOutlet weak var lblNoResult: UILabel!
     @IBOutlet weak var lblIntro: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -22,7 +21,7 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
         super.viewDidLoad()
         presenter.viewDidLoad()
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "dismissKeyboard"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard)))
     }
     
     func toggleLoading(visible: Bool) {
@@ -42,11 +41,11 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
     }
     
     func toggleRepositoryList(visible: Bool) {
-        cvRepositories.hidden = !visible
+        tblRepositories.hidden = !visible
     }
     
     func reloadRepositories() {
-        cvRepositories.reloadData()
+        tblRepositories.reloadData()
     }
     
     func showError(message: String) {
@@ -60,13 +59,13 @@ class SearchViewController: UIViewController, SearchViewContract, UICollectionVi
     func addRepositoriesToList(repositories: [Repository]) {
         
     }
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.repositories?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("repositoryCell", forIndexPath: indexPath) as! RepositoryCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RepositoryCell", forIndexPath: indexPath) as! RepositoryCell
         cell.showRepository(presenter.repositories![indexPath.row])
         return cell
     }

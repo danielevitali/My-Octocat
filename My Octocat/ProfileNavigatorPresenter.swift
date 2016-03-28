@@ -24,6 +24,7 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
     
     func onLogoutClick() {
         UserRepository.sharedInstance().logout()
+        SwiftEventBus.post(Events.USER_LOGGED_OUT)
     }
     
     func onEditClick() {

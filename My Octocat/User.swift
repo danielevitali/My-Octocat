@@ -10,16 +10,16 @@ import Foundation
 
 class User {
     
-    var authorization: Authorization
+    var accessToken: String
     var profile: Profile?
     var repositories: [Repository]?
     
-    init(authorization: Authorization) {
-        self.authorization = authorization
+    init(json: [String : AnyObject]) {
+        self.accessToken = json["access_token"] as! String
     }
     
     init(entry: UserEntry) {
-        self.authorization = Authorization(entry: entry.authorization)
+        self.accessToken = entry.accessToken
         self.profile = Profile(entry: entry.profile)
         self.repositories = [Repository]()
         for repository in entry.repositories {

@@ -87,14 +87,12 @@ class CoreDataGateway {
         }
     }
     
-    func saveAuthorization(authorization: Authorization) {
+    func saveAccessToken(accessToken: String) {
         if let user = user {
             deleteObject(user)
         }
         
-        user = UserEntry(context: managedObjectContext)
-        let authorizationEntity = AuthorizationEntry(authorization: authorization, context: managedObjectContext)
-        authorizationEntity.user = user!
+        user = UserEntry(accessToken: accessToken, context: managedObjectContext)
         saveContext()
     }
     
@@ -138,7 +136,7 @@ class CoreDataGateway {
     
     func fetchUser() -> User? {
         let fetchRequest = NSFetchRequest(entityName: "User")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "accessToken", ascending: false)]
         let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,
                 managedObjectContext: CoreDataGateway.sharedInstance().managedObjectContext,
@@ -154,7 +152,7 @@ class CoreDataGateway {
             return nil
         }
         
-        if let user = fetchedResultsController.fetchedObjects![0] as? UserEntry{
+        if let user = fetchedResultsController.fetchedObjects![0] as? UserEntry {
             self.user = user
             return User(entry: user)
         }

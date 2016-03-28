@@ -13,16 +13,15 @@ class UserEntry: NSManagedObject {
     
     private static let ENTRY_NAME = "User"
     
-    @NSManaged var id: NSNumber
-    @NSManaged var authorization: AuthorizationEntry
+    @NSManaged var accessToken: String
     @NSManaged var profile: ProfileEntry
     @NSManaged var repositories: [RepositoryEntry]
     
-    init(context: NSManagedObjectContext) {
+    init(accessToken: String, context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName(UserEntry.ENTRY_NAME, inManagedObjectContext: context)!
         super.init(entity: entity,insertIntoManagedObjectContext: context)
         
-        self.id = 0
+        self.accessToken = accessToken
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {

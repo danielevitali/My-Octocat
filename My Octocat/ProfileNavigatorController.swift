@@ -22,9 +22,19 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
     func showUserProfile() {
         Router.showUserProfileInNavigatorController(self)
         
-        let editButton = UIBarButtonItem(image: UIImage(named: "icon pencil"), style: .Done, target: self, action: "onEditClick")
-        let logoutButton = UIBarButtonItem(image: UIImage(named: "icon logout"), style: .Done, target: self, action: "onLogoutClick")
-        navigationItem.rightBarButtonItems = [editButton, logoutButton]
+        let editButton = UIButton()
+        editButton.setImage(UIImage(named: "icon pencil"), forState: .Normal)
+        editButton.frame = CGRectMake(0, 0, 30, 30)
+        editButton.addTarget(self, action: #selector(UserProfileNavigatorController.onEditClick), forControlEvents: .TouchUpInside)
+        let editBarButton = UIBarButtonItem(customView: editButton)
+        
+        let logoutButton = UIButton()
+        logoutButton.setImage(UIImage(named: "icon logout"), forState: .Normal)
+        logoutButton.frame = CGRectMake(0, 0, 30, 30)
+        logoutButton.addTarget(self, action: #selector(UserProfileNavigatorController.onLogoutClick), forControlEvents: .TouchUpInside)
+        let logoutBarButton = UIBarButtonItem(customView: editButton)
+
+        navigationItem.setRightBarButtonItems([editBarButton, logoutBarButton], animated: false)
     }
     
     func onLogoutClick() {

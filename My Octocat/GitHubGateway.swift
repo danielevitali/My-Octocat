@@ -42,7 +42,7 @@ class GitHubGateway {
         return NSURL(string: urlString)!
     }
 
-    func loginUserWithWebCode(code: String, callbackHandler callback: (authorization: Authorization?, error: Error?) -> Void) -> NSURLSessionDataTask {
+    func loginUserWithWebCode(code: String, callbackHandler callback: (user: User?, error: Error?) -> Void) -> NSURLSessionDataTask {
         let queryParams = ["client_id" : GitHubGateway.CLIENT_ID, "client_secret" : GitHubGateway.CLIENT_SECRET, "code" : code]
         let request = NSMutableURLRequest(URL: NSURL(string: "\(GitHubGateway.ACCESS_TOKEN_URL)\(escapedParameters(queryParams))")!)
         addHeadersToRequest(request, accessToken: nil)
@@ -50,14 +50,14 @@ class GitHubGateway {
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    let authorization = Authorization(json: json)
-                    CoreDataGateway.sharedInstance().saveAuthorization(authorization)
-                    callback(authorization: authorization, error: nil)
+                    let user = User(json: json)
+                    CoreDataGateway.sharedInstance().saveAccessToken(user.accessToken)
+                    callback(user: user, error: nil)
                 } else {
-                    callback(authorization: nil, error: Error(json: json))
+                    callback(user: nil, error: Error(json: json))
                 }
             } else {
-                callback(authorization: nil, error: Error(error: error!))
+                callback(user: nil, error: Error(error: error!))
             }
         })
     }

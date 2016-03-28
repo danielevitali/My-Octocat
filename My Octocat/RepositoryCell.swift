@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RepositoryCell: UICollectionViewCell {
+class RepositoryCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAuthor: UILabel!
