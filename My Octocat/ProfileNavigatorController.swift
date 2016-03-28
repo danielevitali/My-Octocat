@@ -21,6 +21,10 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
     
     func showUserProfile() {
         Router.showUserProfileInNavigatorController(self)
+        
+        let editButton = UIBarButtonItem(image: UIImage(named: "icon pencil"), style: .Done, target: self, action: "onEditClick")
+        let logoutButton = UIBarButtonItem(image: UIImage(named: "icon logout"), style: .Done, target: self, action: "onLogoutClick")
+        navigationItem.rightBarButtonItems = [editButton, logoutButton]
     }
     
     func onLogoutClick() {

@@ -19,30 +19,9 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
     }
     
     var user: User?
-    lazy var fetchedUserController: NSFetchedResultsController = {
-        let fetchRequest = NSFetchRequest(entityName: "User")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        let fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: CoreDataGateway.sharedInstance().managedObjectContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        return fetchedResultsController
-    }()
     
     private init(){
-        do {
-            try fetchedUserController.performFetch()
-        } catch {}
-        
-        guard !(fetchedUserController.fetchedObjects?.isEmpty ?? true) else {
-            return
-        }
-        
-        if let user = fetchedUserController.fetchedObjects![0] as? User{
-            self.user = user
-        }
+        self.user = CoreDataGateway.sharedInstance().fetchUser()
     }
     
     func isUserLoggedIn() -> Bool {
@@ -57,8 +36,8 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
         return Observable.create({ (observer) -> Disposable in
             let task = GitHubGateway.sharedInstance().loginUserWithWebCode(code, callbackHandler: { (authorization, error) -> Void in
                 if let authorization = authorization {
-                    self.user = User(authorization: authorization, context: CoreDataGateway.sharedInstance().managedObjectContext)
-                    CoreDataGateway.sharedInstance().saveContext()
+                    self.user = User(authorization: authorization)
+                    CoreDataGateway.sharedInstance().saveAuthorization(authorization)
                     observer.onNext(self.user!)
                     observer.onCompleted()
                 } else {
@@ -82,7 +61,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
                 let task = GitHubGateway.sharedInstance().getUserProfile(self.user!.authorization.accessToken, callbackHandler: { (profile, error) -> Void in
                     if let profile = profile {
                         self.user!.profile = profile
-                        CoreDataGateway.sharedInstance().saveContext()
+                        CoreDataGateway.sharedInstance().saveProfile(profile)
                         FilesystemGateway.sharedInstance().deleteUserAvatar()
                         observer.onNext(profile)
                         observer.onCompleted()
@@ -102,14 +81,12 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
         let observable: Observable<[Repository]>
         if user == nil {
             observable = Observable.error(Error(message: "User is not logged in"))
-        } else if let repositories = user!.repositories {
-            observable = Observable.just(repositories)
         } else {
             observable = Observable.create({ (observer) -> Disposable in
                 let task = GitHubGateway.sharedInstance().getUserRepositories(self.user!.authorization.accessToken, callbackHandler: { (repositories, error) -> Void in
                     if let repositories = repositories {
                         self.user!.repositories = repositories
-                        CoreDataGateway.sharedInstance().saveContext()
+                        CoreDataGateway.sharedInstance().saveRepositories(repositories)
                         observer.onNext(repositories)
                         observer.onCompleted()
                     } else {
@@ -159,9 +136,7 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
     }
     
     func logout() {
-        if let user = user {
-            CoreDataGateway.sharedInstance().deleteObject(user)
-        }
+
     }
     
     func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile> {

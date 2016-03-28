@@ -30,7 +30,9 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
         if let profile = userProfile {
             view.toggleLoading(false)
             view.showUserProfile(profile)
-            showRepositories()
+            view.toggleRepositoriesLoading(false)
+            view.toggleRepositoriesTable(true)
+            view.refreshUserRepositories()
         } else {
             view.toggleLoading(true)
             repository.getUserProfile()
@@ -38,7 +40,7 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
                 .subscribe(onNext: { [unowned self] profile in
                     self.view.toggleLoading(false)
                     self.view.showUserProfile(profile)
-                    self.showRepositories()
+                    self.loadRepositories()
                     self.showAvatar()
                     }, onError: { [unowned self] errorType in
                         let error = errorType as! Error
@@ -52,30 +54,24 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
         }
     }
     
-    private func showRepositories() {
-        if userRepositories != nil {
-            view.toggleRepositoriesLoading(false)
-            view.toggleRepositoriesTable(true)
-            view.refreshUserRepositories()
-        } else {
-            view.toggleRepositoriesLoading(true)
-            view.toggleRepositoriesTable(false)
-            repository.getUserRepositories()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [unowned self] repositories in
+    private func loadRepositories() {
+        view.toggleRepositoriesLoading(true)
+        view.toggleRepositoriesTable(false)
+        repository.getUserRepositories()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] repositories in
+                self.view.toggleRepositoriesLoading(false)
+                self.view.toggleRepositoriesTable(true)
+                self.view.refreshUserRepositories()
+                }, onError: { [unowned self] errorType in
+                    let error = errorType as! Error
                     self.view.toggleRepositoriesLoading(false)
-                    self.view.toggleRepositoriesTable(true)
-                    self.view.refreshUserRepositories()
-                    }, onError: { [unowned self] errorType in
-                        let error = errorType as! Error
-                        self.view.toggleRepositoriesLoading(false)
-                        self.view.showError(error.message)
-                    }, onCompleted: { () -> Void in
+                    self.view.showError(error.message)
+                }, onCompleted: { () -> Void in
                     
-                    }, onDisposed: { () -> Void in
+                }, onDisposed: { () -> Void in
                     
-                }).addDisposableTo(disposeBag)
-        }
+            }).addDisposableTo(disposeBag)
     }
     
     private func showAvatar() {

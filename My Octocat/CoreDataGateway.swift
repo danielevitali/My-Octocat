@@ -13,6 +13,8 @@ class CoreDataGateway {
     
     private static let instance = CoreDataGateway()
     
+    private var user: UserEntry?
+    
     static func sharedInstance() -> CoreDataGateway {
         return instance
     }
@@ -71,7 +73,7 @@ class CoreDataGateway {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    private func saveContext () {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
@@ -85,4 +87,78 @@ class CoreDataGateway {
         }
     }
     
+    func saveAuthorization(authorization: Authorization) {
+        if let user = user {
+            deleteObject(user)
+        }
+        
+        user = UserEntry(context: managedObjectContext)
+        let authorizationEntity = AuthorizationEntry(authorization: authorization, context: managedObjectContext)
+        authorizationEntity.user = user!
+        saveContext()
+    }
+    
+    func saveProfile(profile: Profile) {
+        guard user != nil else {
+            return
+        }
+        
+        if let profile = user?.profile {
+            deleteObject(profile)
+        }
+        
+        let profile = ProfileEntry(profile: profile, context: managedObjectContext)
+        profile.user = user!
+        saveContext()
+    }
+    
+    func saveRepositories(repositories: [Repository]) {
+        guard user != nil else {
+            return
+        }
+        
+        if let repositories = user?.repositories where !repositories.isEmpty {
+            for repository in repositories {
+                deleteObject(repository)
+            }
+        }
+        
+        for repository in repositories {
+            let entry = RepositoryEntry(repository: repository, context: managedObjectContext)
+            entry.user = user!
+        }
+        saveContext()
+    }
+    
+    func clearData() {
+        if let user = user {
+            managedObjectContext.deleteObject(user)
+        }
+    }
+    
+    func fetchUser() -> User? {
+        let fetchRequest = NSFetchRequest(entityName: "User")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        let fetchedResultsController = NSFetchedResultsController(
+                fetchRequest: fetchRequest,
+                managedObjectContext: CoreDataGateway.sharedInstance().managedObjectContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {}
+        
+        guard !(fetchedResultsController.fetchedObjects?.isEmpty ?? true) else {
+            return nil
+        }
+        
+        if let user = fetchedResultsController.fetchedObjects![0] as? UserEntry{
+            self.user = user
+            return User(entry: user)
+        }
+        
+        return nil
+    }
 }

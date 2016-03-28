@@ -7,24 +7,23 @@
 //
 
 import Foundation
-import CoreData
 
-class User: NSManagedObject {
+class User {
     
-    @NSManaged var id: Int
-    @NSManaged var authorization: Authorization
-    @NSManaged var profile: Profile?
-    @NSManaged var repositories: [Repository]?
+    var authorization: Authorization
+    var profile: Profile?
+    var repositories: [Repository]?
     
-    init(authorization: Authorization, context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: context)!
-        super.init(entity: entity,insertIntoManagedObjectContext: context)
-        
-        self.id = 0
+    init(authorization: Authorization) {
         self.authorization = authorization
     }
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    init(entry: UserEntry) {
+        self.authorization = Authorization(entry: entry.authorization)
+        self.profile = Profile(entry: entry.profile)
+        self.repositories = [Repository]()
+        for repository in entry.repositories {
+            self.repositories?.append(Repository(entry: repository))
+        }
     }
 }

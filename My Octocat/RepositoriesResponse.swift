@@ -20,7 +20,7 @@ class RepositoriesResponse {
         var items = [Repository]()
         if let array = json["items"] as? [AnyObject] {
             for element in array {
-                items.append(Repository(json: element as! [String:AnyObject], context: CoreDataGateway.sharedInstance().managedObjectContext))
+                items.append(Repository(json: element as! [String:AnyObject]))
             }
         }
         self.items = items

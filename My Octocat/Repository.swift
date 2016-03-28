@@ -7,36 +7,39 @@
 //
 
 import Foundation
-import CoreData
 
-class Repository: NSManagedObject {
+class Repository {
     
-    @NSManaged var id: Int
-    @NSManaged var name: String
-    @NSManaged var ownerName: String
-    @NSManaged var summary: String?
-    @NSManaged var language: String?
-    @NSManaged var openIssuesCount: Int
-    @NSManaged var starsCount: Int
-    @NSManaged var forksCount: Int
-    @NSManaged var user: User?
+    var id: Int
+    var name: String
+    var ownerName: String
+    var summary: String?
+    var language: String?
+    var openIssuesCount: Int
+    var starsCount: Int
+    var forksCount: Int
+    var user: User?
     
-    init(json: [String:AnyObject], context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName("Repository", inManagedObjectContext: context)!
-        super.init(entity: entity,insertIntoManagedObjectContext: context)
-        
-        id = json["id"] as! Int
-        name = json["name"] as! String
-        ownerName = (json["owner"] as! [String:AnyObject])["login"] as! String
-        summary = json["description"] as? String
-        starsCount = json["stargazers_count"] as! Int
-        language = json["language"] as? String
-        forksCount = json["forks_count"] as! Int
-        openIssuesCount = json["open_issues_count"] as! Int
+    init(json: [String:AnyObject]) {
+        self.id = json["id"] as! Int
+        self.name = json["name"] as! String
+        self.ownerName = (json["owner"] as! [String:AnyObject])["login"] as! String
+        self.summary = json["description"] as? String
+        self.starsCount = json["stargazers_count"] as! Int
+        self.language = json["language"] as? String
+        self.forksCount = json["forks_count"] as! Int
+        self.openIssuesCount = json["open_issues_count"] as! Int
     }
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    init(entry: RepositoryEntry) {
+        self.id = entry.id as Int
+        self.name = entry.name
+        self.ownerName = entry.ownerName
+        self.summary = entry.summary
+        self.starsCount = entry.starsCount as Int
+        self.language = entry.language
+        self.forksCount = entry.forksCount as Int
+        self.openIssuesCount = entry.openIssuesCount as Int
     }
     
 }

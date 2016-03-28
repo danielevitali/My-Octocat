@@ -14,23 +14,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="lmE-ta-OgC" kind="relationship" relationship="rootViewController" id="3MT-c8-VRR"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fy-kB-RzE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-205" y="-675"/>
-        </scene>
-        <!--SearchViewController-->
-        <scene sceneID="2Bo-nw-3Rh">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="SearchViewController" id="lmE-ta-OgC" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="0be-6F-V3d"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kjA-ci-jVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="299" y="-675"/>
         </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="dfg-KB-cYc">
@@ -62,23 +49,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="Tvs-JF-1dm" kind="relationship" relationship="rootViewController" id="ENT-31-FNy"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgR-RL-ZsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-205" y="706"/>
-        </scene>
-        <!--EventsViewController-->
-        <scene sceneID="ijY-PY-wre">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Events" referencedIdentifier="EventsViewController" id="Tvs-JF-1dm" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="XaE-nj-n51"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bk8-PY-ZHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="316.5" y="706"/>
         </scene>
         <!--Login-->
         <scene sceneID="jJf-Ny-QEG">

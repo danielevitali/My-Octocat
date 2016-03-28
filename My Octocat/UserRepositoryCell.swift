@@ -19,7 +19,7 @@ class UserRepositoryCell: UITableViewCell {
     
     func showRepository(repository: Repository) {
         lblName.text = repository.name
-        lblDescription.text = repository.description
+        lblDescription.text = repository.summary
         lblOpenIssuesCount.text = "\(repository.openIssuesCount)"
         lblStarsCount.text = "\(repository.starsCount)"
         lblForksCount.text = "\(repository.forksCount)"

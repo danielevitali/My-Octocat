@@ -7,26 +7,23 @@
 //
 
 import Foundation
-import CoreData
 
-class Authorization: NSManagedObject {
+class Authorization {
     
-    @NSManaged var accessToken: String
-    @NSManaged var scope: String
-    @NSManaged var tokenType: String
-    @NSManaged var user: User
+    var accessToken: String
+    var scope: String
+    var tokenType: String
     
-    init(json: [String:AnyObject], context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName("Authorization", inManagedObjectContext: context)!
-        super.init(entity: entity,insertIntoManagedObjectContext: context)
-        
+    init(json: [String:AnyObject]) {
         self.accessToken = json["access_token"] as! String
         self.scope = json["scope"] as! String
         self.tokenType = json["token_type"] as! String
     }
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    init(entry: AuthorizationEntry) {
+        self.accessToken = entry.accessToken
+        self.scope = entry.scope
+        self.tokenType = entry.tokenType
     }
     
 }

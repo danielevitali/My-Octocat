@@ -7,26 +7,21 @@
 //
 
 import Foundation
-import CoreData
 
-class Profile: NSManagedObject {
+class Profile {
     
-    @NSManaged var id: NSNumber
-    @NSManaged var name: String
-    @NSManaged var username: String
-    @NSManaged var location: String?
-    @NSManaged var company: String?
-    @NSManaged var bio: String?
-    @NSManaged var creationDate: NSDate
-    @NSManaged var avatarUrl: String?
-    @NSManaged var user: User
+    var id: Int
+    var name: String
+    var username: String
+    var location: String?
+    var company: String?
+    var bio: String?
+    var creationDate: NSDate
+    var avatarUrl: String?
     var avatar: NSData?
     
-    init(json: [String:AnyObject], context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName("Profile", inManagedObjectContext: context)!
-        super.init(entity: entity,insertIntoManagedObjectContext: context)
-        
-        self.id = json["id"] as! NSNumber
+    init(json: [String : AnyObject]) {
+        self.id = json["id"] as! Int
         self.name = json["name"] as! String
         self.username = json["login"] as! String
         self.location = json["location"] as? String
@@ -36,8 +31,14 @@ class Profile: NSManagedObject {
         self.avatarUrl = json["avatar_url"] as? String
     }
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    init(entry: ProfileEntry) {
+        self.id = entry.id as Int
+        self.name = entry.name
+        self.username = entry.username
+        self.location = entry.location
+        self.company = entry.company
+        self.bio = entry.bio
+        self.creationDate = entry.creationDate
+        self.avatarUrl = entry.avatarUrl
     }
-    
 }

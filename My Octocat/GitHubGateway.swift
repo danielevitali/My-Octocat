@@ -50,8 +50,8 @@ class GitHubGateway {
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    let authorization = Authorization(json: json, context: CoreDataGateway.sharedInstance().managedObjectContext)
-                    CoreDataGateway.sharedInstance().saveContext()
+                    let authorization = Authorization(json: json)
+                    CoreDataGateway.sharedInstance().saveAuthorization(authorization)
                     callback(authorization: authorization, error: nil)
                 } else {
                     callback(authorization: nil, error: Error(json: json))
@@ -69,8 +69,8 @@ class GitHubGateway {
             if let response = response, let data = data {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
-                    let profile = Profile(json: json, context: CoreDataGateway.sharedInstance().managedObjectContext)
-                    CoreDataGateway.sharedInstance().saveContext()
+                    let profile = Profile(json: json)
+                    CoreDataGateway.sharedInstance().saveProfile(profile)
                     callback(profile: profile, error: nil)
                 } else {
                     callback(profile: nil, error: Error(json: json))
@@ -90,8 +90,7 @@ class GitHubGateway {
                 if self.isSuccessResponse(response.statusCode) {
                     var repositories = [Repository]()
                     for repo in json["items"] as! [[String : AnyObject]] {
-                        let repository = Repository(json: repo, context: CoreDataGateway.sharedInstance().managedObjectContext)
-                        CoreDataGateway.sharedInstance().saveContext()
+                        let repository = Repository(json: repo)
                         repositories.append(repository)
                     }
                     callback(repositories: repositories, error: nil)
