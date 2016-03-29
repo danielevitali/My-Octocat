@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
-    <entity name="Profile" syncable="YES">
+    <entity name="Profile" representedClassName=".CDProfile" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,9 +9,9 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="profile" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Repository" syncable="YES">
+    <entity name="Repository" representedClassName=".CDRepository" syncable="YES">
         <attribute name="forksCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,7 +22,7 @@
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="repositories" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="User" representedClassName=".CDUser" syncable="YES">
         <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Profile" inverseName="user" inverseEntity="Profile" syncable="YES"/>
         <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Repository" inverseName="user" inverseEntity="Repository" syncable="YES"/>

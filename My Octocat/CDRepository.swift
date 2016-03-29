@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class RepositoryEntry: NSManagedObject {
+class CDRepository: NSManagedObject {
     
     private static let ENTRY_NAME = "Repository"
     
@@ -21,10 +21,10 @@ class RepositoryEntry: NSManagedObject {
     @NSManaged var openIssuesCount: NSNumber
     @NSManaged var starsCount: NSNumber
     @NSManaged var forksCount: NSNumber
-    @NSManaged var user: UserEntry
+    @NSManaged var user: CDUser
     
     init(repository: Repository, context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName(RepositoryEntry.ENTRY_NAME, inManagedObjectContext: context)!
+        let entity =  NSEntityDescription.entityForName(CDRepository.ENTRY_NAME, inManagedObjectContext: context)!
         super.init(entity: entity,insertIntoManagedObjectContext: context)
         
         self.id = repository.id

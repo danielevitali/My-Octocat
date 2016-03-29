@@ -31,14 +31,14 @@ class Profile {
         self.avatarUrl = json["avatar_url"] as? String
     }
     
-    init(entry: ProfileEntry) {
-        self.id = entry.id as Int
-        self.name = entry.name
-        self.username = entry.username
-        self.location = entry.location
-        self.company = entry.company
-        self.bio = entry.bio
-        self.creationDate = entry.creationDate
-        self.avatarUrl = entry.avatarUrl
+    init(cdProfile: CDProfile) {
+        self.id = cdProfile.id as Int
+        self.name = cdProfile.name
+        self.username = cdProfile.username
+        self.location = cdProfile.location
+        self.company = cdProfile.company
+        self.bio = cdProfile.bio
+        self.creationDate = cdProfile.creationDate
+        self.avatarUrl = cdProfile.avatarUrl
     }
 }

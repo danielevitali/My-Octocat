@@ -9,16 +9,16 @@
 import Foundation
 import CoreData
 
-class UserEntry: NSManagedObject {
+class CDUser: NSManagedObject {
     
     private static let ENTRY_NAME = "User"
     
     @NSManaged var accessToken: String
-    @NSManaged var profile: ProfileEntry
-    @NSManaged var repositories: [RepositoryEntry]
+    @NSManaged var profile: CDProfile
+    @NSManaged var repositories: [CDRepository]
     
     init(accessToken: String, context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName(UserEntry.ENTRY_NAME, inManagedObjectContext: context)!
+        let entity =  NSEntityDescription.entityForName(CDUser.ENTRY_NAME, inManagedObjectContext: context)!
         super.init(entity: entity,insertIntoManagedObjectContext: context)
         
         self.accessToken = accessToken

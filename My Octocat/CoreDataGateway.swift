@@ -13,7 +13,7 @@ class CoreDataGateway {
     
     private static let instance = CoreDataGateway()
     
-    private var user: UserEntry?
+    private var user: CDUser?
     
     static func sharedInstance() -> CoreDataGateway {
         return instance
@@ -92,7 +92,7 @@ class CoreDataGateway {
             deleteObject(user)
         }
         
-        user = UserEntry(accessToken: accessToken, context: managedObjectContext)
+        user = CDUser(accessToken: accessToken, context: managedObjectContext)
         saveContext()
     }
     
@@ -105,7 +105,7 @@ class CoreDataGateway {
             deleteObject(profile)
         }
         
-        let profile = ProfileEntry(profile: profile, context: managedObjectContext)
+        let profile = CDProfile(profile: profile, context: managedObjectContext)
         profile.user = user!
         saveContext()
     }
@@ -122,8 +122,8 @@ class CoreDataGateway {
         }
         
         for repository in repositories {
-            let entry = RepositoryEntry(repository: repository, context: managedObjectContext)
-            entry.user = user!
+            let cdRepository = CDRepository(repository: repository, context: managedObjectContext)
+            cdRepository.user = user!
         }
         saveContext()
     }
@@ -152,9 +152,9 @@ class CoreDataGateway {
             return nil
         }
         
-        if let user = fetchedResultsController.fetchedObjects![0] as? UserEntry {
+        if let user = fetchedResultsController.fetchedObjects![0] as? CDUser {
             self.user = user
-            return User(entry: user)
+            return User(cdUser: user)
         }
         
         return nil

@@ -31,15 +31,15 @@ class Repository {
         self.openIssuesCount = json["open_issues_count"] as! Int
     }
     
-    init(entry: RepositoryEntry) {
-        self.id = entry.id as Int
-        self.name = entry.name
-        self.ownerName = entry.ownerName
-        self.summary = entry.summary
-        self.starsCount = entry.starsCount as Int
-        self.language = entry.language
-        self.forksCount = entry.forksCount as Int
-        self.openIssuesCount = entry.openIssuesCount as Int
+    init(cdRepository: CDRepository) {
+        self.id = cdRepository.id as Int
+        self.name = cdRepository.name
+        self.ownerName = cdRepository.ownerName
+        self.summary = cdRepository.summary
+        self.starsCount = cdRepository.starsCount as Int
+        self.language = cdRepository.language
+        self.forksCount = cdRepository.forksCount as Int
+        self.openIssuesCount = cdRepository.openIssuesCount as Int
     }
     
 }

@@ -18,12 +18,12 @@ class User {
         self.accessToken = json["access_token"] as! String
     }
     
-    init(entry: UserEntry) {
-        self.accessToken = entry.accessToken
-        self.profile = Profile(entry: entry.profile)
+    init(cdUser: CDUser) {
+        self.accessToken = cdUser.accessToken
+        self.profile = Profile(cdProfile: cdUser.profile)
         self.repositories = [Repository]()
-        for repository in entry.repositories {
-            self.repositories?.append(Repository(entry: repository))
+        for repository in cdUser.repositories {
+            self.repositories?.append(Repository(cdRepository: repository))
         }
     }
 }

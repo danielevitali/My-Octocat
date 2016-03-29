@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class ProfileEntry: NSManagedObject {
+class CDProfile: NSManagedObject {
     
     private static let ENTRY_NAME = "Profile"
     
@@ -21,10 +21,10 @@ class ProfileEntry: NSManagedObject {
     @NSManaged var bio: String?
     @NSManaged var creationDate: NSDate
     @NSManaged var avatarUrl: String?
-    @NSManaged var user: UserEntry
+    @NSManaged var user: CDUser
     
     init(profile: Profile, context: NSManagedObjectContext) {
-        let entity =  NSEntityDescription.entityForName(ProfileEntry.ENTRY_NAME, inManagedObjectContext: context)!
+        let entity =  NSEntityDescription.entityForName(CDProfile.ENTRY_NAME, inManagedObjectContext: context)!
         super.init(entity: entity,insertIntoManagedObjectContext: context)
         
         self.id = profile.id
