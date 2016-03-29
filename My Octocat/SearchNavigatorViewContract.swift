@@ -12,4 +12,6 @@ protocol SearchNavigatorViewContract: class {
     
     func showSearch()
     
+    func showRepository(repository: Repository)
+    
 }

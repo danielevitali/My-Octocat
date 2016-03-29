@@ -19,6 +19,11 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
     func showUserProfile() {
         Router.showUserProfileInNavigatorController(self)
         
@@ -35,6 +40,10 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
         let logoutBarButton = UIBarButtonItem(customView: editButton)
 
         navigationItem.setRightBarButtonItems([editBarButton, logoutBarButton], animated: false)
+    }
+    
+    func showRepository(repository: Repository) {
+        Router.showRepository(self, repository: repository)
     }
     
     func onLogoutClick() {

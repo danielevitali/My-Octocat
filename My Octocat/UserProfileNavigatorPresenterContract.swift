@@ -12,6 +12,8 @@ protocol UserProfileNavigatorPresenterContract {
     
     func viewDidLoad()
     
+    func viewDidAppear()
+    
     func onLogoutClick()
     
     func onEditClick()

@@ -18,8 +18,17 @@ class SearchNavigatorController: UINavigationController, SearchNavigatorViewCont
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
     func showSearch() {
         Router.showSearchInNavigatorController(self)
+    }
+    
+    func showRepository(repository: Repository) {
+        Router.showRepository(self, repository: repository)
     }
     
 }

@@ -25,6 +25,9 @@ class Router {
     private static let SEARCH_STORYBOARD = "Search"
     private static let SEARCH_VIEW_CONTROLLER = "SearchViewController"
     
+    private static let REPOSITORY_STORYBOARD = "Repository"
+    private static let REPOSITORY_VIEW_CONTROLLER = "RepositoryViewController"
+    
     static func showHome(window: UIWindow) {
         let homeStoryboard = UIStoryboard(name: Router.HOME_STORYBOARD, bundle: nil)
         let homeTabBarController = homeStoryboard.instantiateViewControllerWithIdentifier(Router.HOME_TAB_BAR_CONTROLLER) as! HomeTabBarController
@@ -64,15 +67,18 @@ class Router {
         navigatorController.viewControllers = [userProfileViewController]
     }
     
-    static func showRepositoryDetails(viewController: UIViewController, repository: Repository) {
-        
-    }
-    
-    static func showEditProfile(navigatorController: UINavigationController, user: User) {
+    static func showEditProfile(navigationController: UINavigationController, user: User) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let editUserProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.EDIT_USER_PROFILE_VIEW_CONTROLLER) as! EditUserProfileViewController
         editUserProfileViewController.presenter = EditUserProfilePresenter(view: editUserProfileViewController, repository: UserRepository.sharedInstance(), user: user)
-        navigatorController.presentViewController(editUserProfileViewController, animated: true, completion: nil)
+        navigationController.presentViewController(editUserProfileViewController, animated: true, completion: nil)
+    }
+    
+    static func showRepository(navigationController: UINavigationController, repository: Repository) {
+        let repositoryStoryboard = UIStoryboard(name: Router.REPOSITORY_STORYBOARD, bundle: nil)
+        let repositoryViewController = repositoryStoryboard.instantiateViewControllerWithIdentifier(Router.REPOSITORY_VIEW_CONTROLLER) as! RepositoryViewController
+        repositoryViewController.presenter = RepositoryPresenter(view: repositoryViewController, repository: repository)
+        navigationController.presentViewController(repositoryViewController, animated: true, completion: nil)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {
@@ -82,5 +88,7 @@ class Router {
             sender.showViewController(showing, sender: sender)
         }
     }
+    
+    
     
 }

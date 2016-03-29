@@ -52,14 +52,6 @@ class SearchViewController: UIViewController, SearchViewContract, UITableViewDel
         ErrorAlert(message: message).show(self)
     }
     
-    func showRepositoryDetails(respository: Repository) {
-        
-    }
-    
-    func addRepositoriesToList(repositories: [Repository]) {
-        
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.repositories?.count ?? 0
     }

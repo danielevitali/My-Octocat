@@ -18,11 +18,7 @@ protocol SearchViewContract: class {
 
     func toggleRepositoryList(visible: Bool)
     
-    func addRepositoriesToList(repositories: [Repository])
-    
     func showError(message: String)
-    
-    func showRepositoryDetails(repository: Repository)
     
     func reloadRepositories()
     

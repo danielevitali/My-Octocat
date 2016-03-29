@@ -22,6 +22,13 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
         self.view.showUserProfile()
     }
     
+    func viewDidAppear() {
+        SwiftEventBus.onMainThread(self, name: Events.SHOW_REPOSITORY) { result in
+            let repository = result.object as! Repository
+            self.view.showRepository(repository)
+        }
+    }
+    
     func onLogoutClick() {
         UserRepository.sharedInstance().logout()
         SwiftEventBus.post(Events.USER_LOGGED_OUT)

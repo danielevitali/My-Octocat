@@ -120,4 +120,8 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         (cell as! UserRepositoryCell).showRepository(presenter.userRepositories![indexPath.row])
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        presenter.onRepositoryClick(indexPath)
+    }
 }

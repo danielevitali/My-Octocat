@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import SwiftEventBus
 
 class SearchPresenter: BasePresenter, SearchPresenterContract {
     
@@ -57,8 +58,8 @@ class SearchPresenter: BasePresenter, SearchPresenterContract {
         
     }
     
-    func onRepositoryClick(repository: Repository) {
-        view.showRepositoryDetails(repository)
+    func onRepositoryClick(indexPath: NSIndexPath) {
+        SwiftEventBus.post(Events.SHOW_REPOSITORY, sender: repositories![indexPath.row])
     }
     
 }

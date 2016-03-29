@@ -16,6 +16,6 @@ protocol SearchPresenterContract {
     
     func onQueryTextChanged(query: String)
     
-    func onRepositoryClick(repository: Repository)
+    func onRepositoryClick(indexPath: NSIndexPath)
     
 }

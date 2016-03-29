@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftEventBus
 
 class SearchNavigatorPresenter: BasePresenter, SearchNavigatorPresenterContract {
     
@@ -14,6 +15,13 @@ class SearchNavigatorPresenter: BasePresenter, SearchNavigatorPresenterContract 
     
     init(view: SearchNavigatorViewContract) {
         self.view = view
+    }
+    
+    func viewDidAppear() {
+        SwiftEventBus.onMainThread(self, name: Events.SHOW_REPOSITORY) { result in
+            let repository = result.object as! Repository
+            self.view.showRepository(repository)
+        }
     }
     
     func viewDidLoad() {

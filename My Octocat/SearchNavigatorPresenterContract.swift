@@ -12,4 +12,6 @@ protocol SearchNavigatorPresenterContract {
     
     func viewDidLoad()
     
+    func viewDidAppear()
+    
 }

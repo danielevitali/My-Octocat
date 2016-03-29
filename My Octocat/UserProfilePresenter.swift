@@ -8,11 +8,13 @@
 
 import Foundation
 import RxSwift
+import SwiftEventBus
 
 class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
     private weak var view: UserProfileViewContract!
     private let repository: UserProfileRepositoryContract
+    private var repositories: [Repository]?
     
     var userProfile: Profile? {
         return repository.user!.profile
@@ -55,23 +57,26 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     }
     
     private func loadRepositories() {
-        view.toggleRepositoriesLoading(true)
-        view.toggleRepositoriesTable(false)
-        repository.getUserRepositories()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] repositories in
-                self.view.toggleRepositoriesLoading(false)
-                self.view.toggleRepositoriesTable(true)
-                self.view.refreshUserRepositories()
-                }, onError: { [unowned self] errorType in
-                    let error = errorType as! Error
+        if repositories == nil {
+            view.toggleRepositoriesLoading(true)
+            view.toggleRepositoriesTable(false)
+            repository.getUserRepositories()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [unowned self] repositories in
+                    self.repositories = repositories
                     self.view.toggleRepositoriesLoading(false)
-                    self.view.showError(error.message)
-                }, onCompleted: { () -> Void in
+                    self.view.toggleRepositoriesTable(true)
+                    self.view.refreshUserRepositories()
+                    }, onError: { [unowned self] errorType in
+                        let error = errorType as! Error
+                        self.view.toggleRepositoriesLoading(false)
+                        self.view.showError(error.message)
+                    }, onCompleted: { () -> Void in
                     
-                }, onDisposed: { () -> Void in
+                    }, onDisposed: { () -> Void in
                     
-            }).addDisposableTo(disposeBag)
+                }).addDisposableTo(disposeBag)
+        }
     }
     
     private func showAvatar() {
@@ -86,5 +91,9 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
                 }, onDisposed: { () in
                     
             }).addDisposableTo(disposeBag)
+    }
+    
+    func onRepositoryClick(indexPath: NSIndexPath) {
+        SwiftEventBus.post(Events.SHOW_REPOSITORY, sender: repositories![indexPath.row])
     }
 }

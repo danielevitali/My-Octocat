@@ -16,4 +16,6 @@ protocol UserProfilePresenterContract {
     
     func viewDidLoad()
     
+    func onRepositoryClick(indexPath: NSIndexPath)
+    
 }
