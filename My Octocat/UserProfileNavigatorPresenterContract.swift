@@ -20,4 +20,6 @@ protocol UserProfileNavigatorPresenterContract {
     
     func onEditClick()
     
+    func onShowRepositoryOnWebClick()
+    
 }

@@ -16,4 +16,6 @@ protocol UserProfileNavigatorViewContract: class {
     
     func showEditProfile(user: User)
     
+    func showRepositoryOnWeb(url: String)
+    
 }

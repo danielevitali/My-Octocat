@@ -14,6 +14,8 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
     
     private weak var view: UserProfileNavigatorViewContract!
     
+    private var currentRepository: Repository!
+    
     init(view: UserProfileNavigatorViewContract) {
         self.view = view
     }
@@ -24,8 +26,8 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
     
     func viewDidAppear() {
         SwiftEventBus.onMainThread(self, name: Events.SHOW_REPOSITORY) { result in
-            let repository = result.object as! Repository
-            self.view.showRepository(repository)
+            self.currentRepository = result.object as! Repository
+            self.view.showRepository(self.currentRepository)
         }
     }
     
@@ -40,6 +42,10 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
     
     func onEditClick() {
         view.showEditProfile(UserRepository.sharedInstance().user!)
+    }
+    
+    func onShowRepositoryOnWebClick() {
+        view.showRepositoryOnWeb(currentRepository.url)
     }
     
 }
