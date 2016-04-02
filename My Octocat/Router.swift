@@ -63,7 +63,7 @@ class Router {
     static func showUserProfileInNavigatorController(navigatorController: UINavigationController) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let userProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.USER_PROFILE_VIEW_CONTROLLER) as! UserProfileViewController
-        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController, repository: UserRepository.sharedInstance())
+        userProfileViewController.presenter = UserProfilePresenter(view: userProfileViewController)
         navigatorController.viewControllers = [userProfileViewController]
     }
     
@@ -77,8 +77,8 @@ class Router {
     static func showRepository(navigationController: UINavigationController, repository: Repository) {
         let repositoryStoryboard = UIStoryboard(name: Router.REPOSITORY_STORYBOARD, bundle: nil)
         let repositoryViewController = repositoryStoryboard.instantiateViewControllerWithIdentifier(Router.REPOSITORY_VIEW_CONTROLLER) as! RepositoryViewController
-        repositoryViewController.presenter = RepositoryPresenter(view: repositoryViewController, repository: repository)
-        navigationController.presentViewController(repositoryViewController, animated: true, completion: nil)
+        repositoryViewController.presenter = RepositoryPresenter(view: repositoryViewController, repo: repository)
+        navigationController.pushViewController(repositoryViewController, animated: true)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {

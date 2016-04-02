@@ -36,14 +36,19 @@ class RepositoriesRepository {
         }).subscribeOn(ComputationalScheduler.sharedInstance())
     }
     
-    //TODO: retreive repositories of the user given the username
-    func getRepositories(username: String) -> Observable<[Repository]> {
+    func getCommits(repository: Repository) -> Observable<[Commit]> {
         return Observable.create({ (observer) -> Disposable in
-            
-            
-            
+            let accessToken = UserRepository.sharedInstance().user?.accessToken
+            let networkTask = GitHubGateway.sharedInstance().fetchCommits(repository.ownerName, repositoryName: repository.name, accessToken: accessToken, callbackHandler: { response, error in
+                if let response = response {
+                    observer.onNext(response)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(error!)
+                }
+            })
             return AnonymousDisposable {
-                
+                networkTask.cancel()
             }
         }).subscribeOn(ComputationalScheduler.sharedInstance())
     }

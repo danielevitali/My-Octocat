@@ -10,6 +10,10 @@ import Foundation
 
 protocol RepositoryPresenterContract {
     
+    var repo: Repository {get set}
+    
     func viewDidLoad()
+    
+    func onCommitClick(indexPath: NSIndexPath)
     
 }

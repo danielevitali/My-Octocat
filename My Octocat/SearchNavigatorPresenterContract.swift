@@ -14,4 +14,6 @@ protocol SearchNavigatorPresenterContract {
     
     func viewDidAppear()
     
+    func viewWillDisappear()
+    
 }

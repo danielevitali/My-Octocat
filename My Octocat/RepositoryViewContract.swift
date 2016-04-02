@@ -10,4 +10,18 @@ import Foundation
 
 protocol RepositoryViewContract: class {
     
+    func showRepositoryTitle(title: String)
+    
+    func toggleLoading(visible: Bool)
+    
+    func toggleNoCommitFound(visible: Bool)
+    
+    func toggleCommitList(visible: Bool)
+    
+    func reloadCommits()
+    
+    func showError(message: String)
+    
+    func showCommit(url: String)
+    
 }

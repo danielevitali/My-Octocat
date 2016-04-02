@@ -15,6 +15,8 @@
 		6419B12D1C8CE6D00060C3D9 /* UserProfileNavigatorViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419B12C1C8CE6D00060C3D9 /* UserProfileNavigatorViewContract.swift */; };
 		6419B12F1C8CE6E60060C3D9 /* UserProfileNavigatorPresenterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419B12E1C8CE6E60060C3D9 /* UserProfileNavigatorPresenterContract.swift */; };
 		6419B1311C8CE8560060C3D9 /* ProfileNavigatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6419B1301C8CE8560060C3D9 /* ProfileNavigatorPresenter.swift */; };
+		642BF3AB1CAFF9D8001F33D3 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BF3AA1CAFF9D8001F33D3 /* Commit.swift */; };
+		642BF3AE1CB00A85001F33D3 /* CommitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BF3AD1CB00A85001F33D3 /* CommitCell.swift */; };
 		643745221C9EDCFB00A2F24F /* EditUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643745211C9EDCFB00A2F24F /* EditUserProfileViewController.swift */; };
 		643745241C9EDD1700A2F24F /* EditUserProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643745231C9EDD1700A2F24F /* EditUserProfilePresenter.swift */; };
 		643745261C9EDD2F00A2F24F /* EditUserProfilePresenterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643745251C9EDD2F00A2F24F /* EditUserProfilePresenterContract.swift */; };
@@ -44,7 +46,6 @@
 		644446051C78993500D6E2AA /* GitHubGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644446041C78993500D6E2AA /* GitHubGateway.swift */; };
 		6495DDEC1C8792BE00DE9C0E /* ComputationalScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6495DDEB1C8792BE00DE9C0E /* ComputationalScheduler.swift */; };
 		649C3C121C8C7C2200B253C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649C3C111C8C7C2200B253C2 /* User.swift */; };
-		649CF3531C945680005E009F /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3521C945680005E009F /* ProfileRepository.swift */; };
 		649CF3551C946FB3005E009F /* LoginRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3541C946FB3005E009F /* LoginRepositoryContract.swift */; };
 		649CF3571C947076005E009F /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3561C947076005E009F /* BasePresenter.swift */; };
 		649CF35A1C948812005E009F /* ErrorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649CF3591C948812005E009F /* ErrorDetail.swift */; };
@@ -98,6 +99,8 @@
 		6419B12C1C8CE6D00060C3D9 /* UserProfileNavigatorViewContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNavigatorViewContract.swift; sourceTree = "<group>"; };
 		6419B12E1C8CE6E60060C3D9 /* UserProfileNavigatorPresenterContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNavigatorPresenterContract.swift; sourceTree = "<group>"; };
 		6419B1301C8CE8560060C3D9 /* ProfileNavigatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNavigatorPresenter.swift; sourceTree = "<group>"; };
+		642BF3AA1CAFF9D8001F33D3 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
+		642BF3AD1CB00A85001F33D3 /* CommitCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommitCell.swift; sourceTree = "<group>"; };
 		643745211C9EDCFB00A2F24F /* EditUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileViewController.swift; sourceTree = "<group>"; };
 		643745231C9EDD1700A2F24F /* EditUserProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfilePresenter.swift; sourceTree = "<group>"; };
 		643745251C9EDD2F00A2F24F /* EditUserProfilePresenterContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfilePresenterContract.swift; sourceTree = "<group>"; };
@@ -129,7 +132,6 @@
 		644446041C78993500D6E2AA /* GitHubGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubGateway.swift; sourceTree = "<group>"; };
 		6495DDEB1C8792BE00DE9C0E /* ComputationalScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComputationalScheduler.swift; sourceTree = "<group>"; };
 		649C3C111C8C7C2200B253C2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		649CF3521C945680005E009F /* ProfileRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		649CF3541C946FB3005E009F /* LoginRepositoryContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRepositoryContract.swift; sourceTree = "<group>"; };
 		649CF3561C947076005E009F /* BasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		649CF3591C948812005E009F /* ErrorDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDetail.swift; sourceTree = "<group>"; };
@@ -375,7 +377,6 @@
 		644446011C7898DD00D6E2AA /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				649CF3511C94566C005E009F /* Profile */,
 				6419B1351C8CEC6E0060C3D9 /* Repositories */,
 				6419B1321C8CEBB20060C3D9 /* User */,
 			);
@@ -414,14 +415,6 @@
 				644445EF1C788A7900D6E2AA /* My_Octocat.xcdatamodeld */,
 			);
 			name = "Supporting files";
-			sourceTree = "<group>";
-		};
-		649CF3511C94566C005E009F /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				649CF3521C945680005E009F /* ProfileRepository.swift */,
-			);
-			name = Profile;
 			sourceTree = "<group>";
 		};
 		649CF3581C94764C005E009F /* Commons */ = {
@@ -477,6 +470,7 @@
 				649C3C111C8C7C2200B253C2 /* User.swift */,
 				A33FE85E1C90173000C7F573 /* Profile.swift */,
 				649CF3591C948812005E009F /* ErrorDetail.swift */,
+				642BF3AA1CAFF9D8001F33D3 /* Commit.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -507,6 +501,7 @@
 				64B5ECF01CAA674200F53D0E /* Contract */,
 				64B5ECEC1CAA66EA00F53D0E /* RepositoryViewController.swift */,
 				64B5ECEE1CAA672B00F53D0E /* RepositoryPresenter.swift */,
+				642BF3AD1CB00A85001F33D3 /* CommitCell.swift */,
 			);
 			name = Repository;
 			sourceTree = "<group>";
@@ -750,6 +745,7 @@
 				64D639911C8B731B000AA0CF /* LoginPresenter.swift in Sources */,
 				64D639861C8B7239000AA0CF /* EventsViewContract.swift in Sources */,
 				643FAD711CA7DBC20058D261 /* HomePresenterContract.swift in Sources */,
+				642BF3AE1CB00A85001F33D3 /* CommitCell.swift in Sources */,
 				643745261C9EDD2F00A2F24F /* EditUserProfilePresenterContract.swift in Sources */,
 				64D6398F1C8B72FD000AA0CF /* LoginPresenterContract.swift in Sources */,
 				64B5ECEF1CAA672B00F53D0E /* RepositoryPresenter.swift in Sources */,
@@ -761,7 +757,6 @@
 				643FAD851CA8873D0058D261 /* LoginNavigatorPresenter.swift in Sources */,
 				643FAD811CA886F10058D261 /* LoginNavigatorViewContract.swift in Sources */,
 				644445F11C788A7900D6E2AA /* My_Octocat.xcdatamodeld in Sources */,
-				649CF3531C945680005E009F /* ProfileRepository.swift in Sources */,
 				64D6398A1C8B7268000AA0CF /* EventsPresenter.swift in Sources */,
 				643745221C9EDCFB00A2F24F /* EditUserProfileViewController.swift in Sources */,
 				644446051C78993500D6E2AA /* GitHubGateway.swift in Sources */,
@@ -776,6 +771,7 @@
 				64A1834B1C79E00200AA274A /* Router.swift in Sources */,
 				6419B12F1C8CE6E60060C3D9 /* UserProfileNavigatorPresenterContract.swift in Sources */,
 				649CF3621C95E01B005E009F /* CoreDataGateway.swift in Sources */,
+				642BF3AB1CAFF9D8001F33D3 /* Commit.swift in Sources */,
 				643FAD931CA9588E0058D261 /* CDUser.swift in Sources */,
 				64B5ECF41CAA676300F53D0E /* RepositoryViewContract.swift in Sources */,
 				649CF3571C947076005E009F /* BasePresenter.swift in Sources */,

@@ -24,6 +24,11 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
         presenter.viewDidAppear()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.viewWillDisappear()
+    }
+    
     func showUserProfile() {
         Router.showUserProfileInNavigatorController(self)
         

@@ -17,6 +17,10 @@ class SearchNavigatorPresenter: BasePresenter, SearchNavigatorPresenterContract 
         self.view = view
     }
     
+    func viewDidLoad() {
+        self.view.showSearch()
+    }
+    
     func viewDidAppear() {
         SwiftEventBus.onMainThread(self, name: Events.SHOW_REPOSITORY) { result in
             let repository = result.object as! Repository
@@ -24,8 +28,8 @@ class SearchNavigatorPresenter: BasePresenter, SearchNavigatorPresenterContract 
         }
     }
     
-    func viewDidLoad() {
-        self.view.showSearch()
-    }    
+    func viewWillDisappear() {
+        SwiftEventBus.unregister(self)
+    }
     
 }

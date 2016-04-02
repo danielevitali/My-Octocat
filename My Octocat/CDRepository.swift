@@ -21,6 +21,7 @@ class CDRepository: NSManagedObject {
     @NSManaged var openIssuesCount: NSNumber
     @NSManaged var starsCount: NSNumber
     @NSManaged var forksCount: NSNumber
+    @NSManaged var url: String
     @NSManaged var user: CDUser
     
     init(repository: Repository, context: NSManagedObjectContext) {
@@ -35,6 +36,7 @@ class CDRepository: NSManagedObject {
         self.language = repository.language
         self.forksCount = repository.forksCount
         self.openIssuesCount = repository.openIssuesCount
+        self.url = repository.url
     }
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {

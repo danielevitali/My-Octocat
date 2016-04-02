@@ -20,6 +20,7 @@
         <attribute name="ownerName" attributeType="String" syncable="YES"/>
         <attribute name="starsCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="User" inverseName="repositories" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".CDUser" syncable="YES">
@@ -29,7 +30,7 @@
     </entity>
     <elements>
         <element name="Profile" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="Repository" positionX="-54" positionY="54" width="128" height="180"/>
+        <element name="Repository" positionX="-54" positionY="54" width="128" height="195"/>
         <element name="User" positionX="-54" positionY="81" width="128" height="90"/>
     </elements>
 </model>

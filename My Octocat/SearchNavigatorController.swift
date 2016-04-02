@@ -23,6 +23,11 @@ class SearchNavigatorController: UINavigationController, SearchNavigatorViewCont
         presenter.viewDidAppear()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.viewWillDisappear()
+    }
+    
     func showSearch() {
         Router.showSearchInNavigatorController(self)
     }

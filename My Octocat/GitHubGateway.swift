@@ -17,6 +17,7 @@ class GitHubGateway {
     private static let SEARCH_REPOSITORIES_PATH = "/search/repositories"
     private static let USER_PROFILE_PATH = "/user"
     private static let USER_REPOSITORIES_PATH = "/user/repos"
+    private static let COMMITS_PATH = "/repos/{owner}/{repo}/commits"
     
     private static let CLIENT_ID = "2bcfc4da0df7619b2364"
     private static let CLIENT_SECRET = "7ffe329bafeb9d19d12d909887b68d5165612f32"
@@ -25,7 +26,7 @@ class GitHubGateway {
     private static let ACCEPT_HEADER = "application/vnd.github.v3+json"
     private static let USER_AGENT_HEADER = "danielevitali.My-Octocat"
     
-    private static let REPOSITORIES_PER_PAGE_COUNT = 50
+    private static let REPOSITORIES_PER_PAGE_COUNT = 100
     
     private static let instance = GitHubGateway()
     
@@ -113,6 +114,30 @@ class GitHubGateway {
                 let json = self.extractJson(data)
                 if self.isSuccessResponse(response.statusCode) {
                     callback(response: RepositoriesResponse(json: json), error: nil)
+                } else {
+                    callback(response: nil, error: Error(json: json))
+                }
+            } else {
+                callback(response: nil, error: Error(error: error!))
+            }
+        })
+    }
+    
+    func fetchCommits(username: String, repositoryName: String, accessToken: String?, callbackHandler callback: (response: [Commit]?, error: Error?) -> Void) -> NSURLSessionDataTask {
+        var path = GitHubGateway.COMMITS_PATH
+        path.replaceRange(path.rangeOfString("{owner}")!, with: username)
+        path.replaceRange(path.rangeOfString("{repo}")!, with: repositoryName)
+        let request = NSMutableURLRequest(URL: buildUrl(path, params: nil))
+        addHeadersToRequest(request, accessToken: accessToken)
+        return sendGetRequest(request, callbackHandler: { (data, response, error) in
+            if let response = response, let data = data {
+                let json = self.extractJson(data)
+                if self.isSuccessResponse(response.statusCode) {
+                    var commits = [Commit]()
+                    for commitJson in json["items"] as! [[String : AnyObject]]{
+                        commits.append(Commit(json: commitJson))
+                    }
+                    callback(response: commits, error: nil)
                 } else {
                     callback(response: nil, error: Error(json: json))
                 }

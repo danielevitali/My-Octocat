@@ -9,13 +9,63 @@
 import Foundation
 import UIKit
 
-class RepositoryViewController: UIViewController, RepositoryViewContract {
+class RepositoryViewController: UIViewController, RepositoryViewContract, UITableViewDelegate, UITableViewDataSource {
     
     var presenter: RepositoryPresenterContract!
+    
+    @IBOutlet weak var tblCommits: UITableView!
+    @IBOutlet weak var aiLoading: UIActivityIndicatorView!
+    @IBOutlet weak var lblNoCommits: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+    }
+    
+    func showRepositoryTitle(title: String) {
+        self.title = title
+    }
+    
+    func toggleLoading(visible: Bool) {
+        if visible {
+            aiLoading.startAnimating()
+        } else {
+            aiLoading.stopAnimating()
+        }
+    }
+    
+    func toggleNoCommitFound(visible: Bool) {
+        lblNoCommits.hidden = !visible
+    }
+    
+    func toggleCommitList(visible: Bool) {
+        tblCommits.hidden = !visible
+    }
+    
+    func reloadCommits() {
+        tblCommits.reloadData()
+    }
+    
+    func showError(message: String) {
+        ErrorAlert(message: message).show(self)
+    }
+    
+    func showCommit(url: String) {
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.repo.commits?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("CommitCell", forIndexPath: indexPath) as! CommitCell
+        cell.showCommit(presenter.repo.commits![indexPath.row])
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        presenter.onCommitClick(indexPath)
     }
     
 }

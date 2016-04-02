@@ -115,7 +115,8 @@ class CoreDataGateway {
             return
         }
         
-        if let repositories = user?.repositories where !repositories.isEmpty {
+        if user?.repositories.count > 0 {
+            let repositories = user!.repositories.allObjects as! [CDRepository]
             for repository in repositories {
                 deleteObject(repository)
             }

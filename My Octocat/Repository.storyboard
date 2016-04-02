@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Repository View Controller-->
         <scene sceneID="RwO-2T-ysD">
             <objects>
-                <viewController storyboardIdentifier="RepositoryViewController" id="C3l-5q-uHu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepositoryViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="C3l-5q-uHu" customClass="RepositoryViewController" customModule="My_Octocat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kxp-y9-58A"/>
                         <viewControllerLayoutGuide type="bottom" id="Es2-jH-peF"/>
@@ -16,8 +17,78 @@
                     <view key="view" contentMode="scaleToFill" id="UFp-UY-zGf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-2M-n4N">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommitCell" rowHeight="83" id="jjC-1X-Nz5" customClass="CommitCell" customModule="My_Octocat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjC-1X-Nz5" id="vtL-az-vho">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="82.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRc-Br-iVa">
+                                                    <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOn-BD-ltY">
+                                                    <rect key="frame" x="8" y="36" width="584" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xRc-Br-iVa" firstAttribute="leading" secondItem="vtL-az-vho" secondAttribute="leadingMargin" id="0o2-0p-2po"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yOn-BD-ltY" secondAttribute="trailing" id="2x6-n7-FbJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xRc-Br-iVa" secondAttribute="trailing" id="Dpb-Rv-qyl"/>
+                                                <constraint firstItem="yOn-BD-ltY" firstAttribute="leading" secondItem="vtL-az-vho" secondAttribute="leadingMargin" id="Spp-J9-iZw"/>
+                                                <constraint firstItem="yOn-BD-ltY" firstAttribute="top" secondItem="xRc-Br-iVa" secondAttribute="bottom" constant="7" id="iZh-0F-Ya1"/>
+                                                <constraint firstItem="xRc-Br-iVa" firstAttribute="top" secondItem="vtL-az-vho" secondAttribute="topMargin" id="khd-t8-ncV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblAuthorName" destination="yOn-BD-ltY" id="AiC-67-cbR"/>
+                                            <outlet property="lblMessage" destination="xRc-Br-iVa" id="2vs-xa-eQA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="C3l-5q-uHu" id="feR-FH-FPp"/>
+                                    <outlet property="delegate" destination="C3l-5q-uHu" id="lMW-8g-VnS"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RTa-1t-dbD">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No commits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usq-q0-Lg3">
+                                <rect key="frame" x="254" y="289.5" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RTa-1t-dbD" firstAttribute="centerX" secondItem="UFp-UY-zGf" secondAttribute="centerX" id="BXn-Hs-I9E"/>
+                            <constraint firstItem="zzR-2M-n4N" firstAttribute="leading" secondItem="UFp-UY-zGf" secondAttribute="leading" id="Lfp-oU-5DK"/>
+                            <constraint firstItem="RTa-1t-dbD" firstAttribute="centerY" secondItem="UFp-UY-zGf" secondAttribute="centerY" id="NHI-f3-FcY"/>
+                            <constraint firstItem="Es2-jH-peF" firstAttribute="top" secondItem="zzR-2M-n4N" secondAttribute="bottom" id="UtR-7A-bYK"/>
+                            <constraint firstItem="usq-q0-Lg3" firstAttribute="centerX" secondItem="UFp-UY-zGf" secondAttribute="centerX" id="i8m-jU-sN1"/>
+                            <constraint firstItem="usq-q0-Lg3" firstAttribute="centerY" secondItem="UFp-UY-zGf" secondAttribute="centerY" id="l4j-YP-2eV"/>
+                            <constraint firstAttribute="trailing" secondItem="zzR-2M-n4N" secondAttribute="trailing" id="soS-E8-Viw"/>
+                            <constraint firstItem="zzR-2M-n4N" firstAttribute="top" secondItem="kxp-y9-58A" secondAttribute="bottom" id="zjQ-tY-SMB"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aiLoading" destination="RTa-1t-dbD" id="WaY-o2-u9a"/>
+                        <outlet property="lblNoCommits" destination="usq-q0-Lg3" id="jBC-e1-ZBJ"/>
+                        <outlet property="tblCommits" destination="zzR-2M-n4N" id="3CS-B3-bvx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgi-vd-Jgi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

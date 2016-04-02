@@ -22,8 +22,9 @@ class User {
         self.accessToken = cdUser.accessToken
         self.profile = Profile(cdProfile: cdUser.profile)
         self.repositories = [Repository]()
-        for repository in cdUser.repositories {
-            self.repositories?.append(Repository(cdRepository: repository))
+        let cdRepositories = cdUser.repositories.allObjects as! [CDRepository]
+        for cdRepository in cdRepositories {
+            self.repositories?.append(Repository(cdRepository: cdRepository))
         }
     }
 }

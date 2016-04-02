@@ -110,6 +110,12 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
             observable = Observable.error(Error(message: "User doesn't have a profile"))
         } else if user!.profile!.avatarUrl == nil {
             observable = Observable.empty()
+        } else if let avatar = FilesystemGateway.sharedInstance().getUserAvatar() {
+            observable = Observable.create({ (observer) -> Disposable in
+                observer.onNext(avatar)
+                return AnonymousDisposable{
+                }
+            })
         } else {
             observable = Observable.create({ (observer) -> Disposable in
                 if let image = FilesystemGateway.sharedInstance().getUserAvatar() {

@@ -176,8 +176,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="dJY-3b-4uB" id="U9f-BU-Qq3"/>
-                                    <outlet property="delegate" destination="dJY-3b-4uB" id="FkH-HT-CyW"/>
+                                    <outlet property="dataSource" destination="dJY-3b-4uB" id="aBR-D9-CZx"/>
+                                    <outlet property="delegate" destination="dJY-3b-4uB" id="MyW-Rp-fIj"/>
                                 </connections>
                             </tableView>
                         </subviews>

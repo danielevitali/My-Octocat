@@ -13,19 +13,18 @@ import SwiftEventBus
 class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     
     private weak var view: UserProfileViewContract!
-    private let repository: UserProfileRepositoryContract
-    private var repositories: [Repository]?
+    private let repository = UserRepository.sharedInstance()
     
     var userProfile: Profile? {
         return repository.user!.profile
     }
+    
     var userRepositories: [Repository]? {
         return repository.user!.repositories
     }
     
-    init(view: UserProfileViewContract, repository: UserProfileRepositoryContract) {
+    init(view: UserProfileViewContract) {
         self.view = view
-        self.repository = repository
     }
     
     func viewDidLoad() {
@@ -35,6 +34,7 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
             view.toggleRepositoriesLoading(false)
             view.toggleRepositoriesTable(true)
             view.refreshUserRepositories()
+            showAvatar()
         } else {
             view.toggleLoading(true)
             repository.getUserProfile()
@@ -57,13 +57,12 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     }
     
     private func loadRepositories() {
-        if repositories == nil {
+        if userRepositories == nil {
             view.toggleRepositoriesLoading(true)
             view.toggleRepositoriesTable(false)
             repository.getUserRepositories()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [unowned self] repositories in
-                    self.repositories = repositories
                     self.view.toggleRepositoriesLoading(false)
                     self.view.toggleRepositoriesTable(true)
                     self.view.refreshUserRepositories()
@@ -94,6 +93,6 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     }
     
     func onRepositoryClick(indexPath: NSIndexPath) {
-        SwiftEventBus.post(Events.SHOW_REPOSITORY, sender: repositories![indexPath.row])
+        SwiftEventBus.post(Events.SHOW_REPOSITORY, sender: userRepositories![indexPath.row])
     }
 }

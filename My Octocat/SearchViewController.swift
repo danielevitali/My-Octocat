@@ -70,6 +70,10 @@ class SearchViewController: UIViewController, SearchViewContract, UITableViewDel
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        presenter.onRepositoryClick(indexPath)
+    }
 
 }
 

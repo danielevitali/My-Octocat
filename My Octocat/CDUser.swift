@@ -15,7 +15,7 @@ class CDUser: NSManagedObject {
     
     @NSManaged var accessToken: String
     @NSManaged var profile: CDProfile
-    @NSManaged var repositories: [CDRepository]
+    @NSManaged var repositories: NSSet
     
     init(accessToken: String, context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName(CDUser.ENTRY_NAME, inManagedObjectContext: context)!

@@ -19,6 +19,8 @@ class Repository {
     var starsCount: Int
     var forksCount: Int
     var user: User?
+    var url: String
+    var commits: [Commit]?
     
     init(json: [String:AnyObject]) {
         self.id = json["id"] as! Int
@@ -29,6 +31,7 @@ class Repository {
         self.language = json["language"] as? String
         self.forksCount = json["forks_count"] as! Int
         self.openIssuesCount = json["open_issues_count"] as! Int
+        self.url = json["html_url"] as! String
     }
     
     init(cdRepository: CDRepository) {
@@ -40,6 +43,7 @@ class Repository {
         self.language = cdRepository.language
         self.forksCount = cdRepository.forksCount as Int
         self.openIssuesCount = cdRepository.openIssuesCount as Int
+        self.url = cdRepository.url as String
     }
     
 }
