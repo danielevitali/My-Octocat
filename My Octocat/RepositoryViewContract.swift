@@ -24,4 +24,6 @@ protocol RepositoryViewContract: class {
     
     func showCommit(url: String)
     
+    func showRepositoryOnWeb(url: String)
+    
 }

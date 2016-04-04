@@ -12,8 +12,11 @@ import RxSwift
 class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract {
     
     private weak var view: EditUserProfileViewContract!
-    private let user: User
     private let repository: UserProfileRepositoryContract
+    
+    private var user: User {
+        return repository.user!
+    }
     
     private var avatar: NSData?
     private var name: String!
@@ -21,9 +24,8 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
     private var company: String?
     private var bio: String?
     
-    init(view: EditUserProfileViewContract, repository: UserProfileRepositoryContract, user: User) {
+    init(view: EditUserProfileViewContract, repository: UserProfileRepositoryContract) {
         self.view = view
-        self.user = user
         self.repository = repository
     }
     

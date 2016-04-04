@@ -93,6 +93,15 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
     }
     
     func onRepositoryClick(indexPath: NSIndexPath) {
-        SwiftEventBus.post(Events.SHOW_REPOSITORY, sender: userRepositories![indexPath.row])
+        view.showRepository(userRepositories![indexPath.row])
+    }
+    
+    func onLogoutClick() {
+        repository.logout()
+        SwiftEventBus.post(Events.USER_LOGGED_OUT)
+    }
+    
+    func onEditClick() {
+        view.showEditProfile()
     }
 }

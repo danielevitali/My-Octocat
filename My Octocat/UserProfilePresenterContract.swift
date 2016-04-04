@@ -18,4 +18,8 @@ protocol UserProfilePresenterContract {
     
     func onRepositoryClick(indexPath: NSIndexPath)
     
+    func onLogoutClick()
+    
+    func onEditClick()
+    
 }

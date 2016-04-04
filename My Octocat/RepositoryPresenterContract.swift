@@ -16,4 +16,6 @@ protocol RepositoryPresenterContract {
     
     func onCommitClick(indexPath: NSIndexPath)
     
+    func onShowRepositoryOnWebClick()
+    
 }

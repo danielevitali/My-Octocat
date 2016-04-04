@@ -67,18 +67,18 @@ class Router {
         navigatorController.viewControllers = [userProfileViewController]
     }
     
-    static func showEditProfile(navigationController: UINavigationController, user: User) {
+    static func showEditProfile(viewController: UIViewController) {
         let accountStoryboard = UIStoryboard(name: Router.ACCOUNT_STORYBOARD, bundle: nil)
         let editUserProfileViewController = accountStoryboard.instantiateViewControllerWithIdentifier(Router.EDIT_USER_PROFILE_VIEW_CONTROLLER) as! EditUserProfileViewController
-        editUserProfileViewController.presenter = EditUserProfilePresenter(view: editUserProfileViewController, repository: UserRepository.sharedInstance(), user: user)
-        navigationController.presentViewController(editUserProfileViewController, animated: true, completion: nil)
+        editUserProfileViewController.presenter = EditUserProfilePresenter(view: editUserProfileViewController, repository: UserRepository.sharedInstance())
+        viewController.presentViewController(editUserProfileViewController, animated: true, completion: nil)
     }
     
-    static func showRepository(navigationController: UINavigationController, repository: Repository) {
+    static func showRepository(viewController: UIViewController, repository: Repository) {
         let repositoryStoryboard = UIStoryboard(name: Router.REPOSITORY_STORYBOARD, bundle: nil)
         let repositoryViewController = repositoryStoryboard.instantiateViewControllerWithIdentifier(Router.REPOSITORY_VIEW_CONTROLLER) as! RepositoryViewController
         repositoryViewController.presenter = RepositoryPresenter(view: repositoryViewController, repo: repository)
-        navigationController.pushViewController(repositoryViewController, animated: true)
+        viewController.showViewController(repositoryViewController, sender: self)
     }
     
     private static func showViewController(sender: UIViewController, showing: UIViewController) {

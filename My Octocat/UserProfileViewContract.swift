@@ -22,6 +22,10 @@ protocol UserProfileViewContract: class {
     
     func toggleRepositoriesTable(visible: Bool)
     
+    func showEditProfile()
+    
+    func showRepository(repository: Repository)
+    
     func showError(message: String)
     
 }

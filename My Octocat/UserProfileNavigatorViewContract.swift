@@ -10,12 +10,6 @@ import Foundation
 
 protocol UserProfileNavigatorViewContract: class {
     
-    func showRepository(repository: Repository)
-    
     func showUserProfile()
-    
-    func showEditProfile(user: User)
-    
-    func showRepositoryOnWeb(url: String)
     
 }

@@ -24,28 +24,4 @@ class UserProfileNavigatorPresenter: BasePresenter, UserProfileNavigatorPresente
         self.view.showUserProfile()
     }
     
-    func viewDidAppear() {
-        SwiftEventBus.onMainThread(self, name: Events.SHOW_REPOSITORY) { result in
-            self.currentRepository = result.object as! Repository
-            self.view.showRepository(self.currentRepository)
-        }
-    }
-    
-    func viewWillDisappear() {
-        SwiftEventBus.unregister(self)
-    }
-    
-    func onLogoutClick() {
-        UserRepository.sharedInstance().logout()
-        SwiftEventBus.post(Events.USER_LOGGED_OUT)
-    }
-    
-    func onEditClick() {
-        view.showEditProfile(UserRepository.sharedInstance().user!)
-    }
-    
-    func onShowRepositoryOnWebClick() {
-        view.showRepositoryOnWeb(currentRepository.url)
-    }
-    
 }

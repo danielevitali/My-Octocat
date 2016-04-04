@@ -12,14 +12,4 @@ protocol UserProfileNavigatorPresenterContract {
     
     func viewDidLoad()
     
-    func viewDidAppear()
-    
-    func viewWillDisappear()
-    
-    func onLogoutClick()
-    
-    func onEditClick()
-    
-    func onShowRepositoryOnWebClick()
-    
 }

@@ -18,8 +18,15 @@ class LoginViewController: UIViewController, LoginViewContract, UIWebViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
+        
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in storage.cookies! {
+            storage.deleteCookie(cookie)
+        }
+        NSUserDefaults.standardUserDefaults().synchronize()
         webView.delegate = self
+        
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(animated: Bool) {

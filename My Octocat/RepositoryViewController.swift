@@ -19,7 +19,20 @@ class RepositoryViewController: UIViewController, RepositoryViewContract, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let showRepositoryWebButton = UIButton(type: .Custom)
+        showRepositoryWebButton.setImage(UIImage(named: "icon logout")!, forState: .Normal)
+        showRepositoryWebButton.frame = CGRectMake(0, 0, 30, 30)
+        showRepositoryWebButton.addTarget(self, action: #selector(onShowRepositoryOnWebClick), forControlEvents: .TouchUpInside)
+        let showRepositoryWebBarButton = UIBarButtonItem(customView: showRepositoryWebButton)
+        
+        navigationItem.setRightBarButtonItem(showRepositoryWebBarButton, animated: false)
+        
         presenter.viewDidLoad()
+    }
+    
+    func onShowRepositoryOnWebClick() {
+        presenter.onShowRepositoryOnWebClick()
     }
     
     func showRepositoryTitle(title: String) {
@@ -51,6 +64,10 @@ class RepositoryViewController: UIViewController, RepositoryViewContract, UITabl
     }
     
     func showCommit(url: String) {
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+    }
+    
+    func showRepositoryOnWeb(url: String) {
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     

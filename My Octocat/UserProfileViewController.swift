@@ -33,7 +33,38 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let editButton = UIButton(type: .Custom)
+        editButton.setImage(UIImage(named: "icon pencil")!, forState: .Normal)
+        editButton.frame = CGRectMake(0, 0, 30, 30)
+        editButton.addTarget(self, action: #selector(onEditClick), forControlEvents: .TouchUpInside)
+        let editBarButton = UIBarButtonItem(customView: editButton)
+        
+        let logoutButton = UIButton(type: .Custom)
+        logoutButton.setImage(UIImage(named: "icon logout")!, forState: .Normal)
+        logoutButton.frame = CGRectMake(0, 0, 30, 30)
+        logoutButton.addTarget(self, action: #selector(onLogoutClick), forControlEvents: .TouchUpInside)
+        let logoutBarButton = UIBarButtonItem(customView: logoutButton)
+        
+        navigationItem.setRightBarButtonItems([logoutBarButton, editBarButton], animated: false)
+        
         presenter.viewDidLoad()
+    }
+    
+    func onLogoutClick() {
+        presenter.onLogoutClick()
+    }
+    
+    func onEditClick() {
+        presenter.onEditClick()
+    }
+    
+    func showEditProfile() {
+        Router.showEditProfile(self)
+    }
+    
+    func showRepository(repository: Repository) {
+        Router.showRepository(self, repository: repository)
     }
     
     func showUserProfile(profile: Profile) {

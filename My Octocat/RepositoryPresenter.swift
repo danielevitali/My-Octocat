@@ -52,4 +52,8 @@ class RepositoryPresenter: BasePresenter, RepositoryPresenterContract {
     func onCommitClick(indexPath: NSIndexPath) {
         view.showCommit(repo.commits![indexPath.row].url)
     }
+    
+    func onShowRepositoryOnWebClick() {
+        view.showRepositoryOnWeb(repo.url)
+    }
 }
