@@ -14,7 +14,6 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
     
     var presenter: UserProfileNavigatorPresenterContract!
     
-    var editButton: UIButton!
     var editBarButton: UIBarButtonItem!
     var logoutBarButton: UIBarButtonItem!
     var showRepositoryBarButton: UIBarButtonItem!
@@ -22,7 +21,7 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editButton = UIButton()
+        let editButton = UIButton()
         editButton.setImage(UIImage(named: "icon pencil"), forState: .Normal)
         editButton.frame = CGRectMake(0, 0, 30, 30)
         editButton.addTarget(self, action: #selector(UserProfileNavigatorController.onEditClick), forControlEvents: .TouchUpInside)
@@ -55,13 +54,12 @@ class UserProfileNavigatorController: UINavigationController, UserProfileNavigat
     
     func showUserProfile() {
         Router.showUserProfileInNavigatorController(self)
-        
-        navigationItem.setRightBarButtonItems([editBarButton, logoutBarButton], animated: false)
+        visibleViewController!.navigationItem.setRightBarButtonItems([editBarButton, logoutBarButton], animated: false)
     }
     
     func showRepository(repository: Repository) {
         Router.showRepository(self, repository: repository)
-        navigationItem.setRightBarButtonItems([showRepositoryBarButton], animated: false)
+        visibleViewController!.navigationItem.setRightBarButtonItems([showRepositoryBarButton], animated: false)
     }
     
     func onLogoutClick() {
