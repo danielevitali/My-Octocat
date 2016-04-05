@@ -27,7 +27,7 @@ class UserProfilePresenter: BasePresenter, UserProfilePresenterContract {
         self.view = view
     }
     
-    func viewDidLoad() {
+    func viewWillAppear() {
         if let profile = userProfile {
             view.toggleLoading(false)
             view.showUserProfile(profile)

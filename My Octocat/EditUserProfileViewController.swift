@@ -32,16 +32,8 @@ class EditUserProfileViewController: UIViewController, EditUserProfileViewContra
         imagePicker.delegate = self
     }
     
-    @IBAction func onCancelClick(sender: AnyObject) {
-        presenter.onCancelClick()
-    }
-    
     @IBAction func onSaveClick(sender: AnyObject) {
         presenter.onSaveClick()
-    }
-    
-    @IBAction func onAvatarClick(sender: AnyObject) {
-        presenter.onAvatarClick()
     }
     
     @IBAction func onEndEditingName(sender: AnyObject) {
@@ -106,44 +98,6 @@ class EditUserProfileViewController: UIViewController, EditUserProfileViewContra
     
     func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func showAvatarActions() {
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        let selectAction = UIAlertAction(title: "Select new image", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.presenter.onSelectAvatarClick()
-        })
-        let deleteAction = UIAlertAction(title: "Delete avatar", style: .Destructive, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.presenter.onDeleteAvatarClick()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        optionMenu.addAction(selectAction)
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(cancelAction)
-        presentViewController(optionMenu, animated: true, completion: nil)
-    }
-    
-    func showImageSelector() {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .PhotoLibrary
-        
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            presenter.onNewAvatarSelect(UIImagePNGRepresentation(image)!)
-        } else {
-            presenter.onNewAvatarSelectionCancel()
-        }
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        presenter.onNewAvatarSelectionCancel()
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func showError(message: String) {

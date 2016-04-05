@@ -18,7 +18,7 @@ class Commit {
         let commitJson = json["commit"] as! [String : AnyObject]
         self.message = commitJson["message"] as! String
         self.authorName = (commitJson["author"] as! [String : AnyObject])["name"] as! String
-        self.url = commitJson["url"] as! String
+        self.url = json["html_url"] as! String
     }
     
 }

@@ -73,12 +73,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-AF-9Kd">
-                                <rect key="frame" x="235" y="102" width="130" height="130"/>
-                                <connections>
-                                    <action selector="onAvatarClick:" destination="WLo-6L-1Xa" eventType="touchUpInside" id="PSi-Pp-BmI"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="U5M-wy-uKT">
                                 <rect key="frame" x="290" y="157" width="20" height="20"/>
                             </activityIndicatorView>
@@ -98,7 +92,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Bgr-AF-9Kd" firstAttribute="width" secondItem="vmm-qL-8uk" secondAttribute="width" id="27o-rI-Ktc"/>
                             <constraint firstItem="zJ0-c1-mbs" firstAttribute="top" secondItem="vmm-qL-8uk" secondAttribute="bottom" constant="24" id="59g-BX-XQU"/>
                             <constraint firstItem="4GH-Dt-OCp" firstAttribute="trailing" secondItem="2Po-6R-9La" secondAttribute="trailingMargin" id="5Ye-j3-mIF"/>
                             <constraint firstItem="U5M-wy-uKT" firstAttribute="centerY" secondItem="vmm-qL-8uk" secondAttribute="centerY" id="5wA-NS-twj"/>
@@ -106,7 +99,6 @@
                             <constraint firstItem="obh-PR-dkn" firstAttribute="top" secondItem="kDO-K7-EO3" secondAttribute="bottom" constant="8" id="89e-gq-m6k"/>
                             <constraint firstItem="9eI-wj-qLg" firstAttribute="top" secondItem="4GH-Dt-OCp" secondAttribute="bottom" constant="8" id="9IT-v0-Edl"/>
                             <constraint firstItem="4GH-Dt-OCp" firstAttribute="top" secondItem="ibh-T6-XKG" secondAttribute="bottom" constant="8" id="Avw-ew-o1T"/>
-                            <constraint firstItem="Bgr-AF-9Kd" firstAttribute="centerY" secondItem="vmm-qL-8uk" secondAttribute="centerY" id="Bkn-lO-ueI"/>
                             <constraint firstItem="9eI-wj-qLg" firstAttribute="leading" secondItem="2Po-6R-9La" secondAttribute="leadingMargin" id="FpF-ME-xrA"/>
                             <constraint firstAttribute="trailing" secondItem="fam-Az-4xD" secondAttribute="trailing" id="ITL-Ph-5Cy"/>
                             <constraint firstItem="ibh-T6-XKG" firstAttribute="top" secondItem="zJ0-c1-mbs" secondAttribute="bottom" constant="8" id="Iwq-Vy-uOk"/>
@@ -118,9 +110,7 @@
                             <constraint firstAttribute="trailing" secondItem="obh-PR-dkn" secondAttribute="trailing" id="ZeY-7Y-gzo"/>
                             <constraint firstItem="fam-Az-4xD" firstAttribute="top" secondItem="2Po-6R-9La" secondAttribute="top" id="cec-Np-qDS"/>
                             <constraint firstAttribute="bottom" secondItem="fam-Az-4xD" secondAttribute="bottom" id="eHt-v9-JiZ"/>
-                            <constraint firstItem="Bgr-AF-9Kd" firstAttribute="height" secondItem="vmm-qL-8uk" secondAttribute="height" id="ncj-7G-RVw"/>
                             <constraint firstItem="vmm-qL-8uk" firstAttribute="top" secondItem="obh-PR-dkn" secondAttribute="bottom" constant="30" id="rin-3S-eq1"/>
-                            <constraint firstItem="Bgr-AF-9Kd" firstAttribute="centerX" secondItem="vmm-qL-8uk" secondAttribute="centerX" id="us1-VC-MfT"/>
                             <constraint firstItem="9eI-wj-qLg" firstAttribute="trailing" secondItem="2Po-6R-9La" secondAttribute="trailingMargin" id="xYx-Bx-vTw"/>
                             <constraint firstItem="ibh-T6-XKG" firstAttribute="leading" secondItem="2Po-6R-9La" secondAttribute="leadingMargin" id="y92-JA-Ydr"/>
                             <constraint firstItem="ibh-T6-XKG" firstAttribute="trailing" secondItem="2Po-6R-9La" secondAttribute="trailingMargin" id="yNs-Kw-lzu"/>
@@ -130,7 +120,6 @@
                     <connections>
                         <outlet property="aiLoadingAvatar" destination="U5M-wy-uKT" id="xwE-7H-bI4"/>
                         <outlet property="aiMainLoading" destination="jqT-0a-d0V" id="WLq-4y-pnB"/>
-                        <outlet property="btnAvatar" destination="Bgr-AF-9Kd" id="SvE-dI-E71"/>
                         <outlet property="imgAvatar" destination="vmm-qL-8uk" id="Ly0-O9-mP9"/>
                         <outlet property="tfBio" destination="9eI-wj-qLg" id="hN4-gC-n4z"/>
                         <outlet property="tfCompany" destination="4GH-Dt-OCp" id="42r-vQ-jwE"/>

@@ -14,14 +14,6 @@ protocol EditUserProfilePresenterContract {
     
     func onSaveClick()
     
-    func onCancelClick()
-    
-    func onAvatarClick()
-    
-    func onSelectAvatarClick()
-    
-    func onDeleteAvatarClick()
-    
     func onEndEditingName(name: String)
     
     func onEndEditingLocation(location: String)
@@ -29,9 +21,5 @@ protocol EditUserProfilePresenterContract {
     func onEndEditingCompany(company: String)
     
     func onEndEditingBio(bio: String)
-    
-    func onNewAvatarSelect(image: NSData)
-    
-    func onNewAvatarSelectionCancel()
     
 }

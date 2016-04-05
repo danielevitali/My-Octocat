@@ -144,18 +144,23 @@ class UserRepository: LoginRepositoryContract, UserProfileRepositoryContract {
     
     func logout() {
         CoreDataGateway.sharedInstance().clearData()
+        user = nil
     }
     
     func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile> {
         return Observable.create { (observer) -> Disposable in
+            let task = GitHubGateway.sharedInstance().editUserProfile(name, location: location, company: company, bio: bio, accessToken: self.user!.accessToken, callbackHandler: { (profile, error) in
+                if let profile = profile {
+                    self.user?.profile = profile
+                    CoreDataGateway.sharedInstance().saveProfile(profile)
+                    observer.onNext(profile)
+                    observer.onCompleted()
+                } else {
+                    observer.onError(error!)
+                }
+            })
             return AnonymousDisposable {
-            }
-        }.subscribeOn(ComputationalScheduler.sharedInstance())
-    }
-    
-    func saveUserAvatar(avatar: NSData?)  -> Observable<Profile> {
-        return Observable.create { (observer) -> Disposable in
-            return AnonymousDisposable {
+                task.cancel()
             }
         }.subscribeOn(ComputationalScheduler.sharedInstance())
     }

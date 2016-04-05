@@ -47,8 +47,11 @@ class UserProfileViewController: UIViewController, UserProfileViewContract, UITa
         let logoutBarButton = UIBarButtonItem(customView: logoutButton)
         
         navigationItem.setRightBarButtonItems([logoutBarButton, editBarButton], animated: false)
-        
-        presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
     
     func onLogoutClick() {

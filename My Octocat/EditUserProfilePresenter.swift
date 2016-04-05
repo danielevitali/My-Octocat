@@ -18,7 +18,6 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
         return repository.user!
     }
     
-    private var avatar: NSData?
     private var name: String!
     private var location: String?
     private var company: String?
@@ -34,7 +33,6 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
             view.toggleMainLoading(false)
             view.enableToolbar(true)
             showUserProfile(profile)
-            checkAvatar(profile)
         } else {
             view.toggleMainLoading(true)
             view.enableToolbar(false)
@@ -44,7 +42,6 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
                     self.view.toggleMainLoading(false)
                     self.view.enableToolbar(true)
                     self.showUserProfile(profile)
-                    self.checkAvatar(profile)
                     }, onError: { [unowned self] errorType in
                         let error = errorType as! Error
                         self.view.toggleMainLoading(false)
@@ -60,41 +57,11 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
     }
     
     private func showUserProfile(profile: Profile) {
-        avatar = profile.avatar
         name = profile.name
         location = profile.location
         company = profile.company
         bio = profile.bio
         view.showUserProfile(profile)
-    }
-    
-    private func checkAvatar(profile: Profile) {
-        guard profile.avatarUrl != nil else {
-            return
-        }
-        
-        if profile.avatar == nil {
-            view.toggleAvatarLoading(true)
-            view.toggleAvatar(false)
-            repository.getUserAvatar()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [unowned self] avatar in
-                    self.avatar = avatar
-                    self.view.toggleAvatarLoading(false)
-                    self.view.toggleAvatar(true)
-                    self.view.showAvatar(avatar)
-                    }, onError: { [unowned self] errorType in
-                        let error = errorType as! Error
-                        self.view.toggleAvatarLoading(false)
-                        self.view.toggleAvatar(true)
-                        self.view.showError(error.message)
-                    }, onCompleted: { () in
-                        
-                    }, onDisposed: { () in
-                        
-                }).addDisposableTo(disposeBag)
-
-        }
     }
     
     func onSaveClick() {
@@ -104,11 +71,8 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
         }
         
         view.toggleMainLoading(true)
-        var observable = repository.saveUserProfile(name, location: location, company: company, bio: bio)
-        if user.profile!.avatar != avatar {
-            observable = observable.concat(repository.saveUserAvatar(avatar))
-        }
-        observable.observeOn(MainScheduler.instance)
+        repository.saveUserProfile(name, location: location, company: company, bio: bio)
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] profile in
                 self.view.dismiss()
                 }, onError: { [unowned self] errorType in
@@ -120,23 +84,6 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
                 }, onDisposed: { () in
 
             }).addDisposableTo(disposeBag)
-    }
-    
-    func onCancelClick() {
-        view.dismiss()
-    }
-    
-    func onAvatarClick() {
-        view.showAvatarActions()
-    }
-    
-    func onSelectAvatarClick() {
-        view.showImageSelector()
-    }
-    
-    func onDeleteAvatarClick() {
-        avatar = nil
-        view.showAvatar(nil)
     }
     
     func onEndEditingName(name: String) {
@@ -153,15 +100,6 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
     
     func onEndEditingBio(bio: String) {
         self.bio = bio
-    }
-    
-    func onNewAvatarSelect(image: NSData) {
-        avatar = image
-        view.showAvatar(image)
-    }
-    
-    func onNewAvatarSelectionCancel() {
-        //Do nothing
     }
     
 }

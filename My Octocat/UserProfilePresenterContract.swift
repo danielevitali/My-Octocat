@@ -14,7 +14,7 @@ protocol UserProfilePresenterContract {
     
     var userRepositories: [Repository]? {get}
     
-    func viewDidLoad()
+    func viewWillAppear()
     
     func onRepositoryClick(indexPath: NSIndexPath)
     

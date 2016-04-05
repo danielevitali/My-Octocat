@@ -13,14 +13,20 @@ protocol UserProfileRepositoryContract {
     
     var user: User? {get set}
     
+    func isUserLoggedIn() -> Bool
+    
+    func getAuthURL() -> NSURL
+    
+    func loginUserWithWebCode(code: String) -> Observable<User>
+    
     func getUserProfile() -> Observable<Profile>
     
     func getUserRepositories() -> Observable<[Repository]>
     
     func getUserAvatar() -> Observable<NSData>
     
-    func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile>
+    func logout()
     
-    func saveUserAvatar(avatar: NSData?)  -> Observable<Profile>
+    func saveUserProfile(name: String, location: String?, company: String?, bio: String?) -> Observable<Profile>
     
 }

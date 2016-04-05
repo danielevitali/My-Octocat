@@ -147,11 +147,25 @@ class GitHubGateway {
         })
     }
     
-    func getRepositories(username: String, callbackHandler callback: (response: [Repository]?, error: Error?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_REPOSITORIES_PATH, params: nil))
+    func editUserProfile(name: String, location: String?, company: String?, bio: String?, accessToken: String?, callbackHandler callback: (response: Profile?, error: Error?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: buildUrl(GitHubGateway.USER_PROFILE_PATH, params: nil))
         
-        return sendGetRequest(request, callbackHandler: { (data, response, error) in
+        let json = ["name":name, "location":location ?? "", "company":company ?? "", "bio":bio ?? ""]
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
             
+        addHeadersToRequest(request, accessToken: accessToken)
+        return sendPatchRequest(request, callbackHandler: { (data, response, error) in
+            if let response = response, let data = data {
+                let json = self.extractJson(data)
+                if self.isSuccessResponse(response.statusCode) {
+                    let profile = Profile(json: json)
+                    callback(response: profile, error: nil)
+                } else {
+                    callback(response: nil, error: Error(json: json))
+                }
+            } else {
+                callback(response: nil, error: Error(error: error!))
+            }
         })
     }
 
@@ -167,6 +181,16 @@ class GitHubGateway {
     
     private func sendPostRequest(request: NSMutableURLRequest, callbackHandler callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) -> NSURLSessionDataTask {
         request.HTTPMethod = "POST"
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            (data, response, error) in
+            callback(data: data, response: response as? NSHTTPURLResponse, error: error)
+        })
+        task.resume()
+        return task
+    }
+    
+    private func sendPatchRequest(request: NSMutableURLRequest, callbackHandler callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        request.HTTPMethod = "PATCH"
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             (data, response, error) in
             callback(data: data, response: response as? NSHTTPURLResponse, error: error)

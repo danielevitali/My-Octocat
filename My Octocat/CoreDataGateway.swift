@@ -132,6 +132,7 @@ class CoreDataGateway {
     func clearData() {
         if let user = user {
             managedObjectContext.deleteObject(user)
+            saveContext()
         }
     }
     

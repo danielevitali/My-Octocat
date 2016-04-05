@@ -24,10 +24,6 @@ protocol EditUserProfileViewContract: class {
     
     func dismiss()
     
-    func showAvatarActions()
-    
-    func showImageSelector()
-    
     func showError(message: String)
     
 }
