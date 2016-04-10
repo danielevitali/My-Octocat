@@ -58,8 +58,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="C3l-5q-uHu" id="feR-FH-FPp"/>
-                                    <outlet property="delegate" destination="C3l-5q-uHu" id="lMW-8g-VnS"/>
+                                    <outlet property="dataSource" destination="C3l-5q-uHu" id="JRl-qD-kMh"/>
+                                    <outlet property="delegate" destination="C3l-5q-uHu" id="9Cg-nv-vT5"/>
                                 </connections>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RTa-1t-dbD">

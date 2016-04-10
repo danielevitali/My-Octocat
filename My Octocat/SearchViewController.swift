@@ -20,8 +20,6 @@ class SearchViewController: UIViewController, SearchViewContract, UITableViewDel
     override func viewDidLoad()  {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard)))
     }
     
     func toggleLoading(visible: Bool) {
