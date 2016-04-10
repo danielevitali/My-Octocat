@@ -21,7 +21,7 @@ class RepositoryViewController: UIViewController, RepositoryViewContract, UITabl
         super.viewDidLoad()
         
         let showRepositoryWebButton = UIButton(type: .Custom)
-        showRepositoryWebButton.setImage(UIImage(named: "icon logout")!, forState: .Normal)
+        showRepositoryWebButton.setImage(UIImage(named: "icon web")!, forState: .Normal)
         showRepositoryWebButton.frame = CGRectMake(0, 0, 30, 30)
         showRepositoryWebButton.addTarget(self, action: #selector(onShowRepositoryOnWebClick), forControlEvents: .TouchUpInside)
         let showRepositoryWebBarButton = UIBarButtonItem(customView: showRepositoryWebButton)

@@ -12,7 +12,6 @@ import UIKit
 class EditUserProfileViewController: UIViewController, EditUserProfileViewContract, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var imgAvatar: UIImageView!
-    @IBOutlet weak var btnAvatar: UIButton!
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfLocation: UITextField!
     @IBOutlet weak var tfCompany: UITextField!
@@ -36,20 +35,24 @@ class EditUserProfileViewController: UIViewController, EditUserProfileViewContra
         presenter.onSaveClick()
     }
     
-    @IBAction func onEndEditingName(sender: AnyObject) {
+    @IBAction func onEditingName(sender: AnyObject) {
         presenter.onEndEditingName(tfName.text!)
     }
     
-    @IBAction func onEndEditingLocation(sender: AnyObject) {
+    @IBAction func onEditingLocation(sender: AnyObject) {
         presenter.onEndEditingLocation(tfLocation.text!)
     }
     
-    @IBAction func onEndEditingCompany(sender: AnyObject) {
+    @IBAction func onEditingCompany(sender: AnyObject) {
         presenter.onEndEditingCompany(tfCompany.text!)
     }
     
-    @IBAction func onEndEditingBio(sender: AnyObject) {
+    @IBAction func onEditingBio(sender: AnyObject) {
         presenter.onEndEditingBio(tfBio.text!)
+    }
+    
+    @IBAction func onCancelClick(sender: AnyObject) {
+        presenter.onCancelClick()
     }
     
     func showUserProfile(profile: Profile) {
@@ -79,7 +82,6 @@ class EditUserProfileViewController: UIViewController, EditUserProfileViewContra
     
     func toggleAvatar(visible: Bool) {
         imgAvatar.hidden = !visible
-        btnAvatar.hidden = !visible
     }
     
     func enableToolbar(enable: Bool) {

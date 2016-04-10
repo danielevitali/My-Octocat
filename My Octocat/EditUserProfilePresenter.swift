@@ -86,6 +86,10 @@ class EditUserProfilePresenter: BasePresenter, EditUserProfilePresenterContract 
             }).addDisposableTo(disposeBag)
     }
     
+    func onCancelClick() {
+        view.dismiss()
+    }
+    
     func onEndEditingName(name: String) {
         self.name = name
     }

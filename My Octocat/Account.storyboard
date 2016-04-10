@@ -30,7 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="onEndEditingName:" destination="WLo-6L-1Xa" eventType="editingDidEnd" id="1Rs-up-wmA"/>
+                                    <action selector="onEditingName:" destination="WLo-6L-1Xa" eventType="editingChanged" id="I9c-lX-vwI"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ibh-T6-XKG">
@@ -38,7 +38,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="onEndEditingLocation:" destination="WLo-6L-1Xa" eventType="editingDidEnd" id="pd4-PP-oQD"/>
+                                    <action selector="onEditingLocation:" destination="WLo-6L-1Xa" eventType="editingChanged" id="hv5-Vr-l1M"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4GH-Dt-OCp">
@@ -46,7 +46,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="onEndEditingCompany:" destination="WLo-6L-1Xa" eventType="editingDidEnd" id="LFc-L8-G6i"/>
+                                    <action selector="onEditingCompany:" destination="WLo-6L-1Xa" eventType="editingChanged" id="MGm-ll-eg2"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9eI-wj-qLg">
@@ -54,7 +54,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="onEndEditingBio:" destination="WLo-6L-1Xa" eventType="editingDidEnd" id="V1J-lX-dBf"/>
+                                    <action selector="onEditingBio:" destination="WLo-6L-1Xa" eventType="editingChanged" id="UA6-9g-urA"/>
                                 </connections>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obh-PR-dkn">
@@ -62,7 +62,7 @@
                                 <items>
                                     <barButtonItem systemItem="cancel" id="F5x-Hg-PIN">
                                         <connections>
-                                            <action selector="onCancelClick:" destination="WLo-6L-1Xa" id="Jet-gm-koA"/>
+                                            <action selector="onCancelClick:" destination="WLo-6L-1Xa" id="ugD-nc-I6m"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DfX-Ka-DOQ"/>
@@ -124,7 +124,7 @@
                         <outlet property="tfBio" destination="9eI-wj-qLg" id="hN4-gC-n4z"/>
                         <outlet property="tfCompany" destination="4GH-Dt-OCp" id="42r-vQ-jwE"/>
                         <outlet property="tfLocation" destination="ibh-T6-XKG" id="TPi-3a-dSa"/>
-                        <outlet property="tfName" destination="zJ0-c1-mbs" id="c5f-Ql-ro0"/>
+                        <outlet property="tfName" destination="zJ0-c1-mbs" id="Dyc-0g-FHo"/>
                         <outlet property="toolbar" destination="obh-PR-dkn" id="zgm-Ap-OdN"/>
                         <outlet property="vMainLoading" destination="fam-Az-4xD" id="9rE-AP-FJJ"/>
                     </connections>

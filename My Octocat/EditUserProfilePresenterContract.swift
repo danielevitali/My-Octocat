@@ -14,6 +14,8 @@ protocol EditUserProfilePresenterContract {
     
     func onSaveClick()
     
+    func onCancelClick()
+    
     func onEndEditingName(name: String)
     
     func onEndEditingLocation(location: String)
